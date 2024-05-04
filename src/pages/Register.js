@@ -10,6 +10,8 @@ const Register = () => {
   const studentNumberRef = React.useRef(null);
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
+  
+  const [privacyAgreementChecked, setPrivacyAgreementChecked] = React.useState(false);
 
   const [studentNumberUniquenessError, setStudentNumberUniqunessError] = React.useState(false);
   const [emailUniquenessError, setEmailUniquenessError] = React.useState(false);
@@ -23,16 +25,20 @@ const Register = () => {
     setEmailFormatError(false);
 
     try {
-      let res = await axios.post("http://localhost:9090/register/student", {
-        "studentNumber": studentNumberRef.current.value,
-        "birthDate": birthDateRef.current.value,
-        "name": nameRef.current.value,
-        "surname": surnameRef.current.value,
-        "email": emailRef.current.value,
-        "password": passwordRef.current.value
-      });
+      if (!privacyAgreementChecked) {
+        alert("Registration failed. You must agree to the terms of Privacy Policy.");
+      } else {
+        let res = await axios.post("http://localhost:9090/register/student", {
+          "studentNumber": studentNumberRef.current.value,
+          "birthDate": birthDateRef.current.value,
+          "name": nameRef.current.value,
+          "surname": surnameRef.current.value,
+          "email": emailRef.current.value,
+          "password": passwordRef.current.value
+        });
 
-      alert("Register sucessful. Your user ID: " + JSON.stringify(res.data));
+        alert("Register sucessful. Your user ID: " + JSON.stringify(res.data));
+      }
     } catch (err) {
       try {
         if (err.response.data == undefined) {
@@ -87,9 +93,12 @@ const Register = () => {
         <input ref={passwordRef} id="password" type="text" placeholder="Password" />
         
         <label>
-          <input type = "checkbox"></input>
+          <input type="checkbox" 
+            checked={privacyAgreementChecked}
+            onChange={() => setPrivacyAgreementChecked((state) => !state)}>
+          </input>
           I agree the terms of privacy policy.
-          </label>
+        </label>
       </div>
       <div className={classes.signInContainer}>
         <div className={classes.signInButton}>
