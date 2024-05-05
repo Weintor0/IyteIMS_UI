@@ -7,12 +7,10 @@ const Login = () => {
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
 
-  const [emailFormatError, setEmailFormatError] = React.useState(false);
   const [userDoesNotExistError, setUserDoesNotExistError] = React.useState(false);
   const [incorrectPasswordError, setIncorrectPasswordError] = React.useState(false);
 
   async function loginRequest() {
-    setEmailFormatError(false);
     setUserDoesNotExistError(false);
     setIncorrectPasswordError(false);
 
@@ -24,11 +22,26 @@ const Login = () => {
 
       alert("Login successful: " + JSON.stringify(res.headers['authorization']));
     } catch (err) {
-      if (err.response.status == 401) {
-        setIncorrectPasswordError(true);
-      }
-      else {
-        setUserDoesNotExistError(true);
+      try {
+        if (err.response.data == undefined) {
+          throw new Error();
+        }
+        
+        for (const error of err.response.data.errors) {
+          console.log(error);
+
+          if (error.constraint == 'PasswordMismatch') {
+            setIncorrectPasswordError(true);
+          }
+          else if (error.constraint == 'AccountMissing') {
+            setUserDoesNotExistError(true);
+          }
+          else {
+            throw new Error();
+          }
+        }
+      } catch (e) {
+        alert("An internal system error has occured.");
       }
     }
   }
@@ -41,7 +54,6 @@ const Login = () => {
       </div>
       <div className={classes.inputContainer}>
         <input ref={emailRef} id="email" type="text" placeholder="E-mail" />
-        {emailFormatError ? <p>Invalid email format</p> : null}
         {userDoesNotExistError ? <p>The account does not exist.</p> : null}
 
         <input ref={passwordRef} id="password" type="text" placeholder="Password" />
