@@ -11,11 +11,8 @@ const RegisterStudent = () => {
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
 
-  const [privacyAgreementChecked, setPrivacyAgreementChecked] =
-    React.useState(false);
-
-  const [studentNumberUniquenessError, setStudentNumberUniqunessError] =
-    React.useState(false);
+  const [privacyAgreementChecked, setPrivacyAgreementChecked] = React.useState(false);
+  const [studentNumberUniquenessError, setStudentNumberUniqunessError] = React.useState(false);
   const [emailUniquenessError, setEmailUniquenessError] = React.useState(false);
   const [birthDateFormatError, setBirthDateFormatError] = React.useState(false);
   const [emailFormatError, setEmailFormatError] = React.useState(false);
@@ -94,50 +91,22 @@ const RegisterStudent = () => {
       </div>
       <div className={classes.inputContainer}>
         <input ref={nameRef} id="name" type="text" placeholder="Name" />
-        <input
-          ref={surnameRef}
-          id="surname"
-          type="text"
-          placeholder="Surname"
-        />
+        <input ref={surnameRef} id="surname" type="text" placeholder="Surname" />
 
-        <input
-          ref={birthDateRef}
-          id="birthDate"
-          type="text"
-          placeholder="Birth Date"
-        />
+        <input ref={birthDateRef} id="birthDate" type="text" placeholder="Birth Date"/>
         {birthDateFormatError ? <p>Invalid date format</p> : null}
 
-        <input
-          ref={studentNumberRef}
-          id="studentNumber"
-          type="text"
-          placeholder="Student Number"
-        />
-        {studentNumberUniquenessError ? (
-          <p>A user with this student number is already registered.</p>
-        ) : null}
+        <input ref={studentNumberRef} id="studentNumber" type="text" placeholder="Student Number"/>
+        {studentNumberUniquenessError ? (<p>A user with this student number is already registered.</p>) : null}
 
         <input ref={emailRef} id="email" type="text" placeholder="E-mail" />
-        {emailUniquenessError ? (
-          <p>A user with this email is already registered.</p>
-        ) : null}
+        {emailUniquenessError ? (<p>A user with this email is already registered.</p>) : null}
         {emailFormatError ? <p>Invalid email format</p> : null}
 
-        <input
-          ref={passwordRef}
-          id="password"
-          type="text"
-          placeholder="Password"
-        />
+        <input ref={passwordRef} id="password" type="text" placeholder="Password"/>
 
         <label>
-          <input
-            type="checkbox"
-            checked={privacyAgreementChecked}
-            onChange={() => setPrivacyAgreementChecked((state) => !state)}
-          ></input>
+          <input type="checkbox" checked={privacyAgreementChecked} onChange={() => setPrivacyAgreementChecked((state) => !state)}></input>
           I agree the terms of privacy policy.
         </label>
       </div>
