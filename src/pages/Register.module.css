@@ -1,78 +1,11 @@
 .container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: white;
-  height: 60%;
-  width: 25%;
-  padding: 50px;
-  border-radius: 30px;
-  box-shadow: 5px 5px 4px #776ec2;
-}
-
-.container h2 {
-  font-weight: 500;
-  margin-bottom: 0;
-}
-
-.container p {
-  color: #776ec2;
-  margin-top: 0;
-}
-
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.inputContainer input {
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 15px;
-  border: 2px solid #776ec2;
-  margin-bottom: 10px;
-}
-
-.inputContainer input:focus {
-  outline: #776ec2;
-}
-
-.inputContainer input::placeholder {
-  color: #776ec2;
-}
-
-.signInContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.signInContainer button {
-  color: white;
-  font-weight: 500;
-  font-size: 18px;
-  background-color: #9298e8;
-  width: 175px;
-  border-radius: 20px;
-  border: none;
-  padding: 10px 0;
-  cursor: pointer;
-}
-
-.signInContainer button:hover {
-  background-color: #7c84eb;
-}
-
-.signInContainer a {
-  display: flex;
   justify-content: center;
-  color: #776ec2;
+  width: 100%;
 }
 
-.signInContainer a:hover {
-  color: red;
-}
-
-.signInButton {
+.tabButtonContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
 }
