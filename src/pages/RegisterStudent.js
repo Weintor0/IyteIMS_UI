@@ -17,11 +17,25 @@ const RegisterStudent = () => {
   const [birthDateFormatError, setBirthDateFormatError] = React.useState(false);
   const [emailFormatError, setEmailFormatError] = React.useState(false);
 
+  const [passwordBlankError, setPasswordBlankError] = React.useState(false);
+  const [emailBlankError, setEmailBlankError] = React.useState(false);
+  const [surnameBlankError, setSurnameBlankError] = React.useState(false);
+  const [nameBlankError, setNameBlankError] = React.useState(false);
+  const [studentNumberBlankError, setStudentNumberBlankError] = React.useState(false);
+  const [birthDateNullError, setBirthDateNullError] = React.useState(false);
+
   async function registerRequest() {
     setStudentNumberUniqunessError(false);
     setEmailUniquenessError(false);
     setBirthDateFormatError(false);
     setEmailFormatError(false);
+
+    setPasswordBlankError(false);
+    setEmailBlankError(false);
+    setSurnameBlankError(false);
+    setNameBlankError(false);
+    setStudentNumberBlankError(false);
+    setBirthDateNullError(false);
 
     try {
       if (!privacyAgreementChecked) {
@@ -29,7 +43,7 @@ const RegisterStudent = () => {
           "Registration failed. You must agree to the terms of Privacy Policy."
         );
       } else {
-        let res = await axios.post("http://localhost:9090/register/student", {
+        let res = await axios.post("http://localhost:9090/auth/register/student", {
           studentNumber: studentNumberRef.current.value,
           birthDate: birthDateRef.current.value,
           name: nameRef.current.value,
@@ -49,36 +63,42 @@ const RegisterStudent = () => {
         for (const error of err.response.data.errors) {
           console.log(error);
 
-          if (
-            error.entity == "User" &&
-            error.attribute == "email" &&
-            error.constraint == "Unique"
-          ) {
+          if (error.entity == "User" && error.attribute == "email" && error.constraint == "Unique") {
             setEmailUniquenessError(true);
-          } else if (
-            error.entity == "Student" &&
-            error.attribute == "studentNumber" &&
-            error.constraint == "Unique"
-          ) {
+          }
+          else if (error.entity == "Student" && error.attribute == "studentNumber" && error.constraint == "Unique") {
             setStudentNumberUniqunessError(true);
-          } else if (
-            error.entity == "Student" &&
-            error.attribute == "birthDate" &&
-            error.constraint == "Format"
-          ) {
+          } 
+          else if (error.entity == "Student" && error.attribute == "birthDate" && error.constraint == "Format") {
             setBirthDateFormatError(true);
-          } else if (
-            error.entity == "User" &&
-            error.attribute == "email" &&
-            error.constraint == "Email"
-          ) {
+          }
+          else if (error.entity == 'Student' && error.attribute == 'birthDate' && error.constraint == 'NotNull') {
+            setBirthDateNullError(true);
+          }
+          else if (error.entity == "Student" && error.attribute == "email" && error.constraint == "Email") {
             setEmailFormatError(true);
-          } else {
+          } 
+          else if (error.entity == 'Student' && error.attribute == 'password' && error.constraint == 'NotBlank') {
+            setPasswordBlankError(true);
+          }
+          else if (error.entity == 'Student' && error.attribute == 'email' && error.constraint == 'NotBlank') {
+            setEmailBlankError(true);
+          }
+          else if (error.entity == 'Student' && error.attribute == 'surname' && error.constraint == 'NotBlank') {
+            setSurnameBlankError(true);
+          }
+          else if (error.entity == 'Student' && error.attribute == 'name' && error.constraint == 'NotBlank') {
+            setNameBlankError(true);
+          }    
+          else if (error.entity == 'Student' && error.attribute == 'studentNumber' && error.constraint == 'NotBlank') {
+            setStudentNumberBlankError(true);
+          }      
+          else {
             throw new Error();
           }
         }
       } catch (e) {
-        alert("An internal system error has occured.");
+        alert("An internal system error has occured." + e);
       }
     }
   }
@@ -91,19 +111,26 @@ const RegisterStudent = () => {
       </div>
       <div className={classes.inputContainer}>
         <input ref={nameRef} id="name" type="text" placeholder="Name" />
+        {nameBlankError ? <p>Name cannot be blank.</p> : null}
+
         <input ref={surnameRef} id="surname" type="text" placeholder="Surname" />
+        {surnameBlankError ? <p>Surname cannot be blank.</p> : null}
 
         <input ref={birthDateRef} id="birthDate" type="text" placeholder="Birth Date"/>
         {birthDateFormatError ? <p>Invalid date format</p> : null}
+        {birthDateNullError ? <p>Birth date cannot be blank.</p> : null}
 
         <input ref={studentNumberRef} id="studentNumber" type="text" placeholder="Student Number"/>
         {studentNumberUniquenessError ? (<p>A user with this student number is already registered.</p>) : null}
+        {studentNumberBlankError ? <p>Student number cannot be blank.</p> : null}
 
         <input ref={emailRef} id="email" type="text" placeholder="E-mail" />
         {emailUniquenessError ? (<p>A user with this email is already registered.</p>) : null}
         {emailFormatError ? <p>Invalid email format</p> : null}
+        {emailBlankError ? <p>Email cannot be blank</p> : null}
 
         <input ref={passwordRef} id="password" type="text" placeholder="Password"/>
+        {passwordBlankError ? <p>Password cannot be blank.</p> : null}
 
         <label>
           <input type="checkbox" checked={privacyAgreementChecked} onChange={() => setPrivacyAgreementChecked((state) => !state)}></input>
