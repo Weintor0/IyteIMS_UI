@@ -1,0 +1,30 @@
+.errorContainer {
+    background-color: #ffffff;
+    padding: 15px 10px;
+    border-radius: 30px;
+    width: 480px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    align-self: start;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.errorTitle {
+    color: #24262A;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: start;
+    margin: 0;
+    padding-left: 10px;
+
+}
+
+.errorMessage {
+    color: #696E83;
+    font-size: 18px;
+    text-align: start;
+    margin-top: 10px;
+    padding-left: 10px;
+}
