@@ -46,10 +46,10 @@ const Login = () => {
 
       switch (role) {
         case "ROLE_STUDENT":
-          window.location.href=`http://localhost:3040/student/notifications.php?id=${id}&token=${token}`;
+          navigate('/student/home');
           break;
         case "ROLE_FIRM":
-          navigate('/firmhomepage');
+          navigate('/firm/home');
           break;
         case "ROLE_INTERNSHIP_COORDINATOR":
           window.location.href=`http://localhost:3040/coordinator/notifications.php?id=${id}&token=${token}`;
