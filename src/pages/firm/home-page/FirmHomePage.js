@@ -27,12 +27,9 @@ const FirmHomePage = () => {
         <>
             <div className={classes.sideBar}>
                 <MenuSelectedTabButton/>
-                <MenuUnselectedTabButton click={() => navigateTo('/FirmNotifications')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/FirmAnnouncements')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/FirmInternshipApplications')} condition={false}/>
+                <MenuUnselectedTabButton click={() => navigateTo('/firm/notifications')} condition={false}/>
+                <MenuUnselectedTabButton click={() => navigateTo('/firm/internship-offers')} condition={false}/>
                 <MenuUnselectedTabButton click={() => navigateTo('/ApplicationForms')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/StudentReports')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/CompanyReports')} condition={false}/>
             </div>
             <div className={classes.container}>
                 <div className={classes.headerContainer}>

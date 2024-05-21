@@ -5,7 +5,7 @@ import classes from "./FirmAnnouncements.module.css";
 const FirmAnnouncements = () => {
   
   const handleAddClick = () => {
-    window.location.href = "/AddAnnouncements";
+    window.location.href = "/firm/publish-internship-offers";
   };
 
    return (
