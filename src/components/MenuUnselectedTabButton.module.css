@@ -1,0 +1,9 @@
+.selectedTabButton {
+    background-color: #F2F1FF;
+    width: 54px;
+    height: 54px;
+    border-radius: 20px;
+    margin-right: 44px;
+    cursor: pointer;
+  }
+  

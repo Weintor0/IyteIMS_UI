@@ -1,9 +1,12 @@
 import React from "react";
 import classes from "./Login.module.css";
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
 
@@ -12,6 +15,16 @@ const Login = () => {
   const [emailBlankError, setEmailBlankError] = React.useState(false);
   const [emailNotWellFormedError, setEmailNotWellFormedError] = React.useState(false);
   const [passwordBlankError, setPasswordBlankError] = React.useState(false);
+
+  function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  }
 
   async function loginRequest() {
     setUserDoesNotExistError(false);
@@ -26,7 +39,28 @@ const Login = () => {
           "password": passwordRef.current.value
       });
 
-      alert("Login successful: " + JSON.stringify(res.headers['authorization']));
+      const id = res.data.id;
+      const token = res.data.token.split(' ')[1];
+      const parsedToken = parseJwt(token);
+      const role = parsedToken['Role'];
+
+      switch (role) {
+        case "ROLE_STUDENT":
+          window.location.href=`http://localhost:3040/student/notifications.php?id=${id}&token=${token}`;
+          break;
+        case "ROLE_FIRM":
+          navigate('/firmhomepage');
+          break;
+        case "ROLE_INTERNSHIP_COORDINATOR":
+          window.location.href=`http://localhost:3040/coordinator/notifications.php?id=${id}&token=${token}`;
+          break;
+        case "ROLE_DEPARTMENT_SECRETARY":
+          window.location.href=`http://localhost:3040/secretary/notifications.php?id=${id}&token=${token}`;
+          break;
+        default:
+          throw new Error();
+      }
+      
     } catch (err) {
       try {
         if (err.response.data == undefined) {

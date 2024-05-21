@@ -66,7 +66,8 @@ const RegisterFirm = () => {
           password: passwordRef.current.value
         });
 
-        alert("Register sucessful. Your user ID: " + JSON.stringify(res.data));
+        //alert("Register sucessful. Your user ID: " + JSON.stringify(res.data));
+        window.location.href="/login";
       }
     } catch (err) {
       try {
