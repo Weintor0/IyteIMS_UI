@@ -73,10 +73,8 @@ const EvaluateLetter = () => {
                 <MenuUnselectedTabButton click={() => navigateTo('/firm/home')} condition={false}/>
                 <MenuUnselectedTabButton click={() => navigateTo('/firm/notifications')} condition={false}/>
                 <MenuUnselectedTabButton click={() => navigateTo('/firm/internship-offers')} condition={false}/>
-                <MenuSelectedTabButton />
                 <MenuUnselectedTabButton click={() => navigateTo('/firm/application-forms')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/student-reports')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/company-reports')} condition={false}/>
+                <MenuSelectedTabButton />
             </div>
 
             <div className={classes.container}>

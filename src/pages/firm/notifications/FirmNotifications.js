@@ -46,7 +46,8 @@ const FirmNotifications = () => {
                 <MenuUnselectedTabButton click={() => navigateTo('/firm/Home')} condition={false}/>
                 <MenuSelectedTabButton/>
                 <MenuUnselectedTabButton click={() => navigateTo('/firm/internship-offers')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/ApplicationForms')} condition={false}/>
+                <MenuUnselectedTabButton click={() => navigateTo('/firm/application-forms')} condition={false}/>
+                <MenuUnselectedTabButton click={() => navigateTo('/firm/evaluate-letter')} condition={false}/>
             </div>
 
             <div className={classes.container}>

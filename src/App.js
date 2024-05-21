@@ -29,6 +29,7 @@ import CoordinatorProfile from "./pages/coordinator/CoordinatorProfile";
 
 import SecretaryHomePage from "./pages/secretary/SecretaryHomePage";
 import SecretarySSITransactionsPage from "./pages/secretary/SecretarySSITransactionsPage";
+import SecretaryNotificationsPage from "./pages/secretary/SecretaryNotificationsPage";
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
 
             <Route path="/secretary/home" element={<SecretaryHomePage />}></Route>
             <Route path="/secretary/ssi-transactions" element={<SecretarySSITransactionsPage />}></Route>
+            <Route path="/secretary/notifications" element={<SecretaryNotificationsPage />}></Route>
           </Routes>
         </div>
       </div>

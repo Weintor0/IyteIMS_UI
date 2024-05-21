@@ -11,6 +11,11 @@ const SecretarySSITransactionsPage = () => {
 
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+    const [expandedIndex, setExpandedIndex] = useState(false);
+
+    const handleStudentClick = (index) => {
+        setExpandedIndex(expandedIndex === index ? null : index);
+    };
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -31,6 +36,7 @@ const SecretarySSITransactionsPage = () => {
             <div className={classes.sideBar}>
                 <MenuUnselectedTabButton click={() => navigateTo('/secretary/home')} condition={false}/>
                 <MenuSelectedTabButton/>
+                <MenuUnselectedTabButton click={() => navigateTo('/secretary/notifications')} condition={false}/>
             </div>
             <div className={classes.container}>
                 <div className={classes.headerContainer}>
@@ -53,16 +59,31 @@ const SecretarySSITransactionsPage = () => {
                 </div>
                 <p className={classes.welcomeMessage}>See all students with SGK requirement.</p>
                 <div className={classes.boxesContainer}>
-                    <div className={classes.studentBox}>
-                            <h3 className={classes.studentName}>Student-1</h3>
-                    </div>
-                    <div className={classes.studentBox}>
-                            <h3 className={classes.studentName}>Student-2</h3>
-                    </div>
-                    <div className={classes.studentBox}>
-                            <h3 className={classes.studentName}>Student-3</h3>
-                    </div>
-
+                    {['Student-1', 'Student-2', 'Student-3'].map((student, index) => (
+                        <div key={index} 
+                             className={expandedIndex === index ? classes.expandedStudentBox : classes.studentBox}
+                             onClick={() => handleStudentClick(index)}>
+                            <h3 style={{cursor:'pointer'}}
+                                className={classes.studentName}>
+                                {student}    
+                            </h3>
+                            {expandedIndex === index && (<div className={classes.buttonBox}>
+                                        <button 
+                                            onClick={(e) => {e.stopPropagation();
+                                                            alert('clicked on button')}} 
+                                            className={classes.tabButton}>
+                                            Download Application Form
+                                        </button>
+                                        <button 
+                                        onClick={(e) => {e.stopPropagation();
+                                                        alert('clicked on button')}} 
+                                        className={classes.tabButton}>
+                                        Upload Employment Doc.
+                                        </button>
+                                    </div>
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
         </>

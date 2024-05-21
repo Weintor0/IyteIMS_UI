@@ -1,16 +1,29 @@
-import React, {useState} from "react";
-import classes from "./SecretaryHomePage.module.css";
+import React, { useState } from 'react';
+import classes from './SecretaryNotificationsPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import MenuSelectedTabButton from '../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../components/MenuUnselectedTabButton';
+import Pagination from '../../components/Pagination';
 import { useSearchParams } from "react-router-dom";
 
-const SecretaryHomePage = () => {
+const SecretaryNotificationsPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [[keyId, id], [keyToken, token]] = searchParams;
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const notificationsPerPage = 5;
+
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+
+    const notifications = [
+        'Announcement 1', 'Announcement 2', 'Announcement 3', 'Announcement 4', 'Announcement 5',
+        'Announcement 6', 'Announcement 7', 'Announcement 8', 'Announcement 9', 'Announcement 10',
+    ];
+
+    const indexOfLastNotification = currentPage * notificationsPerPage;
+    const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
+    const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -26,17 +39,19 @@ const SecretaryHomePage = () => {
         navigate({pathname: path, search: `?id=${id}&token=${token}`});
     };
 
-    return (
+
+    return(
         <>
             <div className={classes.sideBar}>
-                <MenuSelectedTabButton/>
+                <MenuUnselectedTabButton click={() => navigateTo('/secretary/home')} condition={false}/>
                 <MenuUnselectedTabButton click={() => navigateTo('/secretary/ssi-transactions')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/secretary/notifications')} condition={false}/>
+                <MenuSelectedTabButton/>
             </div>
+
             <div className={classes.container}>
                 <div className={classes.headerContainer}>
                     <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.greeting}>Hello, Name.</h2>
+                        <h2 className={classes.header}>Notifications</h2>
                         <form onSubmit={handleSearchSubmit}>
                             <input
                                 type="text"
@@ -52,30 +67,26 @@ const SecretaryHomePage = () => {
                         <span className={classes.profileName}>Name, S.</span>
                     </div>
                 </div>
-                <p className={classes.welcomeMessage}>Welcome back!</p>
+                <p className={classes.message}>See all your notifications here.</p>
                 <div className={classes.boxesContainer}>
-                    <div className={classes.announcementBox}
-                         onClick={(e) => navigateTo('/secretary/notifications')}>
-                        <>
-                            <h3>Notifications</h3>
-                            <p>13 unread</p>
-                        </>
-                    </div>
-                    <div className={classes.subBoxContainer}>
-                        <div className={classes.blankBox}></div>
-                        <div className={classes.infoBox}
-                             onClick={(e) => navigateTo('/secretary/ssi-transactions')}>
-                            <h3>SSI Transactions</h3>
-                            <p>2 unread</p>
+                    {currentNotifications.map((notification, index) => (
+                        <div key={index} className={classes.notificationBox}>
+                            {notification}
                         </div>
-                    </div>
+                    ))}
+                    <Pagination
+                        currentPage={currentPage}
+                        notificationsPerPage={notificationsPerPage}
+                        totalNotifications={notifications.length}
+                        paginate={setCurrentPage}
+                    />
 
-                    <div className={classes.applicationBox}></div>
                 </div>
-
             </div>
+
+
         </>
     );
 };
 
-export default SecretaryHomePage;
+export default SecretaryNotificationsPage;
