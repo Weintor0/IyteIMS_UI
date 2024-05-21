@@ -11,10 +11,10 @@ import AddAnnouncements from "./pages/firm/internship-offers/AddAnnouncements";
 
 import SummerPracticeReports from "./pages/student/summer-practice-reports/SummerPracticeReports";
 import SSITransactions from "./pages/student/ssi-transactions/SSITransactions";
-import ApplicationForms from "./pages/student/application-forms/ApplicationForms";
 import StudentHomePage from "./pages/student/home/StudentHome";
 import StudentViewNotifications from "./pages/student/view-notifications/StudentViewNotifications";
 import StudentSendApplicationLetter from "./pages/student/send-application-letter/StudentSendApplicationLetter";
+import StudentSendApplicationLetter2 from "./pages/student/send-application-letter/StudentSendApplicationLetter2";
 import StudentViewInternshipApplications from "./pages/student/view-internship-applications/StudentViewInternshipApplications";
 import StudentSendApplicationForm from "./pages/student/send-application-form/StudentSendApplicationForm";
 
@@ -34,10 +34,10 @@ function App() {
             <Route path="/firm/publish-internship-offers" element={<AddAnnouncements />}></Route>
 
             <Route path="/student/ssi-transactions" element={<SSITransactions />}></Route>
-            <Route path="/student/application-forms" element={<ApplicationForms />}></Route>
             <Route path="/student/home" element={<StudentHomePage />}></Route>
             <Route path="/student/view-notifications" element={<StudentViewNotifications />}></Route>
             <Route path="/student/send-application-letter" element={<StudentSendApplicationLetter />}></Route>
+            <Route path="/student/send-application-letter2" element={<StudentSendApplicationLetter2 />}></Route>
             <Route path="/student/internship-applications" element={<StudentViewInternshipApplications />}></Route>
             <Route path="/student/send-application-form" element={<StudentSendApplicationForm />}></Route>
             <Route path="/student/summer-practice-reports" element={<SummerPracticeReports />}></Route>
