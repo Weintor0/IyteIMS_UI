@@ -1,3 +1,5 @@
+// CONNECTED
+
 import React, { useState } from "react";
 import classes from "./AddAnnouncements.module.css";
 import { useSearchParams, useNavigate } from "react-router-dom";

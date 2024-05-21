@@ -1,3 +1,5 @@
+// CONNECTED
+
 import React, { useState, useEffect } from "react";
 import classes from "./FirmAnnouncements.module.css";
 import { useSearchParams, useNavigate } from "react-router-dom";
@@ -20,29 +22,26 @@ const FirmAnnouncements = () => {
       if (!loaded) {
         const res = await axios.get("http://localhost:9090/internshipoffer/list?page=0&size=10", {
           headers: { "Authorization": "Bearer " + token }});
-        const offers = res.data.content;
-
-        /*let result = [];
-        for (let i = 0; i < offers.length; i++) {
-          const offer = offer[i];
-
-        }*/
-
-  
-        setOfferList(offers);
+        let myOffers = [];
+        res.data.content.forEach((offer) => {
+          if (offer['firmId'] == id) {
+            myOffers.push(offer);
+          }
+        })
+        setOfferList(myOffers);
         setLoaded(true);
       }
     }
     
-    fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly"));
+    fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly" + err));
   });
 
    return (
     <div className={classes.container}>
         <div className={classes.headercontainer}>
             <div>
-            <h2>My Internship Announcements </h2>
-            <p>See your recent announcements.</p>
+            <h2>My Internship Offers </h2>
+            <p>See your recent internship offers.</p>
             </div>
             <div className={classes.searchContainer}>
             <form action="/search" method="get">
@@ -77,8 +76,8 @@ const AnnouncementsTable = ({ announcements }) => {
         <tbody>
           {announcements.map(announcement => {return (
             <tr key={announcement.offerId} className={classes.announcementRow}>
-              <td>{announcement.firmId}</td>
               <td>{announcement.title}</td>
+              <td>{announcement.jobTitle}</td>
               <td>{announcement.content}</td>
             </tr>
           )})}
