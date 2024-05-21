@@ -52,7 +52,7 @@ const Login = () => {
           navigate('/firm/home');
           break;
         case "ROLE_INTERNSHIP_COORDINATOR":
-          window.location.href=`http://localhost:3040/coordinator/notifications.php?id=${id}&token=${token}`;
+          navigate('/coordinator/home');
           break;
         case "ROLE_DEPARTMENT_SECRETARY":
           window.location.href=`http://localhost:3040/secretary/notifications.php?id=${id}&token=${token}`;

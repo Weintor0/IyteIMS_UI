@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./ErrorBox.module.css";
+import classes from "./ErrorMessageBox.module.css";
 import {useNavigate} from "react-router-dom";
 
 

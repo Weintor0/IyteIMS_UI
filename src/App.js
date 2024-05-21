@@ -18,6 +18,15 @@ import StudentSendApplicationLetter2 from "./pages/student/send-application-lett
 import StudentViewInternshipApplications from "./pages/student/view-internship-applications/StudentViewInternshipApplications";
 import StudentSendApplicationForm from "./pages/student/send-application-form/StudentSendApplicationForm";
 
+import CoordinatorHomePage from "./pages/coordinator/CoordinatorHomePage";
+import CoordinatorInternshipAnnouncementPage from "./pages/coordinator/CoordinatorInternshipAnnouncementsPage";
+import CoordinatorAnnouncementPage from "./pages/coordinator/CoordinatorAnnouncementPage";
+import CoordinatorSurveyResultsPage from "./pages/coordinator/CoordinatorSurveyResultsPage";
+import CoordinatorReviewFormsPage from "./pages/coordinator/CoordinatorReviewFormsPage";
+import CoordinatorSSITransactionsPage from "./pages/coordinator/CoordinatorSSITransactionsPage";
+import CoordinatorProfile from "./pages/coordinator/CoordinatorProfile";
+
+
 function App() {
   return (
     <Router>
@@ -42,6 +51,13 @@ function App() {
             <Route path="/student/send-application-form" element={<StudentSendApplicationForm />}></Route>
             <Route path="/student/summer-practice-reports" element={<SummerPracticeReports />}></Route>
 
+            <Route path="/coordinator/home" element={<CoordinatorHomePage />}></Route>
+            <Route path="/coordinator/internshipannouncements" element={<CoordinatorInternshipAnnouncementPage/>}></Route>
+            <Route path="/coordinator/announcements" element={<CoordinatorAnnouncementPage/>}></Route>
+            <Route path="/coordinator/surveyresult" element={<CoordinatorSurveyResultsPage/>}></Route>
+            <Route path="/coordinator/reviewforms" element={<CoordinatorReviewFormsPage/>}></Route>
+            <Route path="/coordinator/ssitransactions" element={<CoordinatorSSITransactionsPage/>}></Route>
+            <Route path="/coordinator/profile" element={<CoordinatorProfile/>}></Route>
           </Routes>
         </div>
       </div>

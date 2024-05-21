@@ -1,6 +1,6 @@
 import React from 'react'
-import ErrorMessageBox from "../components/ErroxBox";
-import ProfileButton from "../components/ProfileButton";
+import ErrorMessageBox from "../../components/coordinator/ErrorMessageBox";
+import ProfileButton from "../../components/coordinator/ProfileButton";
 
 const CoordinatorHomePage = (navigation) => {
     let Name="Nurcan Y.";
@@ -16,32 +16,29 @@ const CoordinatorHomePage = (navigation) => {
                     <ErrorMessageBox Title="Search Component"/>
                 </div>
                 <div style={{flex:1,margin:"2%"}}>
-                    <ProfileButton navigateTo="/coordinatorprofile" Name={Name}/>
+                    <ProfileButton navigateTo="/coordinator/profile" Name={Name}/>
                 </div>
 
             </div>
             <div style={{ flex:7}}>
                 <div style={{marginBottom:10}} >
-                    <ErrorMessageBox navigateTo="/internshipannouncements" Message={numberOfUnread} Title="Internship Announcements"/>
+                    <ErrorMessageBox navigateTo="/coordinator/internshipannouncements" Message={numberOfUnread} Title="Internship Announcements"/>
                 </div>
                 <div style={{display:"flex", flexDirection:"row"}}>
                     <div style={{}}>
-                        <ErrorMessageBox navigateTo="/coordinatorannouncements" High="85%" Message="Click to see Coordinator Announcements" Title="Coordinator Announcements"/>
+                        <ErrorMessageBox navigateTo="/coordinator/announcements" High="85%" Message="Click to see Coordinator Announcements" Title="Coordinator Announcements"/>
 
                     </div>
                     <div style={{display:"flex", flexDirection:"column",gap:10}}>
-                        <ErrorMessageBox navigateTo="/coordinatorreviewforms"  Title="Review the completed forms"/>
-                        <ErrorMessageBox navigateTo="/coordinatorssitransactions"  Title="SSI Transactions"/>
+                        <ErrorMessageBox navigateTo="/coordinator/reviewforms"  Title="Review the completed forms"/>
+                        <ErrorMessageBox navigateTo="/coordinator/ssitransactions"  Title="SSI Transactions"/>
                     </div>
                 </div>
                 <div style={{marginTop:"1.5%"}}>
-                    <ErrorMessageBox navigateTo="/surveyresult" Title="Survey Results"/>
+                    <ErrorMessageBox navigateTo="/coordinator/surveyresult" Title="Survey Results"/>
 
                 </div>
-
-
             </div>
-
         </div>
     )
 }

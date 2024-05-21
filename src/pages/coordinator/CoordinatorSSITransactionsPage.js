@@ -1,6 +1,6 @@
 import React from 'react'
-import ErrorMessageBox from "../components/ErroxBox";
-import ProfileButton from "../components/ProfileButton";
+import ErrorMessageBox from "../../components/coordinator/ErrorMessageBox";
+import ProfileButton from "../../components/coordinator/ProfileButton";
 
 const CoordinatorSSITransactionsPage = () => {
 
