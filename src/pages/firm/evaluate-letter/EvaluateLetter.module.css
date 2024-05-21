@@ -1,0 +1,219 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 90%;
+    width: 80%;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+  }
+  
+  .sideBar {
+    flex-direction: column;
+    margin-right: 0;
+    align-items: center;
+  }
+  
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 5px 0 2px;
+  }
+  
+  .headerLeftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header {
+    font-size: 40px;
+    font-size: 40px;
+    color: #333;
+    margin: 0 0 0 20px;
+  }
+  
+  .message {
+    font-size: 18px;
+    color: #666;
+    display: block;
+    margin: 0 0 5px 24px;
+  }
+  
+  .searchInput {
+    padding: 14px 16px;
+    border: 1px;
+    border-radius: 20px;
+    outline: none;
+    width: 300px;
+    font-size: 16px;
+    margin-left: 15%;
+    box-shadow: 4px 1px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .profileContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .profileButton {
+    background-color: #61677D;
+    border: none;
+    cursor: pointer;
+    padding: 20px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px; /*space between the button and the text */
+  }
+  
+  .profileName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .boxesContainer {
+    display: flex;
+    height: 100%;
+    width: 70%;
+    gap: 20px;               /* Space between each box */
+    flex-direction: column;  /* Aligns items vertically */
+    cursor: pointer;
+    margin-top: 5%;
+    margin-left: 20px;
+    align-content: center;
+  }
+  
+  .notificationBox {
+    background-color: #ffffff;
+    width: 100%;
+    height: auto;
+    min-height: 10%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, height 0.3s;
+    cursor: pointer;
+    padding: 8px 15px 5px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+  
+  .notificationBox:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sortContainer {
+    height: 11vh;
+    display: flex;
+    width: auto;
+    background-color: #fff;
+    margin-right: 5vw;
+    margin-top: 6vh;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+}
+
+.sortContent {
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  color: #666;
+}
+
+.sortContent p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.sortButton {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    text-align: left;
+    padding: 5px 0;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sortButton:hover {
+    color: #333;
+}
+  
+.body{
+  display:flex;
+  height: 100%;
+  justify-content: space-between;
+}
+  
+.notificationBox.expanded {
+  height: auto; /* Allow height to adjust based on content */ /* Adjust as needed */
+  padding-bottom: 20px; /* Extra padding for the buttons */
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.rightButtons {
+  display: flex;
+  gap: 10px; /* Space between approve and reject buttons */
+}
+
+.downloadButton{
+  max-height: 5vh;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  background: none;
+  color: #666;
+  padding: 5px 0;
+  text-decoration: underline;
+}
+
+.approveButton,
+.rejectButton {
+  max-height: 5vh;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.approveButton {
+    background-color: #4CAF50; /* Blue */
+    color: white;
+}
+
+.rejectButton {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.notificationMessage{
+  flex: 1; /* Takes up remaining space in the flex container */
+  padding-bottom: 10px;
+}
+
+.notificationMessage.expanded {
+  border-bottom: 3px solid #DEDCFD; /* Add bottom border with the specified color when expanded */
+}

@@ -8,6 +8,7 @@ import FirmHomePage from "./pages/firm/home-page/FirmHomePage";
 import FirmNotifications from "./pages/firm/notifications/FirmNotifications";
 import FirmAnnouncements from "./pages/firm/internship-offers/FirmAnnouncements";
 import AddAnnouncements from "./pages/firm/internship-offers/AddAnnouncements";
+import EvaluateLetter from "./pages/firm/evaluate-letter/EvaluateLetter";
 
 import SummerPracticeReports from "./pages/student/summer-practice-reports/SummerPracticeReports";
 import SSITransactions from "./pages/student/ssi-transactions/SSITransactions";
@@ -43,6 +44,7 @@ function App() {
             <Route path="/firm/notifications" element={<FirmNotifications />}></Route>
             <Route path="/firm/internship-offers" element={<FirmAnnouncements />}></Route>
             <Route path="/firm/publish-internship-offers" element={<AddAnnouncements />}></Route>
+            <Route path="/firm/evaluate-letter" element={<EvaluateLetter />}></Route>
 
             <Route path="/student/ssi-transactions" element={<SSITransactions />}></Route>
             <Route path="/student/home" element={<StudentHomePage />}></Route>

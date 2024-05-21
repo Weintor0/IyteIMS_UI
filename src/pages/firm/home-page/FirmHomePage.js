@@ -26,7 +26,6 @@ const FirmHomePage = () => {
         navigate({pathname: path, search: `?id=${id}&token=${token}`});
     };
 
-
     return (
         <>
             <div className={classes.sideBar}>
