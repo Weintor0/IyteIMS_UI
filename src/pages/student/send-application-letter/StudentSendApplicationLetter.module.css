@@ -1,107 +1,107 @@
 
 .container {
-    display: flex;
-    flex-direction: column;
-    background-color: #F2F1FF;
-    height: 85%;
-    width: 95%;
-    padding: 3rem;
-    border-radius: 30px;
-    box-shadow: 5px 5px 4px #776ec2;
-    margin-left: 6rem;
-    margin-right: 2rem;
-  }
+  display: flex;
+  flex-direction: column;
+  background-color: #F2F1FF;
+  height: 85%;
+  width: 95%;
+  padding: 3rem;
+  border-radius: 30px;
+  box-shadow: 5px 5px 4px #776ec2;
+  margin-left: 6rem;
+  margin-right: 2rem;
+}
 .container h2 {
-    font-weight: 500;
-    margin-bottom: 0;
- }
-  
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
 .container p {
-    margin-top: 0;
+  margin-top: 0;
 }
 .headercontainer {
-  font-size: 24px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 30px 25px;
-  
+font-size: 24px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+padding: 30px 25px;
+
 }
 
 
 .headercontainer p {
-  color: #776ec2;
+color: #776ec2;
 
 }
 
 
 .searchContainer button {
-  color: #61677D;
-  width: 2rem;
-  height: 2rem;
-  background-color: #61677D;
-  border: 1px;
-  border-radius: 10px;
-  
+color: #61677D;
+width: 2rem;
+height: 2rem;
+background-color: #61677D;
+border: 1px;
+border-radius: 10px;
+
 }
 .searchContainer form input:focus {
-  outline: #776ec2;
+outline: #776ec2;
 }
 
 .searchContainer form input::placeholder {
 
-  color: #776ec2;
+color: #776ec2;
 }
 .bodyContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 95%;
-  padding: 30px 25px;
-  
-  
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+width: 95%;
+padding: 30px 25px;
+
+
 }
 .listContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
 
 }
 .listContainer ul{
-  height: 10rem;
-  width: 140px;
-    margin-right: 2rem;
-  border-radius: 30px;
-  border: 2px solid #FDFDFD;
-  display: flex;
-  flex-direction: column;
-  background-color: #FDFDFD;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+height: 10rem;
+width: 140px;
+  margin-right: 2rem;
+border-radius: 30px;
+border: 2px solid #FDFDFD;
+display: flex;
+flex-direction: column;
+background-color: #FDFDFD;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
 align-items: center;
 
 }
 .none {
-  display: flex;
-  flex: none;
+display: flex;
+flex: none;
 }
 .listContainer ul button {
-    width: 5rem;
-    height: 5rem;
-    background-color: #A9B7E7;
-    margin-top: 2rem;
-    margin-right: 2rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
-    border-radius: 8px;
-    border: 2px solid #6E7BC1
+  width: 5rem;
+  height: 5rem;
+  background-color: #A9B7E7;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+  border-radius: 8px;
+  border: 2px solid #6E7BC1
 }
 
 .listContainer ul p  {
-  font-size: 18px;
-  color: #696E83;
-  font-weight: 400;
-  margin-right: 2rem;
-  margin-top: 5px;
+font-size: 18px;
+color: #696E83;
+font-weight: 400;
+margin-right: 2rem;
+margin-top: 5px;
 }
 
 

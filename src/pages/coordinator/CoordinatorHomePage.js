@@ -18,11 +18,10 @@ const CoordinatorHomePage = (navigation) => {
                 <div style={{flex:1,margin:"2%"}}>
                     <ProfileButton navigateTo="/coordinator/profile" Name={Name}/>
                 </div>
-
             </div>
             <div style={{ flex:7}}>
                 <div style={{marginBottom:10}} >
-                    <ErrorMessageBox navigateTo="/coordinator/internshipannouncements" Message={numberOfUnread} Title="Internship Announcements"/>
+                    <ErrorMessageBox navigateTo="/coordinator/internshipannouncements" Message={numberOfUnread} Title="Internship Offers"/>
                 </div>
                 <div style={{display:"flex", flexDirection:"row"}}>
                     <div style={{}}>

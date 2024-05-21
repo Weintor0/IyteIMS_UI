@@ -26,6 +26,8 @@ import CoordinatorReviewFormsPage from "./pages/coordinator/CoordinatorReviewFor
 import CoordinatorSSITransactionsPage from "./pages/coordinator/CoordinatorSSITransactionsPage";
 import CoordinatorProfile from "./pages/coordinator/CoordinatorProfile";
 
+import SecretaryHomePage from "./pages/secretary/SecretaryHomePage";
+import SecretarySSITransactionsPage from "./pages/secretary/SecretarySSITransactionsPage";
 
 function App() {
   return (
@@ -56,8 +58,11 @@ function App() {
             <Route path="/coordinator/announcements" element={<CoordinatorAnnouncementPage/>}></Route>
             <Route path="/coordinator/surveyresult" element={<CoordinatorSurveyResultsPage/>}></Route>
             <Route path="/coordinator/reviewforms" element={<CoordinatorReviewFormsPage/>}></Route>
-            <Route path="/coordinator/ssitransactions" element={<CoordinatorSSITransactionsPage/>}></Route>
+            <Route path="/coordinator/ssi-transactions" element={<CoordinatorSSITransactionsPage/>}></Route>
             <Route path="/coordinator/profile" element={<CoordinatorProfile/>}></Route>
+
+            <Route path="/secretary/home" element={<SecretaryHomePage />}></Route>
+            <Route path="/secretary/ssi-transactions" element={<SecretarySSITransactionsPage />}></Route>
           </Routes>
         </div>
       </div>

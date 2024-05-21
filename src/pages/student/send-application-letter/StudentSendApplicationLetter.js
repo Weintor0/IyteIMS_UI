@@ -1,60 +1,29 @@
 import React, { useState } from "react";
-import classes from "./StudentSendApplicationLetter2.module.css";
-import Vector from "./images/Vector.png";
-import PlusSign from "./images/+.png";
-import Modal from "../../../components/student/Modal";
+import classes from "./StudentSendApplicationLetter.module.css";
+import { Link } from "react-router-dom";
 
-const StudentSendApplicationLetter2 = () => {
-  const [showModal, setShowModal] = useState(false);
 
-  const handleOpen = () => {
-    setShowModal(true);
-  };
+const StudentSendApplicationLetter = () => {
 
-  const handleClose = () => {
-    setShowModal(false);
-  };
-
-  return (
+   return (
     <div className={classes.container}>
-      <div className={classes.headerContainer}>
+      <div className={classes.headercontainer}>
         <div>
-          <h2>Internship Opportunities</h2>
+          <h2>Internship Oppurtunities</h2>
           <p>See all your documents here.</p>
         </div>
-        <div className={classes.blackBox}>
-          <button>
-            <img src={Vector} alt="icon" />
-          </button>
-          <p>Name S.</p>
+        <div className={classes.searchContainer}>
+            <button type="submit" className="search-button"></button>
         </div>
       </div>
-      <div className={classes.bodyContainer}>
-        <div className={classes.header1}>
-          <ul className={classes.firstul}>
-            <button>
-              <img src={Vector} alt="icon" />
-            </button>
-            <p>Internship Advert of Firm A</p>
-          </ul>
-          <div className={classes.secondrow}>
-            <div>
-              <ul className={classes.secondul}>
-                <button className={classes.plusSign} onClick={handleOpen}>
-                  <img src={PlusSign} alt="icon" />
-                </button>
-                <p>Add summer practice application letter</p>
-              </ul>
-            </div>
-            <div className={classes.downloadbutton}>
-              <button>Download Template</button>
-            </div>
-          </div>
-        </div>
+    <div className={classes.bodyContainer}>
+      <div className={classes.listContainer}>
+        <ul><Link to="/student/send-application-letter2"><button></button><p>Company 1</p></Link></ul>
+        <ul><Link to="/student/send-application-letter2"><button></button><p>Company 2</p></Link></ul>
       </div>
-      {showModal && <Modal showModal={showModal} handleClose={handleClose} />}
+      </div>
     </div>
   );
 };
 
-export default StudentSendApplicationLetter2;
+export default StudentSendApplicationLetter;
