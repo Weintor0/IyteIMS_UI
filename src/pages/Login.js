@@ -46,16 +46,16 @@ const Login = () => {
 
       switch (role) {
         case "ROLE_STUDENT":
-          navigate('/student/home');
+          navigate({pathname: '/student/home', search: `?id=${id}&token=${token}`});
           break;
         case "ROLE_FIRM":
-          navigate('/firm/home');
+          navigate({pathname: '/firm/home', search: `?id=${id}&token=${token}`});
           break;
         case "ROLE_INTERNSHIP_COORDINATOR":
-          navigate('/coordinator/home');
+          navigate({pathname: '/coordinator/home', search: `?id=${id}&token=${token}`});
           break;
         case "ROLE_DEPARTMENT_SECRETARY":
-          window.location.href=`http://localhost:3040/secretary/notifications.php?id=${id}&token=${token}`;
+          navigate({pathname: './secretary/home', search: `?id=${id}&token=${token}`});
           break;
         default:
           throw new Error();

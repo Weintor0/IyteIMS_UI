@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import classes from "./SSITransactions.module.css";
-
+import { useSearchParams } from "react-router-dom";
 
 const SSITransactions = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [[keyId, id], [keyToken, token]] = searchParams;
 
    return (
     <div className={classes.container}>

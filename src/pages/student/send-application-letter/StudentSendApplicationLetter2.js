@@ -4,8 +4,12 @@ import Vector from "./images/Vector.png"
 import PlusSign from "./images/+.png"
 import Modal from "../../../components/student/Modal"
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const StudentSendApplicationLetter2 = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [[keyId, id], [keyToken, token]] = searchParams;
+
   const [showModal, setShowModal] = useState(false);
 
   const handleOpen = () => {
@@ -33,7 +37,7 @@ const StudentSendApplicationLetter2 = () => {
         <div className={classes.header1}>
           <ul className={classes.firstul}>
             <button>
-              <Link to="/student/send-application-letter">
+              <Link to={{pathname: "/student/send-application-letter", search: `?id=${id}&token=${token}`}}>
               <img src={Vector} alt="icon" />
               </Link>
             </button>

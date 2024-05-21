@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import classes from "./ApplicationForms.module.css";
-
+import { useSearchParams } from "react-router-dom";
 
 const ApplicationForms = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [[keyId, id], [keyToken, token]] = searchParams;
 
    return (
     <div className={classes.container}>

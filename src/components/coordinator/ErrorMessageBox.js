@@ -7,6 +7,7 @@ const ErrorMessageBox = ({ Title, Message, High, Width,navigateTo }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
+        console.log(navigateTo);
         navigate(navigateTo);
     };
     return (

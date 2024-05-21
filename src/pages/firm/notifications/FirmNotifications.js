@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton';
 import Pagination from '../../../components/Pagination';
-
+import { useSearchParams } from "react-router-dom";
 
 const FirmNotifications = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [[keyId, id], [keyToken, token]] = searchParams;
+
     const [currentPage, setCurrentPage] = useState(1);
     const notificationsPerPage = 5;
 
@@ -33,7 +36,7 @@ const FirmNotifications = () => {
     };
 
     const navigateTo = (path) => {
-        navigate(path);
+        navigate({pathname: path, search: `?id=${id}&token=${token}`});
     };
 
 

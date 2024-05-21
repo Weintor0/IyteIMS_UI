@@ -3,8 +3,12 @@ import classes from "./FirmHomePage.module.css";
 import { useNavigate } from 'react-router-dom';
 import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton';
+import { useSearchParams } from "react-router-dom";
 
 const FirmHomePage = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [[keyId, id], [keyToken, token]] = searchParams;
+
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
@@ -19,7 +23,7 @@ const FirmHomePage = () => {
     };
 
     const navigateTo = (path) => {
-        navigate(path);
+        navigate({pathname: path, search: `?id=${id}&token=${token}`});
     };
 
 

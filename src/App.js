@@ -19,7 +19,7 @@ import StudentViewInternshipApplications from "./pages/student/view-internship-a
 import StudentSendApplicationForm from "./pages/student/send-application-form/StudentSendApplicationForm";
 
 import CoordinatorHomePage from "./pages/coordinator/CoordinatorHomePage";
-import CoordinatorInternshipAnnouncementPage from "./pages/coordinator/CoordinatorInternshipAnnouncementsPage";
+import CoordinatorInternshipOfferPage from "./pages/coordinator/CoordinatorInternshipOfferPage";
 import CoordinatorAnnouncementPage from "./pages/coordinator/CoordinatorAnnouncementPage";
 import CoordinatorSurveyResultsPage from "./pages/coordinator/CoordinatorSurveyResultsPage";
 import CoordinatorReviewFormsPage from "./pages/coordinator/CoordinatorReviewFormsPage";
@@ -54,11 +54,11 @@ function App() {
             <Route path="/student/summer-practice-reports" element={<SummerPracticeReports />}></Route>
 
             <Route path="/coordinator/home" element={<CoordinatorHomePage />}></Route>
-            <Route path="/coordinator/internshipannouncements" element={<CoordinatorInternshipAnnouncementPage/>}></Route>
             <Route path="/coordinator/announcements" element={<CoordinatorAnnouncementPage/>}></Route>
             <Route path="/coordinator/surveyresult" element={<CoordinatorSurveyResultsPage/>}></Route>
             <Route path="/coordinator/reviewforms" element={<CoordinatorReviewFormsPage/>}></Route>
             <Route path="/coordinator/ssi-transactions" element={<CoordinatorSSITransactionsPage/>}></Route>
+            <Route path="/coordinator/internship-offers" element={<CoordinatorInternshipOfferPage/>}></Route>
             <Route path="/coordinator/profile" element={<CoordinatorProfile/>}></Route>
 
             <Route path="/secretary/home" element={<SecretaryHomePage />}></Route>

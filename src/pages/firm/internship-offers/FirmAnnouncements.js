@@ -1,12 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./FirmAnnouncements.module.css";
-
+import { useSearchParams, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const FirmAnnouncements = () => {
-  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [[keyId, id], [keyToken, token]] = searchParams;
+
+  const navigate = useNavigate();
   const handleAddClick = () => {
-    window.location.href = "/firm/publish-internship-offers";
+    navigate({pathname: "/firm/publish-internship-offers", search: `?id=${id}&token=${token}`});
   };
+
+  const [loaded, setLoaded] = useState(null);
+  const [offerList, setOfferList] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      if (!loaded) {
+        const res = await axios.get("http://localhost:9090/internshipoffer/list?page=0&size=10", {
+          headers: { "Authorization": "Bearer " + token }});
+        const offers = res.data.content;
+
+        /*let result = [];
+        for (let i = 0; i < offers.length; i++) {
+          const offer = offer[i];
+
+        }*/
+
+  
+        setOfferList(offers);
+        setLoaded(true);
+      }
+    }
+    
+    fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly"));
+  });
 
    return (
     <div className={classes.container}>
@@ -29,7 +58,7 @@ const FirmAnnouncements = () => {
         </div>
         <div className={classes.bodyContainer}>
             <div className={classes.announcementTableContainer}>
-                <AnnouncementsTable announcements={announcements} />
+                {loaded ? <AnnouncementsTable announcements={offerList} /> : null}
             </div>
             <div className={classes.addAnnouncementsButton}>
             <button onClick={handleAddClick} className={classes.addButton}>
@@ -41,21 +70,18 @@ const FirmAnnouncements = () => {
   );
 };
 
-const announcements = [
-    { id: 1, company: 'Company X', status: 'Unread announcement' },
-    { id: 2, company: 'Company Y', status: 'Unread announcement' },
-];
-  
+
 const AnnouncementsTable = ({ announcements }) => {
     return (
       <table className={classes.announcementTable}>
         <tbody>
-          {announcements.map(announcement => (
-            <tr key={announcement.id} className={classes.announcementRow}>
-              <td>{announcement.company}</td>
-              <td>{announcement.status}</td>
+          {announcements.map(announcement => {return (
+            <tr key={announcement.offerId} className={classes.announcementRow}>
+              <td>{announcement.firmId}</td>
+              <td>{announcement.title}</td>
+              <td>{announcement.content}</td>
             </tr>
-          ))}
+          )})}
         </tbody>
       </table>
     );

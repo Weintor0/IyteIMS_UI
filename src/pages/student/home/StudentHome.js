@@ -1,8 +1,12 @@
 import React from "react"
 import classes from "./StudentHome.module.css"
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const StudentHome = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [[keyId, id], [keyToken, token]] = searchParams;
+    
     return (
         <div className={classes.container} >
             <div className={classes.headerContainer}>
@@ -17,32 +21,32 @@ const StudentHome = () => {
             </div>
             <div className={classes.bodyContainer}>
                     <div className={classes.top}>
-                    <Link to="/student/send-application-letter">
+                    <Link to={{pathname: "/student/send-application-letter", search: `?id=${id}&token=${token}`}}>
                     <ul className={classes.topfirst}>Internship Offers<p>
                         13 unread</p></ul>
                         </Link>
-                        <Link to= "/student-fill-out-the-survey">
+                        <Link to={{pathname: "/student-fill-out-the-survey", search: `?id=${id}&token=${token}`}}>
                         <ul className={classes.topsecond}>Fill Out The Survey</ul>
                         </Link>
                     </div>
                     <div className={classes.body}>
                         <div className={classes.bodyfirst}>
-                            <Link to="/student/view-notifications">
+                            <Link to={{pathname: "/student/view-notifications", search: `?id=${id}&token=${token}`}}>
                             <ul>Notifications</ul>
                             </Link>
                         </div>
                         <div className={classes.bottom}>
-                        <Link to="/student/send-application-form">
+                        <Link to={{pathname: "/student/send-application-form", search: `?id=${id}&token=${token}`}}>
                             <ul className={classes.bottomfirst} >Send application form <p>Send application form </p> </ul>
                         </Link>
-                    <Link to="/student/ssi-transactions" >
+                    <Link to={{pathname: "/student/ssi-transactions", search: `?id=${id}&token=${token}`}} >
                         <ul className={classes.bottomsecond}>SSI Transactions</ul>
                         </Link>
                 </div>                  
                     </div>
    
                 <div className={classes.lastListItem}>
-                    <Link to="/student/internship-applications" >
+                    <Link to={{pathname: "/student/internship-applications", search: `?id=${id}&token=${token}`}} >
                     <ul>My Internship Applications<p>
                         11 unread</p></ul>
                         </Link>
