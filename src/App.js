@@ -6,6 +6,8 @@ import Sidebar from "./components/Sidebar";
 import MainPage from "./pages/MainPage";
 import FirmHomePage from "./pages/FirmHomePage";
 import FirmNotifications from "./pages/FirmNotifications";
+import FirmAnnouncements from "./pages/FirmAnnouncements";
+import AddAnnouncements from "./pages/AddAnnouncements";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
             <Route path="/register" element={<Register />}></Route>
             <Route path="/firmhomepage" element={<FirmHomePage />}></Route>
             <Route path="/firmnotifications" element={<FirmNotifications />}></Route>
+            <Route path="/firmannouncements" element={<FirmAnnouncements />}></Route>
+            <Route path="/addannouncements" element={<AddAnnouncements />}></Route>
           </Routes>
         </div>
       </div>
