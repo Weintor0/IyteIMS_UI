@@ -1,0 +1,121 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 85%;
+    width: 95%;
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+    margin-left: 6rem;
+    margin-right: 2rem;
+  }
+.container h2 {
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+  
+.container p {
+    margin-top: 0;
+}
+.headercontainer {
+  font-size: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px 25px;
+  
+}
+
+
+.headercontainer p {
+  color: #776ec2;
+
+}
+.searchContainer button {
+  color: #61677D;
+  width: 2rem;
+  height: 2rem;
+  background-color: #61677D;
+  border: 1px;
+  border-radius: 10px;
+  
+}
+.searchContainer p {
+    margin-left: 5px;
+}
+.searchContainer {
+    display: flex;
+    align-items: row;
+    margin-top: 3rem;
+    margin-right: 3rem;
+}
+.bodyContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px 25px;
+  width: 95%;
+  
+}
+.listContainer ul{
+  height: 3rem;
+  width: 60rem;
+  padding-right: 40px;
+  padding-top: 15px;
+  font-size: 24px;
+  border-radius: 30px;
+  padding-bottom: 15px;
+  border: 2px solid #FDFDFD;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #FDFDFD;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+
+}
+.listContainer ul p b {
+  font-size: 18px;
+  margin-right: 1rem;
+  
+
+}
+.listContainer ul p  {
+  font-size: 18px;
+  color: #696E83;
+  font-weight: 300;
+  margin-left: 2rem;
+}
+
+.listContainer ul  a {
+  color: #696E83;
+  font-weight: 500;
+}
+
+.right {
+  margin-left: 45rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+.uploadForm {
+  font-size: 16px;
+  height: 3rem;
+  width:  20rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 2rem;
+  border: 2px solid #FDFDFD;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+
+}

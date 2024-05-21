@@ -1,0 +1,128 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 85%;
+    width: 95%;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+    margin-left: 200px;
+  }
+.container h2 {
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+  
+.container p {
+    margin-top: 0;
+}
+.headercontainer {
+  font-size: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px 25px;
+}
+.headercontainer p {
+  color: #776ec2;
+
+}
+.searchContainer {
+  margin-top: 35px;
+
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+.searchContainer form input {
+  font-size: 16px;
+  width: 300px;
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid #FDFDFD;
+  margin-bottom: 10px;
+  margin-right: 30px;
+  padding-left: 10px;
+  background-color: #FDFDFD;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+
+  
+
+}
+
+.searchContainer button {
+  color: #61677D;
+  width: 30px;
+  height: 30px;
+  background-color: #61677D;
+  border: 1px;
+  border-radius: 10px;
+  
+}
+.searchContainer form input:focus {
+  outline: #776ec2;
+}
+
+.searchContainer form input::placeholder {
+
+  color: #776ec2;
+}
+.bodyContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.listContainer ul{
+  height: 50px;
+  width: 1000px;
+  padding-right: 40px;
+  padding-top: 15px;
+  
+  border-radius: 30px;
+  border: 2px solid #FDFDFD;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #FDFDFD;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+
+}
+.listContainer ul p b {
+  font-size: 18px;
+
+}
+.listContainer ul p  {
+  font-size: 18px;
+  color: #696E83;
+  font-weight: 300;
+}
+.listContainer ul  a {
+  color: #696E83;
+  font-weight: 500;
+
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    
+    padding-bottom: 15px;
+}
+.buttons button {
+  font-size: 16px;
+  height: 50px;
+  width:  300px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  border-radius: 30px;
+  border: 2px solid #FDFDFD;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+
+}
