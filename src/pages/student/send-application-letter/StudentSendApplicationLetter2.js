@@ -8,8 +8,7 @@ import { useSearchParams } from "react-router-dom";
 
 const StudentSendApplicationLetter2 = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [[keyId, id], [keyToken, token]] = searchParams;
-
+  const [[keyId, id], [keyToken, token], [keyOfferId, offerId]] = searchParams;
   const [showModal, setShowModal] = useState(false);
 
   const handleOpen = () => {
@@ -58,7 +57,12 @@ const StudentSendApplicationLetter2 = () => {
           </div>
         </div>
       </div>
-      {showModal && <Modal showModal={showModal} handleClose={handleClose} />}
+      {showModal && <Modal 
+        showModal={showModal} 
+        handleClose={handleClose} 
+        url={`http://localhost:9090/internship/application-letter/send/${offerId}`}
+        authorization={token}
+        />}
     </div>
   );
 };

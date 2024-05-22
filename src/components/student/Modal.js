@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Modal.css';
 
-const Modal = ({ showModal, handleClose }) => {
+const Modal = ({ showModal, handleClose, url, authorization }) => {
   const [dragging, setDragging] = useState(false);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -42,17 +42,18 @@ const Modal = ({ showModal, handleClose }) => {
 
     const formData = new FormData();
     files.forEach((file) => {
-      formData.append('files', file);
+      formData.append('file', file);
     });
 
     setUploading(true);
 
     try {
-      const response = await axios.post('http://localhost:9090/document/upload/{receivingUserId}', formData, {
+      const response = await axios.post(url, formData, Object.assign({
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': 'Bearer ' + authorization
         },
-      });
+      }));
       console.log('File uploaded successfully:', response.data);
       alert('File uploaded successfully');
       handleClose();

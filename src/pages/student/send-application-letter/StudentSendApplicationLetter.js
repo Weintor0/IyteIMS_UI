@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+// CONNECTED
+
+import React, { useState, useEffect } from "react";
 import classes from "./StudentSendApplicationLetter.module.css";
 import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import axios from 'axios';
 
 const StudentSendApplicationLetter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [[keyId, id], [keyToken, token]] = searchParams;
+
+  const [loaded, setLoaded] = useState(null);
+  const [offerList, setOfferList] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      if (!loaded) {
+        const res = await axios.get("http://localhost:9090/internshipoffer/list?page=0&size=1000", {
+          headers: { "Authorization": "Bearer " + token }});
+        setOfferList(res.data.content);
+        setLoaded(true);
+      }
+    }
+    
+    fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly" + err));
+  });
 
    return (
     <div className={classes.container}>
@@ -19,10 +38,16 @@ const StudentSendApplicationLetter = () => {
         </div>
       </div>
     <div className={classes.bodyContainer}>
-      <div className={classes.listContainer}>
-        <ul><Link to={{pathname: "/student/send-application-letter2", search: `?id=${id}&token=${token}`}}><button></button><p>Company 1</p></Link></ul>
-        <ul><Link to={{pathname: "/student/send-application-letter2", search: `?id=${id}&token=${token}`}}><button></button><p>Company 2</p></Link></ul>
-      </div>
+      {loaded ? 
+        <div className={classes.listContainer}>
+          {offerList.map((offer) => (
+            <ul>
+              <Link to={{pathname: "/student/send-application-letter2", search: `?id=${id}&token=${token}&offerId=${offer.offerId}`}}>
+                <button></button>
+                <p>{offer.title}</p>
+              </Link>
+            </ul>))}
+        </div> : null}
       </div>
     </div>
   );

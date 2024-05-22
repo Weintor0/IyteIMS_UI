@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+// CONNECTED
+
+import React, { useState, useEffect } from 'react';
 import classes from './FirmNotifications.module.css';
 import { useNavigate } from 'react-router-dom';
 import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton';
 import Pagination from '../../../components/Pagination';
 import { useSearchParams } from "react-router-dom";
+import axios from 'axios';
 
 const FirmNotifications = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -16,14 +19,27 @@ const FirmNotifications = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
-    const notifications = [
-        'Announcement 1', 'Announcement 2', 'Announcement 3', 'Announcement 4', 'Announcement 5',
-        'Announcement 6', 'Announcement 7', 'Announcement 8', 'Announcement 9', 'Announcement 10',
-    ];
-
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
-    const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
+
+    const [loaded, setLoaded] = useState(null);
+    const [notificationList, setNotificationList] = useState([]);
+    const [currentNotificationList, setCurrentNotificationList] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async() => {
+        if (!loaded) {
+                const res = await axios.get("http://localhost:9090/internship/get-all", {
+                    headers: { "Authorization": "Bearer " + token }});
+
+                setNotificationList(res.data);
+                setCurrentNotificationList(notificationList.slice(indexOfFirstNotification, indexOfLastNotification));
+                setLoaded(true);
+            }
+        }
+        
+        fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly"));
+    });
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -32,13 +48,11 @@ const FirmNotifications = () => {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-
     };
 
     const navigateTo = (path) => {
         navigate({pathname: path, search: `?id=${id}&token=${token}`});
     };
-
 
     return(
         <>
@@ -71,18 +85,17 @@ const FirmNotifications = () => {
                 </div>
                 <p className={classes.message}>See all your notifications here.</p>
                 <div className={classes.boxesContainer}>
-                    {currentNotifications.map((notification, index) => (
+                    {loaded ? currentNotificationList.map((notification, index) => (
                         <div key={index} className={classes.notificationBox}>
                             {notification}
                         </div>
-                    ))}
-                    <Pagination
+                    )) : null}
+                    {loaded ? <Pagination
                         currentPage={currentPage}
                         notificationsPerPage={notificationsPerPage}
-                        totalNotifications={notifications.length}
+                        totalNotifications={notificationList.length}
                         paginate={setCurrentPage}
-                    />
-
+                    /> : null}
                 </div>
             </div>
 

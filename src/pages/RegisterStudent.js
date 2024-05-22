@@ -1,3 +1,5 @@
+// CONNECTED
+
 import React from "react";
 import classes from "./RegisterStudent.module.css";
 

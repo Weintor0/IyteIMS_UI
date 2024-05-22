@@ -1,3 +1,5 @@
+// CONNECTED
+
 import React, {useState} from "react";
 import classes from "./FirmHomePage.module.css";
 import { useNavigate } from 'react-router-dom';

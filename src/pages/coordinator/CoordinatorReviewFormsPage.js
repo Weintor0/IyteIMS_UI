@@ -20,7 +20,7 @@ const CoordinatorReviewFormsPage = () => {
                     <p>See all recent forms.</p>
                 </div>
                 <div style={{flex:1,margin:"2%"}}>
-                    <ProfileButton navigateTo="/coordinatorprofile" Name={Name}/>
+                    <ProfileButton navigateTo="/coordinator/profile" Name={Name}/>
                 </div>
             </div>
             {students.length === 0 ?

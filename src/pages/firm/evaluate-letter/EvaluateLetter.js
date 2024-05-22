@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+// CONNECTED (INCOMPLETE)
+
+import React, { useState, useEffect } from 'react';
 import classes from './EvaluateLetter.module.css';
 import { useNavigate } from 'react-router-dom';
 import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton.js';
 import Pagination from '../../../components/Pagination';
 import { useSearchParams } from "react-router-dom";
+import axios from 'axios';
 
 const EvaluateLetter = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -16,14 +19,34 @@ const EvaluateLetter = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
-    const notifications = [
-        'Announcement 1', 'Announcement 2', 'Announcement 3', 'Announcement 4', 'Announcement 5',
-        'Announcement 6', 'Announcement 7', 'Announcement 8', 'Announcement 9', 'Announcement 10',
-    ];
-
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
-    const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
+
+    const [loaded, setLoaded] = useState(null);
+    const [letterList, setLetterList] = useState([]);
+    const [currentLetterList, setCurrentLetterList] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async() => {
+        if (!loaded) {
+                const res = await axios.get("http://localhost:9090/internship/get-all", {
+                    headers: { "Authorization": "Bearer " + token }});
+
+                let waitingLetters = [];
+                res.data.forEach((internship) => {
+                    if (internship['internshipStatus'] == 'StudentSentApplicationLetter') {
+                        letterList.push(internship);
+                    }
+                });
+
+                setLoaded(true);
+                setLetterList(waitingLetters);
+                setCurrentLetterList(letterList.slice(indexOfFirstNotification, indexOfLastNotification));
+            }
+        }
+        
+        fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly"));
+    });
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -43,12 +66,22 @@ const EvaluateLetter = () => {
         alert('Blah');
     };
     
-    const handleApproved = () => {
-        alert('Blah');
+    const handleApproved = (internshipId) => {
+        axios.patch("http://localhost:9090/internship/application-letter/evaluate/" + internshipId, {
+          acceptance: true,
+          feedback: "Feedback feature is currently unavailable.",
+        }, {headers: { "Authorization": "Bearer " + token }})
+        .then((success) => { alert("Application letter accepted."); })
+        .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
     };
 
-    const handleRejected = () => {
-        alert('Blah');
+    const handleRejected = (internshipId) => {
+        axios.patch("http://localhost:9090/internship/application-letter/evaluate/" + internshipId, {
+          acceptance: false,
+          feedback: "Feedback feature is currently unavailable.",
+        }, {headers: { "Authorization": "Bearer " + token }})
+        .then((success) => { alert("Application letter rejected."); })
+        .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
     };
 
     const handleApprovedSort = () => {
@@ -59,14 +92,25 @@ const EvaluateLetter = () => {
         alert('Blah');
     };
 
-    const handleDownload = () => {
-        alert('Blah');
+    const handleDownload = (internshipId) => {
+        axios.get("http://localhost:9090/internship/application-letter/download/" + internshipId, {
+            headers: { "Authorization": "Bearer " + token }}
+        ).then(
+            (file) => {
+                const element = document.createElement("a");
+                const f = new Blob(file, { type: "application/octet-stream" });
+                element.href = URL.createObjectURL(f);
+                element.download = "file";
+                document.body.appendChild(element);
+                element.click();
+            }
+        );
     };
 
     const handleNotificationClick = (index) => {
         setExpandedNotification(index === expandedNotification ? null : index);
     };
-    
+
     return(
         <>
             <div className={classes.sideBar}>
@@ -96,35 +140,38 @@ const EvaluateLetter = () => {
                         <span className={classes.profileName}>Name, S.</span>
                     </div>
                 </div>
-                <p className={classes.message}>See all your notifications here.</p>
+                <p className={classes.message}>See all application letter that have been sent your firm here.</p>
                 <div className={classes.body}>
                     <div className={classes.boxesContainer}>
-                        {currentNotifications.map((notification, index) => (
-                            <div
-                            key={index}
-                            className={`${classes.notificationBox} ${expandedNotification === index ? classes.expanded : ''}`}
-                            onClick={() => handleNotificationClick(index)}>
-                                <div className={`${classes.notificationMessage} ${expandedNotification === index ? classes.expanded : ''}`}>
-                                    {notification}
+                        {loaded ? currentLetterList.map((letter, index) => (
+                            <div key={index} className={`${classes.notificationBox} ${expandedNotification === index ? classes.expanded : ''}`} onClick={() => handleNotificationClick(index)}>
+                                <div style={{display: 'iblock'}} className={`${classes.notificationMessage} ${expandedNotification === index ? classes.expanded : ''}`}>
+                                    {letter.internshipId}
                                 </div>
-                                {expandedNotification === index && (
-                                    <div className={classes.actions}>
-                                        <button className={classes.downloadButton} onClick={handleDownload}>Download application letter</button>
-                                        <div className={classes.rightButtons}>
-                                            <button className={classes.approveButton} onClick={handleApproved}>Approve</button>
-                                            <button className={classes.rejectButton} onClick={handleRejected}>Reject</button>
+
+                                {expandedNotification === index && 
+                                    (
+                                        <div className={classes.actions}>
+                                            <button className={classes.downloadButton} onClick={() => handleDownload(letter.internshipId)}>Download application letter</button>
+                                            <div className={classes.rightButtons}>
+                                                <button className={classes.approveButton} onClick={() => handleApproved(letter.internshipId)}>Approve</button>
+                                                <button className={classes.rejectButton} onClick={() => handleRejected(letter.internshipId)}>Reject</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}    
+                                    )
+                                }    
                             </div>
-                        ))}
-                        <Pagination
-                            currentPage={currentPage}
-                            notificationsPerPage={notificationsPerPage}
-                            totalNotifications={notifications.length}
-                            paginate={setCurrentPage}
-                        />
+                        )) : null}
+
+                        {loaded ? 
+                            <Pagination 
+                                currentPage={currentPage} 
+                                notificationsPerPage={notificationsPerPage} 
+                                totalNotifications={letterList.length} 
+                                paginate={setCurrentPage}/>
+                        : null}
                     </div>
+                
                     <div className={classes.sortContainer}>
                         <div className={classes.sortContent}>
                             <p>Sort By:</p>
@@ -135,8 +182,6 @@ const EvaluateLetter = () => {
                     </div>
                 </div>
             </div>
-
-
         </>
     );
 };

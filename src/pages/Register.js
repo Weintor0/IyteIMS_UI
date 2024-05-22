@@ -1,3 +1,5 @@
+// CONNECTED
+
 import React, { useState } from "react";
 import classes from "./Register.module.css";
 import SelectedTabButton from "../components/SelectedTabButton";
