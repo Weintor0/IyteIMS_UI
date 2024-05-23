@@ -1,14 +1,11 @@
 import React, {useState} from "react";
-import classes from "./SecretaryHomePage.module.css";
 import { useNavigate } from 'react-router-dom';
+
 import MenuSelectedTabButton from '../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../components/MenuUnselectedTabButton';
-import { useSearchParams } from "react-router-dom";
+import classes from "./SecretaryHomePage.module.css";
 
 const SecretaryHomePage = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
-
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
@@ -19,11 +16,10 @@ const SecretaryHomePage = () => {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-
     };
 
     const navigateTo = (path) => {
-        navigate({pathname: path, search: `?id=${id}&token=${token}`});
+        navigate(path);
     };
 
     return (

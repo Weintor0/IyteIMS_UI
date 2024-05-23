@@ -1,18 +1,17 @@
 // CONNECTED
 
 import React, { useState, useEffect } from 'react';
-import classes from './FirmNotifications.module.css';
 import { useNavigate } from 'react-router-dom';
+
 import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton';
 import Pagination from '../../../components/Pagination';
-import { useSearchParams } from "react-router-dom";
-import axios from 'axios';
+import classes from './FirmNotifications.module.css';
+
+import { Role } from "../../../util/Authorization";
+import { getRequest } from '../../../util/Request';
 
 const FirmNotifications = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
-
     const [currentPage, setCurrentPage] = useState(1);
     const notificationsPerPage = 5;
 
@@ -29,8 +28,8 @@ const FirmNotifications = () => {
     useEffect(() => {
         const fetchData = async() => {
         if (!loaded) {
-                const res = await axios.get("http://localhost:9090/internship/get-all", {
-                    headers: { "Authorization": "Bearer " + token }});
+                const url = `/internship/get-all`;
+                const res = await getRequest(url, Role.firm);
 
                 setNotificationList(res.data);
                 setCurrentNotificationList(notificationList.slice(indexOfFirstNotification, indexOfLastNotification));
@@ -51,7 +50,7 @@ const FirmNotifications = () => {
     };
 
     const navigateTo = (path) => {
-        navigate({pathname: path, search: `?id=${id}&token=${token}`});
+        navigate(path);
     };
 
     return(

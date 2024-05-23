@@ -1,16 +1,10 @@
 import React from 'react'
-import ErrorMessageBox from "../../components/coordinator/ErrorMessageBox";
+
 import ProfileButton from "../../components/coordinator/ProfileButton";
 import StudentBox from "../../components/coordinator/StudentBox";
-import { useSearchParams } from "react-router-dom";
 
 const CoordinatorSSITransactionsPage = () => {
     const [students, setStudents] = React.useState([]);
-
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
-
-    let Name = "Nurcan";
 
     return (
         <div style={{display:"flex",width:"100%",height:"100%",flexDirection:"column",margin:"5%"}}>
@@ -21,7 +15,7 @@ const CoordinatorSSITransactionsPage = () => {
                 </div>
 
                 <div style={{flex:1,margin:"2%"}}>
-                    <ProfileButton navigateTo={{pathname: "/coordinator/profile", search: `?id=${id}&token=${token}`}} Name={Name}/>
+                    <ProfileButton navigateTo={"/coordinator/profile"} Name={"Coordinator"}/>
                 </div>
             </div>
             {students.length === 0 ?

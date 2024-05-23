@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import classes from "./StudentSendApplicationForm.module.css";
+
 import ChooseCompany from "../../../components/student/ChooseCompany";
-import AddFormModal from "../../../components/student/AddFormModal";
 import Modal from "../../../components/student/Modal";
-import { useSearchParams } from "react-router-dom";
+import classes from "./StudentSendApplicationForm.module.css";
 
 const StudentSendApplicationForm = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [[keyId, id], [keyToken, token]] = searchParams;
-
   const [isFirstModalOpen, setFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setSecondModalOpen] = useState(false);
 

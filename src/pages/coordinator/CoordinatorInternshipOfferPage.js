@@ -1,30 +1,23 @@
 // CONNECTED
 
 import React, { useState, useEffect } from 'react';
-import ErrorMessageBox from "../../components/coordinator/ErrorMessageBox";
+
 import ProfileButton from "../../components/coordinator/ProfileButton";
-import FormBox from "../../components/coordinator/FormBox";
 import OfferBox from "../../components/coordinator/OfferBox";
-import { useNavigate } from 'react-router-dom';
-import { useSearchParams } from "react-router-dom";
-import axios from 'axios';
+
+import { Role } from "../../util/Authorization";
+import { getRequest, putRequest } from '../../util/Request';
 
 const CoordinatorInternshipOfferPage = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
-
     const [offerList, setOfferList] = React.useState(null);
     const [loaded, setLoaded] = React.useState(null);
-
-    const navigate = useNavigate();
-
-    let Name = "Nurcan";
 
     useEffect(() => {
         const fetchData = async() => {
         if (!loaded) {
-                const res = await axios.get("http://localhost:9090/internshipoffer/list?page=0&size=1000", 
-                    {headers: { "Authorization": "Bearer " + token }});
+                const url = `/internshipoffer/list?page=0&size=1000`;
+                const res = await getRequest(url, Role.coordinator);
+
                 setOfferList(res.data.content);
                 setLoaded(true);
             }
@@ -34,25 +27,31 @@ const CoordinatorInternshipOfferPage = () => {
     });
 
     const whenApprove = (offer) => {
-        axios.put("http://localhost:9090/internshipoffer/update/" + offer.offerId, {
-          jobTitle: offer.jobTitle,
-          title: offer.title,
-          content: offer.content,
-          isAccepted: true
-        }, {headers: { "Authorization": "Bearer " + token }})
-        .then((success) => { alert("Internship offer accepted."); })
-        .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
+        const url = `/internshipoffer/update/${offer.offerId}`;
+        const data = {
+            jobTitle: offer.jobTitle,
+            title: offer.title,
+            content: offer.content,
+            isAccepted: true
+        };
+
+        putRequest(url, data, Role.coordinator)
+            .then(() => { alert("Internship offer accepted."); })
+            .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
     }
 
     const whenReject = (offer) => {
-        axios.put("http://localhost:9090/internshipoffer/update/" + offer.offerId, {
-          jobTitle: offer.jobTitle,
-          title: offer.title,
-          content: offer.content,
-          isAccepted: false
-        }, {headers: { "Authorization": "Bearer " + token }})
-        .then((success) => { alert("Internship offer rejected."); })
-        .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
+        const url = `/internshipoffer/update/${offer.offerId}`;
+        const data = {
+            jobTitle: offer.jobTitle,
+            title: offer.title,
+            content: offer.content,
+            isAccepted: false
+        };
+
+        putRequest(url, data, Role.coordinator)
+            .then(() => { alert("Internship offer rejected."); })
+            .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
     }
 
     return (
@@ -63,7 +62,7 @@ const CoordinatorInternshipOfferPage = () => {
                     <p>See all recent offers.</p>
                 </div>
                 <div style={{flex:1,margin:"2%"}}>
-                    <ProfileButton navigateTo={{pathname: "/coordinator/profile", search: `?id=${id}&token=${token}`}} Name={Name}/>
+                    <ProfileButton navigateTo={"/coordinator/profile"} Name={"Coordinator"}/>
                 </div>
             </div>
 

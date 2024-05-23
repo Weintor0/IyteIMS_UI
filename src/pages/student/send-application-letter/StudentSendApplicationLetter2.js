@@ -1,15 +1,19 @@
 import React, { useState } from "react"
-import classes from "./StudentSendApplicationLetter2.module.css"
+import { Link, useSearchParams } from "react-router-dom";
+
 import Vector from "./images/Vector.png"
 import PlusSign from "./images/+.png"
 import Modal from "../../../components/student/Modal"
-import { Link } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+import classes from "./StudentSendApplicationLetter2.module.css"
+
+import { auth } from "../../../util/Authorization";
 
 const StudentSendApplicationLetter2 = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [[keyId, id], [keyToken, token], [keyOfferId, offerId]] = searchParams;
+  const [searchParams] = useSearchParams();
   const [showModal, setShowModal] = useState(false);
+
+  const [id, token] = auth();
+  const offerId = searchParams['offerId'];
 
   const handleOpen = () => {
     setShowModal(true);
@@ -36,7 +40,7 @@ const StudentSendApplicationLetter2 = () => {
         <div className={classes.header1}>
           <ul className={classes.firstul}>
             <button>
-              <Link to={{pathname: "/student/send-application-letter", search: `?id=${id}&token=${token}`}}>
+              <Link to={"/student/send-application-letter"}>
               <img src={Vector} alt="icon" />
               </Link>
             </button>

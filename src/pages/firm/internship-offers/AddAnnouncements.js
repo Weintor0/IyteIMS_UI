@@ -1,15 +1,15 @@
 // CONNECTED
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import classes from "./AddAnnouncements.module.css";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import axios from 'axios';
+
+import { Role } from "../../../util/Authorization";
+import { postRequest } from "../../../util/Request";
 
 const AddAnnouncements = () => {
     const navigate = useNavigate();
-
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
 
     const titleRef = React.useRef(null);
     const jobTitleRef = React.useRef(null);
@@ -17,17 +17,14 @@ const AddAnnouncements = () => {
 
     async function sendInternshipOffer() {
         try {
-            let res = await axios.post("http://localhost:9090/internshipoffer/createinternship", {
+            const url = `/internshipoffer/createinternship`;
+            const data = {
                 "jobTitle": titleRef.current.value,
                 "title": jobTitleRef.current.value,
                 "content": contentRef.current.value
-            }, 
-            { 
-                headers: {
-                    "Authorization": "Bearer " + token
-            }});
+            };
 
-            return res;
+            return postRequest(url, data, Role.firm);
         } catch (e) {
             alert("An unknown problem has occurred unexpectedly");
         }
@@ -35,7 +32,7 @@ const AddAnnouncements = () => {
 
     const handleSave = () => {
         sendInternshipOffer().then((result) => {
-            navigate({pathname: "/firm/home", search: `?id=${id}&token=${token}`});
+            navigate("/firm/home");
         });
     };
 

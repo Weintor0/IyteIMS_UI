@@ -4,6 +4,7 @@ import React from "react";
 import classes from "./Login.module.css";
 import { useNavigate } from 'react-router-dom';
 
+import { initAuth, Role } from '../util/Authorization';
 import axios from 'axios';
 
 const Login = () => {
@@ -46,18 +47,20 @@ const Login = () => {
       const parsedToken = parseJwt(token);
       const role = parsedToken['Role'];
 
+      initAuth(role, id, token);
+
       switch (role) {
-        case "ROLE_STUDENT":
-          navigate({pathname: '/student/home', search: `?id=${id}&token=${token}`});
+        case Role.student:
+          navigate('/student/home');
           break;
-        case "ROLE_FIRM":
-          navigate({pathname: '/firm/home', search: `?id=${id}&token=${token}`});
+        case Role.firm:
+          navigate('/firm/home');
           break;
-        case "ROLE_INTERNSHIP_COORDINATOR":
-          navigate({pathname: '/coordinator/home', search: `?id=${id}&token=${token}`});
+        case Role.coordinator:
+          navigate('/coordinator/home');
           break;
-        case "ROLE_DEPARTMENT_SECRETARY":
-          navigate({pathname: './secretary/home', search: `?id=${id}&token=${token}`});
+        case Role.secretary:
+          navigate('./secretary/home');
           break;
         default:
           throw new Error();

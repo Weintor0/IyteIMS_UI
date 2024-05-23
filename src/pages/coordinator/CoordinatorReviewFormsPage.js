@@ -1,16 +1,11 @@
 import React from 'react'
+
 import ProfileButton from "../../components/coordinator/ProfileButton";
 import FormBox from "../../components/coordinator/FormBox";
-import { useSearchParams } from "react-router-dom";
 
 const CoordinatorReviewFormsPage = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
-
     const [approved, setApproved] = React.useState("");
     const [students, setStudents] = React.useState([]);
-
-    let Name = "Nurcan";
 
     return (
         <div style={{display:"flex",width:"100%",height:"100%",flexDirection:"column",margin:"5%"}}>
@@ -20,7 +15,7 @@ const CoordinatorReviewFormsPage = () => {
                     <p>See all recent forms.</p>
                 </div>
                 <div style={{flex:1,margin:"2%"}}>
-                    <ProfileButton navigateTo="/coordinator/profile" Name={Name}/>
+                    <ProfileButton navigateTo="/coordinator/profile" Name={"Coordinator"}/>
                 </div>
             </div>
             {students.length === 0 ?

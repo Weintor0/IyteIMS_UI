@@ -1,24 +1,22 @@
 // CONNECTED (INCOMPLETE)
 
 import React, { useState, useEffect } from 'react';
-import classes from './EvaluateLetter.module.css';
 import { useNavigate } from 'react-router-dom';
+
 import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton.js';
 import Pagination from '../../../components/Pagination';
-import { useSearchParams } from "react-router-dom";
-import axios from 'axios';
+import classes from './EvaluateLetter.module.css';
+
+import { Role } from "../../../util/Authorization";
+import { getRequest, patchRequest } from '../../../util/Request.js';
 
 const EvaluateLetter = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
-
     const [currentPage, setCurrentPage] = useState(1);
-    const notificationsPerPage = 5;
     const [expandedNotification, setExpandedNotification] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
-
+    
+    const notificationsPerPage = 5;
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
 
@@ -26,11 +24,12 @@ const EvaluateLetter = () => {
     const [letterList, setLetterList] = useState([]);
     const [currentLetterList, setCurrentLetterList] = useState(null);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async() => {
         if (!loaded) {
-                const res = await axios.get("http://localhost:9090/internship/get-all", {
-                    headers: { "Authorization": "Bearer " + token }});
+                const res = await getRequest("/internship/get-all", Role.firm);
 
                 let waitingLetters = [];
                 res.data.forEach((internship) => {
@@ -45,7 +44,7 @@ const EvaluateLetter = () => {
             }
         }
         
-        fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly"));
+        fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly " + err));
     });
 
     const handleSearchChange = (event) => {
@@ -55,11 +54,10 @@ const EvaluateLetter = () => {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-
     };
 
     const navigateTo = (path) => {
-        navigate({pathname: path, search: `?id=${id}&token=${token}`});
+        navigate(path);
     };
 
     const handleWaiting = () => {
@@ -67,21 +65,27 @@ const EvaluateLetter = () => {
     };
     
     const handleApproved = (internshipId) => {
-        axios.patch("http://localhost:9090/internship/application-letter/evaluate/" + internshipId, {
-          acceptance: true,
-          feedback: "Feedback feature is currently unavailable.",
-        }, {headers: { "Authorization": "Bearer " + token }})
-        .then((success) => { alert("Application letter accepted."); })
-        .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
+        const url = `/internship/application-letter/evaluate/${internshipId}`;
+        const data = {
+            acceptance: true,
+            feedback: "Feedback feature is currently unavailable."
+        };
+
+        patchRequest(url, data, Role.firm)
+            .then((success) => { alert("Application letter accepted."); })
+            .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
     };
 
     const handleRejected = (internshipId) => {
-        axios.patch("http://localhost:9090/internship/application-letter/evaluate/" + internshipId, {
-          acceptance: false,
-          feedback: "Feedback feature is currently unavailable.",
-        }, {headers: { "Authorization": "Bearer " + token }})
-        .then((success) => { alert("Application letter rejected."); })
-        .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
+        const url = `/internship/application-letter/evaluate/${internshipId}`;
+        const data = {
+            acceptance: false,
+            feedback: "Feedback feature is currently unavailable."
+        }
+
+        patchRequest(url, data, Role.firm)
+            .then((success) => { alert("Application letter rejected."); })
+            .catch((error) => { alert("An unknown problem has occurred unexpectedly: " + error); });
     };
 
     const handleApprovedSort = () => {
@@ -93,13 +97,13 @@ const EvaluateLetter = () => {
     };
 
     const handleDownload = (internshipId) => {
-        axios.get("http://localhost:9090/internship/application-letter/download/" + internshipId, {
-            headers: { "Authorization": "Bearer " + token }}
-        ).then(
+        const url = `/internship/application-letter/download/${internshipId}`;
+
+        getRequest(url, Role.firm).then(
             (file) => {
                 const element = document.createElement("a");
-                const f = new Blob(file, { type: "application/octet-stream" });
-                element.href = URL.createObjectURL(f);
+                const blob = new Blob(file, { type: "application/octet-stream" });
+                element.href = URL.createObjectURL(blob);
                 element.download = "file";
                 document.body.appendChild(element);
                 element.click();

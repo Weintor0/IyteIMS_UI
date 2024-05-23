@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import classes from './SecretaryNotificationsPage.module.css';
 import { useNavigate } from 'react-router-dom';
+
 import MenuSelectedTabButton from '../../components/MenuSelectedTabButton';
 import MenuUnselectedTabButton from '../../components/MenuUnselectedTabButton';
 import Pagination from '../../components/Pagination';
-import { useSearchParams } from "react-router-dom";
+import classes from './SecretaryNotificationsPage.module.css';
 
 const SecretaryNotificationsPage = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [[keyId, id], [keyToken, token]] = searchParams;
-
     const [currentPage, setCurrentPage] = useState(1);
     const notificationsPerPage = 5;
 
@@ -32,13 +29,11 @@ const SecretaryNotificationsPage = () => {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-
     };
 
     const navigateTo = (path) => {
-        navigate({pathname: path, search: `?id=${id}&token=${token}`});
+        navigate(path);
     };
-
 
     return(
         <>

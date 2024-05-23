@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
+
 import classes from "./StudentViewNotifications.module.css";
-import { useSearchParams } from "react-router-dom";
 
 const StudentViewNotifications = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [[keyId, id], [keyToken, token]] = searchParams;
-
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {

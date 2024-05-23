@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import classes from "./StudentViewInternshipApplications.module.css";
 import { useSearchParams } from "react-router-dom";
 
-const StudentViewInternshipApplications = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [[keyId, id], [keyToken, token]] = searchParams;
+import classes from "./StudentViewInternshipApplications.module.css";
 
+const StudentViewInternshipApplications = () => {
    return (
     <div className={classes.container}>
       <div className={classes.headercontainer}>

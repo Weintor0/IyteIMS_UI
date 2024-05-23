@@ -3,13 +3,13 @@ import classes from "./ErrorMessageBox.module.css";
 import {useNavigate} from "react-router-dom";
 
 
-const ErrorMessageBox = ({ Title, Message, High, Width,navigateTo }) => {
+const ErrorMessageBox = ({ Title, Message, High, Width, navigateTo }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        console.log(navigateTo);
         navigate(navigateTo);
     };
+
     return (
         <div className={classes.errorContainer} style={{height:High, width:Width}} onClick={handleClick} >
             <div>
