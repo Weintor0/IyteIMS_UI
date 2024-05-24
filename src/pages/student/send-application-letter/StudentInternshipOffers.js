@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import Header from "../../../components/Header";
+import NavigationMenu from "../../../components/student/NavigationMenu";
 import classes from "./StudentInternshipOffers.module.css";
 
 import { Role } from "../../../util/Authorization";
@@ -27,29 +29,24 @@ const StudentInternshipOffers = () => {
   });
 
    return (
-    <div className={classes.container}>
-      <div className={classes.headercontainer}>
-        <div>
-          <h2>Internship Oppurtunities</h2>
-          <p>See all your documents here.</p>
-        </div>
-        <div className={classes.searchContainer}>
-            <button type="submit" className="search-button"></button>
-        </div>
+    <>
+      <NavigationMenu i={2}/>
+      <div className={classes.container}>
+        <Header title="Internship Offers" userName="Student Name"/>
+        <div className={classes.bodyContainer}>
+          {loaded ? 
+            <div className={classes.listContainer}>
+              {offerList.map((offer) => (
+                <ul>
+                  <Link className={classes.link} to={{pathname: "/student/send-application-letter", search: `?offerId=${offer.offerId}`}}>
+                    <button></button>
+                    <p>{offer.title}</p>
+                  </Link>
+                </ul>))}
+            </div> : null}
+          </div>
       </div>
-    <div className={classes.bodyContainer}>
-      {loaded ? 
-        <div className={classes.listContainer}>
-          {offerList.map((offer) => (
-            <ul>
-              <Link to={{pathname: "/student/send-application-letter2", search: `?offerId=${offer.offerId}`}}>
-                <button></button>
-                <p>{offer.title}</p>
-              </Link>
-            </ul>))}
-        </div> : null}
-      </div>
-    </div>
+    </>
   );
 };
 

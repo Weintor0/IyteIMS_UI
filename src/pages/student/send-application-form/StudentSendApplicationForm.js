@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
+import Header from "../../../components/Header";
+import NavigationMenu from "../../../components/student/NavigationMenu";
 import ChooseCompany from "../../../components/student/ChooseCompany";
-import Modal from "../../../components/student/Modal";
+import Modal from "../../../components/student/UploadModal";
 import classes from "./StudentSendApplicationForm.module.css";
 
 const StudentSendApplicationForm = () => {
@@ -28,51 +30,52 @@ const StudentSendApplicationForm = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.headercontainer}>
-        <div>
-          <h2>Application Forms</h2>
-          <p>All application forms that have been sent so far</p>
-        </div>
-        <div className={classes.searchContainer}>
-          <button type="submit" className="search-button"></button>
-          <p>Name B.</p>
+    <>
+      <NavigationMenu i={4}/>
+      <div className={classes.container}>
+        <Header title="Application Forms" userName="Student Name"/>
+        <div className={classes.bodyContainer}>
+          <div className={classes.listContainer}>
+            <ul>
+              <p><b className={classes.left}>Firm A</b></p>
+              <p className={classes.left}>Date a.b.c</p>
+              <a href="Download">Download</a>
+            </ul>
+            <ul>
+              <p><b className={classes.left}>Firm A</b></p>
+              <p className={classes.left}>Date a.b.c</p>
+              <a href="Download">Download</a>
+            </ul>
+            <ul>
+              <p><b className={classes.left}>Firm A</b></p>
+              <p className={classes.left}>Date a.b.c</p>
+              <a href="Download">Download</a>
+            </ul>
+          </div>
+
+          <div className={classes.buttons}>
+            <button type="button" className={classes.button} onClick={handleUploadClick}>
+              Upload New Form
+            </button>
+
+            {isFirstModalOpen && (<ChooseCompany onClose={handleCancelClick} onContinue={handleContinueClick} />)}
+            {isSecondModalOpen && (
+              <Modal 
+                showModal={isSecondModalOpen}
+                handleClose={handleCancelClick} 
+                url={``}
+                title="Add your application form"
+                />
+              )
+            }
+
+            <button type="button" className={classes.button}>
+              Download Template
+            </button>
+          </div>
         </div>
       </div>
-      <div className={classes.bodyContainer}>
-        <div className={classes.listContainer}>
-          <ul>
-            <p><b className={classes.left}>Firm A</b></p>
-            <p className={classes.left}>Date a.b.c</p>
-            <a className={classes.right} href="Download">Download</a>
-          </ul>
-          <ul>
-            <p><b className={classes.left}>Firm A</b></p>
-            <p className={classes.left}>Date a.b.c</p>
-            <a className={classes.right} href="Download">Download</a>
-          </ul>
-          <ul>
-            <p><b className={classes.left}>Firm A</b></p>
-            <p className={classes.left}>Date a.b.c</p>
-            <a className={classes.right} href="Download">Download</a>
-          </ul>
-        </div>
-        <div className={classes.buttons}>
-          <button type="button" className={classes.uploadForm} onClick={handleUploadClick}>
-            Upload New Form
-          </button>
-          {isFirstModalOpen && (
-            <ChooseCompany onClose={handleCancelClick} onContinue={handleContinueClick} />
-          )}
-          {isSecondModalOpen && (
-            <Modal showModal={isSecondModalOpen} handleClose={handleCancelClick} />
-          )}
-          <button type="button" className={classes.uploadForm}>
-            Download Template
-          </button>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

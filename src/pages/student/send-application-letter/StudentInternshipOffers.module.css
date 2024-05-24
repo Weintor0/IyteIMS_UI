@@ -2,58 +2,19 @@
   display: flex;
   flex-direction: column;
   background-color: #F2F1FF;
-  height: 85%;
-  width: 95%;
-  padding: 3rem;
+  height: 90%;
+  width: 80%;
+  padding: 30px;
   border-radius: 30px;
   box-shadow: 5px 5px 4px #776ec2;
-  margin-left: 6rem;
-  margin-right: 2rem;
-}
-
-.container h2 {
-  font-weight: 500;
-  margin-bottom: 0;
-}
-
-.container p {
-  margin-top: 0;
-}
-
-.headercontainer {
-  font-size: 24px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 30px 25px;
-}
-
-.headercontainer p {
-  color: #776ec2;
-}
-
-.searchContainer button {
-  color: #61677D;
-  width: 2rem;
-  height: 2rem;
-  background-color: #61677D;
-  border: 1px;
-  border-radius: 10px;
-}
-.searchContainer form input:focus {
-  outline: #776ec2;
-}
-
-.searchContainer form input::placeholder {
-  color: #776ec2;
 }
 
 .bodyContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 95%;
-  padding: 30px 25px;
+  margin-top: 5%;
+  margin-left: 1%;
 }
 
 .listContainer {
@@ -61,42 +22,45 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
-.listContainer ul{
-  height: 10rem;
-  width: 140px;
-  margin-right: 2rem;
-  border-radius: 30px;
-  border: 2px solid #FDFDFD;
+
+.listContainer ul {
   display: flex;
   flex-direction: column;
-  background-color: #FDFDFD;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
   align-items: center;
-}
+  justify-content: center;
 
-.none {
-  display: flex;
-  flex: none;
+  padding: 0;
+  height: 12rem;
+  width: 12rem;
+  margin-right: 2rem;
+
+  background-color: #FDFDFD;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  border: 2px solid #FDFDFD;
 }
 
 .listContainer ul button {
-  width: 5rem;
-  height: 5rem;
+  display: block;
+
+  width: 6rem;
+  height: 6rem;
+
   background-color: #A9B7E7;
-  margin-top: 2rem;
-  margin-right: 2rem;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  border: 2px solid #6E7BC1
+  border: 2px solid #6E7BC1;
 }
 
 .listContainer ul p  {
   font-size: 18px;
   color: #696E83;
-  font-weight: 400;
-  margin-right: 2rem;
-  margin-top: 5px;
+  margin-top: 10px;
+  display: block;
 }
 
-
-
+.link {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}

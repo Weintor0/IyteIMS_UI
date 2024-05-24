@@ -16,7 +16,7 @@ import StudentSSITransactions from "./pages/student/ssi-transactions/StudentSSIT
 import StudentHomePage from "./pages/student/home/StudentHome";
 import StudentViewNotifications from "./pages/student/view-notifications/StudentViewNotifications";
 import StudentInternshipOffers from "./pages/student/send-application-letter/StudentInternshipOffers";
-import StudentSendApplicationLetter2 from "./pages/student/send-application-letter/StudentSendApplicationLetter2";
+import StudentSendApplicationLetter from "./pages/student/send-application-letter/StudentSendApplicationLetter";
 import StudentViewInternshipApplications from "./pages/student/view-internship-applications/StudentViewInternshipApplications";
 import StudentSendApplicationForm from "./pages/student/send-application-form/StudentSendApplicationForm";
 
@@ -59,7 +59,7 @@ function App() {
             <Route path="/student/home" element={<StudentHomePage />}></Route>
             <Route path="/student/view-notifications" element={<StudentViewNotifications />}></Route>
             <Route path="/student/internship-offers" element={<StudentInternshipOffers />}></Route>
-            <Route path="/student/send-application-letter2" element={<StudentSendApplicationLetter2 />}></Route>
+            <Route path="/student/send-application-letter" element={<StudentSendApplicationLetter />}></Route>
             <Route path="/student/internship-applications" element={<StudentViewInternshipApplications />}></Route>
             <Route path="/student/send-application-form" element={<StudentSendApplicationForm />}></Route>
             <Route path="/student/ssi-transactions" element={<StudentSSITransactions />}></Route>

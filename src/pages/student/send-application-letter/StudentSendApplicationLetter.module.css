@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 90%;
+    width: 80%;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+}
+
+.bodyContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 90%;
+    height: 65%;
+    margin-top: 5%;
+
+    background-color:#FDFDFD;
+    margin-left: 1rem;
+    border-radius: 30px;
+    border: 3px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: block;
+    width: 100%;
+}
+
+.header ul {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
+
+.firstul button {
+    height: 4rem;
+    width: 4.5rem;
+    margin-top: 1rem;
+    background-color: #FDFDFD;
+    background-size: cover; /* or contain, or specific dimensions */
+    font-size: 16px;
+    border: 2px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.firstul p {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 2rem;
+}
+
+.secondul {
+    justify-content:space-between;
+}
+
+.secondul button img {
+    align-items: center;
+    margin-top: 2px;
+}
+
+.secondul p {
+    margin-left: 2rem;
+    color: #447E74;
+    font-size: 20px;
+}
+
+.addLetterDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.plusSign {
+    height: 4rem;
+    width: 4rem;
+
+    background-color: #BFE9BB;
+    background-size: cover;
+    font-size: 16px;
+    border: 2px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.downloadbutton button{
+    height: 3rem;
+    width: 15rem;
+
+    background-color: #FDFDFD;
+    font-size: 16px;
+    border: 2px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.viewer {
+    margin-top: 3rem;
+    margin-left:2.5rem;
+    margin-right:2.5rem;
+}

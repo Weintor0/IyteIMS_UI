@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './Modal.css';
+import './UploadModal.css';
 
 import { upload } from '../../util/Request';
 import { Role } from '../../util/Authorization';
 
-const Modal = ({ showModal, handleClose, url }) => {
+const Modal = ({ showModal, handleClose, url, title }) => {
   const [dragging, setDragging] = useState(false);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -63,7 +63,7 @@ const Modal = ({ showModal, handleClose, url }) => {
     <div className={`modal ${showModal ? 'show' : ''}`} onClick={handleClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <span className="close-btn" onClick={handleClose}>&times;</span>
-        <h2>Add summer practice application letter</h2>
+        <h2>{title}</h2>
         <div
           className={`drag-drop-area ${dragging ? 'highlight' : ''}`}
           onDragEnter={handleDragEnter}

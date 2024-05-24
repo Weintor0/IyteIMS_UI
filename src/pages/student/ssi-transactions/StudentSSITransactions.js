@@ -1,42 +1,26 @@
 import React, { useState } from "react";
 
+import Header from "../../../components/Header";
+import NavigationMenu from "../../../components/student/NavigationMenu";
 import classes from "./StudentSSITransactions.module.css";
 
 const SSITransactions = () => {
    return (
-    <div className={classes.container}>
-      <div className={classes.headercontainer}>
-        <div>
-          <h2>SSI Transacions </h2>
-          <p>See all your applications here.</p>
-        </div>
-        <div className={classes.searchContainer}>
-          <form action="/search" method="get">
-            <input
-              type="text"
-              name="searchQuery"
-              id="searchQuery"
-              placeholder="Search..."
-            />
-          </form>
-
-            <button type="submit" className="search-button"></button>
+    <>
+      <NavigationMenu i={5}/>
+      <div className={classes.container}>
+        <Header title="SSI Transactions" userName="Student Name"/>
+        <div className={classes.bodyContainer}>
+          <div className={classes.listContainer}>
+            <ul>
+                <h2>Application</h2>
+                <hr></hr>
+                <p>Transactions have not yet finished. Dean Office is currenty handling</p>
+            </ul>
+          </div>
         </div>
       </div>
-    <div className={classes.bodyContainer}>
-      <div className={classes.listContainer}>
-        <ul>
-            <h2>Application</h2>
-            <hr></hr>
-            <p>Transactions have not yet finished. Dean Office is currenty handling</p>
-        </ul>
- 
-        <ul><h2></h2>
-            <p>blank</p></ul>
-      </div>
-     
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -1,12 +1,12 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    background-color: #F2F1FF;
-    height: 85%;
-    width: 80%;
-    padding: 50px;
-    border-radius: 30px;
-    box-shadow: 5px 5px 4px #776ec2;
+  display: flex;
+  flex-direction: column;
+  background-color: #F2F1FF;
+  height: 90%;
+  width: 80%;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 4px #776ec2;
 }
   
 .container h2 {

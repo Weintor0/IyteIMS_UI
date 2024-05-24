@@ -17,7 +17,7 @@ const Header = ({title, userName}) => {
         <div className={classes.headerContainer}>
             <div className={classes.headerLeftContainer}>
                 <h2 className={classes.header}>{title}</h2>
-                <form onSubmit={handleSearchSubmit}>
+                <form className={classes.form} onSubmit={handleSearchSubmit}>
                     <input
                         type="text"
                         className={classes.searchInput}
