@@ -68,26 +68,26 @@ const Login = () => {
       
     } catch (err) {
       try {
-        if (err.response.data == undefined) {
+        if (err.response.data === undefined) {
           throw new Error();
         }
         
         for (const error of err.response.data.errors) {
           console.log(error);
 
-          if (error.constraint == 'PasswordMismatch') {
+          if (error.constraint === 'PasswordMismatch') {
             setIncorrectPasswordError(true);
           }
-          else if (error.constraint == 'AccountMissing') {
+          else if (error.constraint === 'AccountMissing') {
             setUserDoesNotExistError(true);
           }
-          else if (error.constraint == 'NotBlank' && error.attribute == 'email') {
+          else if (error.constraint === 'NotBlank' && error.attribute === 'email') {
             setEmailBlankError(true);
           }
-          else if (error.constraint == 'Email' && error.attribute == 'email') {
+          else if (error.constraint === 'Email' && error.attribute === 'email') {
             setEmailNotWellFormedError(true);
           }
-          else if (error.constraint == 'NotBlank' && error.attribute == 'password') {
+          else if (error.constraint === 'NotBlank' && error.attribute === 'password') {
             setPasswordBlankError(true);
           }
           else {

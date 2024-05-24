@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Header from "../../../components/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import Vector from "./images/Vector.png"
 import PlusSign from "./images/+.png"
-import Modal from "../../../components/student/UploadModal"
+import Modal from "../../../components/UploadModal"
 import classes from "./StudentSendApplicationLetter.module.css"
 import QuillEditor from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -28,7 +28,7 @@ const StudentSendApplicationLetter = () => {
         const url = `/internshipoffer/list?page=0&size=1000`;
         const res = await getRequest(url, Role.student);
         
-        setOffer(res.data.content.filter((offer) => offer.offerId == offerId)[0]);
+        setOffer(res.data.content.filter((offer) => offer.offerId === offerId)[0]);
         setLoaded(true);
       }
     }

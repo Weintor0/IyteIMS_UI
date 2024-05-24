@@ -1,86 +1,76 @@
 import React, {useState} from "react";
-import { useNavigate } from 'react-router-dom';
 
-import MenuSelectedTabButton from '../../components/MenuSelectedTabButton';
-import MenuUnselectedTabButton from '../../components/MenuUnselectedTabButton';
+import Modal from "../../components/UploadModal"
+import NavigationMenu from "../../components/secretary/NavigationMenu";
+import Header from "../../components/Header";
 import classes from "./SecretaryHomePage.module.css";
 
 const SecretarySSITransactionsPage = () => {
-    const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
     const [expandedIndex, setExpandedIndex] = useState(false);
+
+    const students = [
+        'Student-1', 
+        'Student-2', 
+        'Student-3'
+    ];
 
     const handleStudentClick = (index) => {
         setExpandedIndex(expandedIndex === index ? null : index);
     };
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
+    const handleOpen = () => {
+        setShowModal(true);
+    };
+    
+    const handleClose = () => {
+        setShowModal(false);
     };
 
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-    };
+    const handleDownloadClick = (e, student) => {
+        e.stopPropagation();
+        alert(student);
+    }
 
-    const navigateTo = (path) => {
-        navigate(path);
-    };
+    const handleUploadClick = (e) => {
+        e.stopPropagation();
+        handleOpen();
+    }
 
     return (
         <>
-            <div className={classes.sideBar}>
-                <MenuUnselectedTabButton click={() => navigateTo('/secretary/home')} condition={false}/>
-                <MenuSelectedTabButton/>
-                <MenuUnselectedTabButton click={() => navigateTo('/secretary/notifications')} condition={false}/>
-            </div>
+            <NavigationMenu i={2}/>
             <div className={classes.container}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.greeting}>SSI Transactions</h2>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                className={classes.searchInput}
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </form>
-                    </div>
-                    <div className={classes.profileContainer}>
-                        <button className={classes.profileButton}></button>
-                        <span className={classes.profileName}>Name, S.</span>
-                    </div>
-                </div>
+                <Header title="SSI Transactions" userName="Department Secretary"/>
                 <p className={classes.welcomeMessage}>See all students with SGK requirement.</p>
                 <div className={classes.boxesContainer}>
-                    {['Student-1', 'Student-2', 'Student-3'].map((student, index) => (
+                    {students.map((student, index) => (
                         <div key={index} 
                              className={expandedIndex === index ? classes.expandedStudentBox : classes.studentBox}
                              onClick={() => handleStudentClick(index)}>
+
                             <h3 style={{cursor:'pointer'}}
                                 className={classes.studentName}>
                                 {student}    
                             </h3>
-                            {expandedIndex === index && (<div className={classes.buttonBox}>
-                                        <button 
-                                            onClick={(e) => {e.stopPropagation();
-                                                            alert('clicked on button')}} 
-                                            className={classes.tabButton}>
-                                            Download Application Form
-                                        </button>
-                                        <button 
-                                        onClick={(e) => {e.stopPropagation();
-                                                        alert('clicked on button')}} 
-                                        className={classes.tabButton}>
-                                        Upload Employment Doc.
-                                        </button>
-                                    </div>
+
+                            {expandedIndex === index && (
+                                <div className={classes.buttonBox}>
+                                    <button onClick={(e) => handleDownloadClick(e,student)} className={classes.tabButton}>Download Application Form</button>
+                                    <button onClick={(e) => handleUploadClick(e, student)} className={classes.tabButton}>Upload Employment Doc.</button>
+                                </div>
                             )}
+
                         </div>
                     ))}
                 </div>
+
+                {showModal && <Modal 
+                    showModal={showModal} 
+                    handleClose={handleClose} 
+                    url={``}
+                    title="Add employment document"/>
+                };
             </div>
         </>
     );

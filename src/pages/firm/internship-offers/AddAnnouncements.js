@@ -1,6 +1,6 @@
 // CONNECTED
 
-import React, { useState, useRef } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../../../components/Header";

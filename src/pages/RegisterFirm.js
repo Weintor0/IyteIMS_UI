@@ -56,7 +56,7 @@ const RegisterFirm = () => {
           "Registration failed. You must agree to the terms of Privacy Policy."
         );
       } else {
-        let res = await axios.post("http://localhost:9090/auth/register/firm", {
+        await axios.post("http://localhost:9090/auth/register/firm", {
           registerDate: registrationDateRef.current.value,
           firmName: firmNameRef.current.value,
           typeOfBusiness: typeOfBusinessRef.current.value,
@@ -73,53 +73,53 @@ const RegisterFirm = () => {
       }
     } catch (err) {
       try {
-        if (err.response.data == undefined) {
+        if (err.response.data === undefined) {
           throw new Error();
         }
 
         for (const error of err.response.data.errors) {
           console.log(error);
 
-          if (error.entity == "User" && error.attribute == "email" && error.constraint == "Unique") {
+          if (error.entity === "User" && error.attribute === "email" && error.constraint === "Unique") {
             setEmailUniquenessError(true);
           } 
-          else if (error.entity == "Firm" && error.attribute == "firmName" && error.constraint == "Unique") {
+          else if (error.entity === "Firm" && error.attribute === "firmName" && error.constraint === "Unique") {
             setFirmNameUniqunessError(true);
           }
-          else if (error.entity == "Firm" && error.attribute == "businessRegistrationNumber" && error.constraint == "Unique") {
+          else if (error.entity === "Firm" && error.attribute === "businessRegistrationNumber" && error.constraint === "Unique") {
             setRegistrationNumberUniquenessError(true);
           } 
-          else if (error.entity == "Firm" &&error.attribute == "registerDate" && error.constraint == "Format") {
+          else if (error.entity === "Firm" &&error.attribute === "registerDate" && error.constraint === "Format") {
             setRegistrationDateFormatError(true);
           } 
-          else if ( error.entity == "Firm" && error.attribute == "email" && error.constraint == "Email") {
+          else if ( error.entity === "Firm" && error.attribute === "email" && error.constraint === "Email") {
             setEmailFormatError(true);
           }
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'email') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'email') {
             setEmailNotBlankError(true);
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotNull' && error.attribute == 'registerDate') {
+          else if (error.entity === "Firm" && error.constraint === 'NotNull' && error.attribute === 'registerDate') {
             setRegisterDateNotNullError(true)
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'typeOfBusiness') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'typeOfBusiness') {
             setTypeOfBusinessNotBlankError(true);
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'businessRegistrationNumber') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'businessRegistrationNumber') {
             setBusinessRegistrationNumberNotBlankError(true);
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'legalStructure') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'legalStructure') {
             setLegalStructureNotBlankError(true);
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'phoneNumber') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'phoneNumber') {
             setPhoneNumberNotBlankError(true);
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'password') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'password') {
             setPasswordNotBlankError(true);
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'firmName') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'firmName') {
             setFirmNameNotBlankError(true);
           } 
-          else if (error.entity == "Firm" && error.constraint == 'NotBlank' && error.attribute == 'address') {
+          else if (error.entity === "Firm" && error.constraint === 'NotBlank' && error.attribute === 'address') {
             setAddressNotBlankError(true);
           }
           else {

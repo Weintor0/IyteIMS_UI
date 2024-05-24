@@ -45,7 +45,7 @@ const RegisterStudent = () => {
           "Registration failed. You must agree to the terms of Privacy Policy."
         );
       } else {
-        let res = await axios.post("http://localhost:9090/auth/register/student", {
+        await axios.post("http://localhost:9090/auth/register/student", {
           studentNumber: studentNumberRef.current.value,
           birthDate: birthDateRef.current.value,
           name: nameRef.current.value,
@@ -59,41 +59,41 @@ const RegisterStudent = () => {
       }
     } catch (err) {
       try {
-        if (err.response.data == undefined) {
+        if (err.response.data === undefined) {
           throw new Error();
         }
 
         for (const error of err.response.data.errors) {
           console.log(error);
 
-          if (error.entity == "User" && error.attribute == "email" && error.constraint == "Unique") {
+          if (error.entity === "User" && error.attribute === "email" && error.constraint === "Unique") {
             setEmailUniquenessError(true);
           }
-          else if (error.entity == "Student" && error.attribute == "studentNumber" && error.constraint == "Unique") {
+          else if (error.entity === "Student" && error.attribute === "studentNumber" && error.constraint === "Unique") {
             setStudentNumberUniqunessError(true);
           } 
-          else if (error.entity == "Student" && error.attribute == "birthDate" && error.constraint == "Format") {
+          else if (error.entity === "Student" && error.attribute === "birthDate" && error.constraint === "Format") {
             setBirthDateFormatError(true);
           }
-          else if (error.entity == 'Student' && error.attribute == 'birthDate' && error.constraint == 'NotNull') {
+          else if (error.entity === 'Student' && error.attribute === 'birthDate' && error.constraint === 'NotNull') {
             setBirthDateNullError(true);
           }
-          else if (error.entity == "Student" && error.attribute == "email" && error.constraint == "Email") {
+          else if (error.entity === "Student" && error.attribute === "email" && error.constraint === "Email") {
             setEmailFormatError(true);
           } 
-          else if (error.entity == 'Student' && error.attribute == 'password' && error.constraint == 'NotBlank') {
+          else if (error.entity === 'Student' && error.attribute === 'password' && error.constraint === 'NotBlank') {
             setPasswordBlankError(true);
           }
-          else if (error.entity == 'Student' && error.attribute == 'email' && error.constraint == 'NotBlank') {
+          else if (error.entity === 'Student' && error.attribute === 'email' && error.constraint === 'NotBlank') {
             setEmailBlankError(true);
           }
-          else if (error.entity == 'Student' && error.attribute == 'surname' && error.constraint == 'NotBlank') {
+          else if (error.entity === 'Student' && error.attribute === 'surname' && error.constraint === 'NotBlank') {
             setSurnameBlankError(true);
           }
-          else if (error.entity == 'Student' && error.attribute == 'name' && error.constraint == 'NotBlank') {
+          else if (error.entity === 'Student' && error.attribute === 'name' && error.constraint === 'NotBlank') {
             setNameBlankError(true);
           }    
-          else if (error.entity == 'Student' && error.attribute == 'studentNumber' && error.constraint == 'NotBlank') {
+          else if (error.entity === 'Student' && error.attribute === 'studentNumber' && error.constraint === 'NotBlank') {
             setStudentNumberBlankError(true);
           }      
           else {

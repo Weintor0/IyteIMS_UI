@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Modal from "../../../components/student/UploadModal"
+import Modal from "../../../components/UploadModal"
 import Header from "../../../components/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import classes from "./StudentSummerPracticeReports.module.css";

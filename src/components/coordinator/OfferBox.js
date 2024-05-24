@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import classes from "./ErrorMessageBox.module.css";
-import Modal from "./Modal";
 
 const OfferBox = ({ offer, currentApproval, whenApprove, whenReject }) => {
     const [largeBoxVisible, setLargeBoxVisible] = useState(false)

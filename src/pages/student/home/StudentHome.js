@@ -1,40 +1,17 @@
 // CONNECTED
 
-import React, {useState} from "react";
+import React from "react";
 
 import NavigationMenu from "../../../components/student/NavigationMenu";
+import Header from "../../../components/Header";
 import classes from "./StudentHome.module.css";
 
 const StudentHomePage = () => {
-    const [searchQuery, setSearchQuery] = useState('');
-    const handleSearchChange = (event) => {setSearchQuery(event.target.value);};
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-    };
-
     return (
         <>
             <NavigationMenu i={0}/>
             <div className={classes.container}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.greeting}>Hello, Damla.</h2>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                className={classes.searchInput}
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </form>
-                    </div>
-                    <div className={classes.profileContainer}>
-                        <button className={classes.profileButton}></button>
-                        <span className={classes.profileName}>Name, S.</span>
-                    </div>
-                </div>
+                <Header title={"Hello, Damla."} userName={"Student Name"}/>
                 <p className={classes.welcomeMessage}>Welcome back!</p>
                 <div className={classes.boxesContainer}>
                     <div className={classes.announcementBox}>

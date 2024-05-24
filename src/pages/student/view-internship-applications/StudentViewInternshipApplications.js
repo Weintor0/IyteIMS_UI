@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import React from "react";
 
 import Header from "../../../components/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";

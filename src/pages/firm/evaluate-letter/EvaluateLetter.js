@@ -113,7 +113,7 @@ const EvaluateLetter = () => {
                     <div className={classes.boxesContainer}>
                         {sliced ? currentLetterList.map((letter, index) => {
                             console.log(letter);
-                            if (expandedNotification != index) {
+                            if (expandedNotification !== index) {
                                 // Unexpanded Entry
                                 return (
                                     <div key={index} className={classes.notificationBox} onClick={() => handleNotificationClick(index)}>

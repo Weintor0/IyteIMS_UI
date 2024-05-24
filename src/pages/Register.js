@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import classes from "./Register.module.css";
 import SelectedTabButton from "../components/SelectedTabButton";
 
-import axios from "axios";
 import RegisterStudent from "./RegisterStudent";
 import UnselectedTabButton from "../components/UnselectedTabButton";
 import RegisterFirm from "./RegisterFirm";

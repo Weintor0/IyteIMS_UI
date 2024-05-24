@@ -80,8 +80,8 @@ function App() {
 
             <Route path="/secretary/" element={<SecretaryHomePage />}></Route>
             <Route path="/secretary/home" element={<SecretaryHomePage />}></Route>
+            <Route path="/secretary/view-notifications" element={<SecretaryNotificationsPage />}></Route>
             <Route path="/secretary/ssi-transactions" element={<SecretarySSITransactionsPage />}></Route>
-            <Route path="/secretary/notifications" element={<SecretaryNotificationsPage />}></Route>
           </Routes>
         </div>
       </div>

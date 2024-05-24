@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Header from "../../../components/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import ChooseCompany from "../../../components/student/ChooseCompany";
-import Modal from "../../../components/student/UploadModal";
+import Modal from "../../../components/UploadModal";
 import classes from "./StudentSendApplicationForm.module.css";
 
 const StudentSendApplicationForm = () => {
@@ -21,11 +21,6 @@ const StudentSendApplicationForm = () => {
 
   const handleCancelClick = () => {
     setFirstModalOpen(false);
-    setSecondModalOpen(false);
-  };
-
-  const handleSendClick = () => {
-    alert('Form Sent!');
     setSecondModalOpen(false);
   };
 

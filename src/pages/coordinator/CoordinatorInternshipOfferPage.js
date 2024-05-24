@@ -1,6 +1,6 @@
 // CONNECTED
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import ProfileButton from "../../components/coordinator/ProfileButton";
 import OfferBox from "../../components/coordinator/OfferBox";

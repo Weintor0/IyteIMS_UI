@@ -32,7 +32,7 @@ const FirmAnnouncements = () => {
         const url = `/internshipoffer/list?page=0&size=1000`;
         const res = await getRequest(url, Role.firm);
 
-        setOfferList(res.data.content.filter((offer) => offer.firmId == id));
+        setOfferList(res.data.content.filter((offer) => offer.firmId === id));
         setLoaded(true);
       }
     }
@@ -52,7 +52,7 @@ const FirmAnnouncements = () => {
                   <div className={classes.announcementTable}>
                     {loaded ? 
                       offerList.map((announcement, index) => {
-                        if (expandedNotification == index) {
+                        if (expandedNotification === index) {
                           return (
                             <div key={announcement.offerId} className={`${classes.announcementRow} ${classes.expanded}`} onClick={() => handleNotificationClick(index)}>
                               <div className={classes.announcementColumn}>{announcement.title}</div>

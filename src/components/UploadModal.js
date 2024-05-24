@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './UploadModal.css';
 
-import { upload } from '../../util/Request';
-import { Role } from '../../util/Authorization';
+import { upload } from '../util/Request';
+import { Role } from '../util/Authorization';
 
 const Modal = ({ showModal, handleClose, url, title }) => {
   const [dragging, setDragging] = useState(false);
@@ -64,15 +64,16 @@ const Modal = ({ showModal, handleClose, url, title }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <span className="close-btn" onClick={handleClose}>&times;</span>
         <h2>{title}</h2>
+
         <div
           className={`drag-drop-area ${dragging ? 'highlight' : ''}`}
           onDragEnter={handleDragEnter}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
+          onDrop={handleDrop}>
           Drag and drop here...
         </div>
+
         <div className="file-list">
           {files.length > 0 && (
             <ul>
@@ -82,6 +83,7 @@ const Modal = ({ showModal, handleClose, url, title }) => {
             </ul>
           )}
         </div>
+
         <div className="modal-buttons">
           <button className="cancel-btn" onClick={handleClose}>Cancel</button>
           <button className="send-btn" onClick={handleSend} disabled={uploading}>

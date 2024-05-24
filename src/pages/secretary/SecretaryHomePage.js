@@ -1,57 +1,25 @@
-import React, {useState} from "react";
+import React from "react";
 import { useNavigate } from 'react-router-dom';
 
-import MenuSelectedTabButton from '../../components/MenuSelectedTabButton';
-import MenuUnselectedTabButton from '../../components/MenuUnselectedTabButton';
+import NavigationMenu from "../../components/secretary/NavigationMenu";
+import Header from "../../components/Header";
 import classes from "./SecretaryHomePage.module.css";
 
 const SecretaryHomePage = () => {
-    const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
-
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-    };
-
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-    };
-
     const navigateTo = (path) => {
         navigate(path);
     };
 
     return (
         <>
-            <div className={classes.sideBar}>
-                <MenuSelectedTabButton/>
-                <MenuUnselectedTabButton click={() => navigateTo('/secretary/ssi-transactions')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/secretary/notifications')} condition={false}/>
-            </div>
+            <NavigationMenu i={0}/>
             <div className={classes.container}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.greeting}>Hello, Name.</h2>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                className={classes.searchInput}
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </form>
-                    </div>
-                    <div className={classes.profileContainer}>
-                        <button className={classes.profileButton}></button>
-                        <span className={classes.profileName}>Name, S.</span>
-                    </div>
-                </div>
+                <Header title="Hello, Secretary" userName="Department Secretary"/>
                 <p className={classes.welcomeMessage}>Welcome back!</p>
                 <div className={classes.boxesContainer}>
                     <div className={classes.announcementBox}
-                         onClick={(e) => navigateTo('/secretary/notifications')}>
+                         onClick={(e) => navigateTo('/secretary/view-notifications')}>
                         <>
                             <h3>Notifications</h3>
                             <p>13 unread</p>
@@ -68,7 +36,6 @@ const SecretaryHomePage = () => {
 
                     <div className={classes.applicationBox}></div>
                 </div>
-
             </div>
         </>
     );
