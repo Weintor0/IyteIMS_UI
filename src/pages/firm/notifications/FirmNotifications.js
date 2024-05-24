@@ -49,7 +49,7 @@ const FirmNotifications = () => {
         <>
             <NavigationMenu i={1}/>
             <div className={classes.container}>
-                <Header title="Notifications" userName="Firm"/>
+                <Header titleFn={u => `Notifications`} userNameFn={u => u} userRole={Role.firm}/>
                 <p className={classes.message}>See all your notifications here.</p>
                 <div className={classes.boxesContainer}>
                     {sliced ? currentNotificationList.map((notification, index) => (

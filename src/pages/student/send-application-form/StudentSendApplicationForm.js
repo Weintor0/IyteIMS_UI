@@ -6,6 +6,8 @@ import ChooseCompany from "../../../components/student/ChooseCompany";
 import Modal from "../../../components/UploadModal";
 import classes from "./StudentSendApplicationForm.module.css";
 
+import { Role } from "../../../util/Authorization";
+
 const StudentSendApplicationForm = () => {
   const [isFirstModalOpen, setFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setSecondModalOpen] = useState(false);
@@ -28,7 +30,7 @@ const StudentSendApplicationForm = () => {
     <>
       <NavigationMenu i={4}/>
       <div className={classes.container}>
-        <Header title="Application Forms" userName="Student Name"/>
+        <Header titleFn={u => `Application Forms`} userNameFn={u => `${u.name} ${u.surname}`} userRole={Role.student}/>
         <div className={classes.bodyContainer}>
           <div className={classes.listContainer}>
             <ul>

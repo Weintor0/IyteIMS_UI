@@ -5,6 +5,8 @@ import Header from "../../../components/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import classes from "./StudentSummerPracticeReports.module.css";
 
+import { Role } from "../../../util/Authorization";
+
 const SummerPracticeReports = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -20,7 +22,7 @@ const SummerPracticeReports = () => {
     <>
       <NavigationMenu i={6}/>
       <div className={classes.container}>
-        <Header title="Summer Practice Reports" userName="Student Name"/>
+        <Header titleFn={u => `Summer Practice Reports`} userNameFn={u => `${u.name} ${u.surname}`} userRole={Role.student}/>
         <div className={classes.bodyContainer}>
           <div className={classes.listContainer}>
             <ul><p><b>Firm A</b></p><p>Date a.b.c</p><a href="Download">Download</a></ul>

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './Header.module.css';
 
-const Header = ({title, userName}) => {
+import { getUserName } from "../util/Profile";
+
+const Header = ({titleFn, userNameFn, userRole}) => {
+    const [userName, setUserName] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearchChange = (event) => {
@@ -13,10 +16,19 @@ const Header = ({title, userName}) => {
         console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
     };
 
-    return (
+    useEffect(() => {
+        const fetchData = async() => {
+            if (!userName) { setUserName(await getUserName(userRole)); }
+        }
+        fetchData().catch((err) => {
+            alert("An unknown problem has occurred unexpectedly: " + err);
+        });
+    });
+
+    return userName && (
         <div className={classes.headerContainer}>
             <div className={classes.headerLeftContainer}>
-                <h2 className={classes.header}>{title}</h2>
+                <h2 className={classes.header}>{titleFn(userName)}</h2>
                 <form className={classes.form} onSubmit={handleSearchSubmit}>
                     <input
                         type="text"
@@ -29,7 +41,7 @@ const Header = ({title, userName}) => {
             </div>
             <div className={classes.profileContainer}>
                 <button className={classes.profileButton}></button>
-                <span className={classes.profileName}>{userName}</span>
+                <span className={classes.profileName}>{userNameFn(userName)}</span>
             </div>
         </div>
     );

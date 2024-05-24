@@ -4,12 +4,14 @@ import Header from "../../../components/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import classes from "./StudentSSITransactions.module.css";
 
+import { Role } from "../../../util/Authorization";
+
 const SSITransactions = () => {
    return (
     <>
       <NavigationMenu i={5}/>
       <div className={classes.container}>
-        <Header title="SSI Transactions" userName="Student Name"/>
+        <Header titleFn={u => `SSI Transactions`} userNameFn={u => `${u.name} ${u.surname}`} userRole={Role.student}/>
         <div className={classes.bodyContainer}>
           <div className={classes.listContainer}>
             <ul>

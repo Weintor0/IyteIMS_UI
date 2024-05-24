@@ -5,6 +5,8 @@ import Header from "../../components/Header";
 import Pagination from '../../components/Pagination';
 import classes from './SecretaryNotificationsPage.module.css';
 
+import { Role } from "../../util/Authorization";
+
 const SecretaryNotificationsPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const notifications = [
@@ -21,7 +23,7 @@ const SecretaryNotificationsPage = () => {
         <>
             <NavigationMenu i={1}/>
             <div className={classes.container}>
-                <Header title="Notifications" userName="Department Secretary"/>
+                <Header titleFn={u => `Notifications`} userNameFn={u => u} userRole={Role.secretary}/>
                 <p className={classes.message}>See all your notifications here.</p>
                 <div className={classes.boxesContainer}>
                     {currentNotifications.map((notification, index) => (

@@ -1,17 +1,19 @@
 // CONNECTED
 
-import React from "react";
+import { React } from "react";
 
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import Header from "../../../components/Header";
 import classes from "./StudentHome.module.css";
+
+import { Role } from "../../../util/Authorization";
 
 const StudentHomePage = () => {
     return (
         <>
             <NavigationMenu i={0}/>
             <div className={classes.container}>
-                <Header title={"Hello, Damla."} userName={"Student Name"}/>
+                <Header titleFn={u => `Hello, ${u.name}.`} userNameFn={u => `${u.name} ${u.surname}`} userRole={Role.student}/>
                 <p className={classes.welcomeMessage}>Welcome back!</p>
                 <div className={classes.boxesContainer}>
                     <div className={classes.announcementBox}>

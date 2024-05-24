@@ -5,6 +5,8 @@ import Pagination from '../../../components/Pagination';
 import NavigationMenu from '../../../components/firm/NavigationMenu';
 import Header from "../../../components/Header";
 
+import { Role } from "../../../util/Authorization";
+
 const CheckStudentReport = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [expandedNotification, setExpandedNotification] = useState(null);
@@ -52,7 +54,7 @@ const CheckStudentReport = () => {
         <>
             <NavigationMenu i={5}/>
             <div className={classes.container}>
-                <Header title={"Student Reports"} userName={"Firm"}/>
+                <Header titleFn={u => `Student Reports`} userNameFn={u => u} userRole={Role.firm}/>
                 <p className={classes.message}>All student reports that have been sent.</p>
                 <div className={classes.body}>
                     <div className={classes.boxesContainer}>

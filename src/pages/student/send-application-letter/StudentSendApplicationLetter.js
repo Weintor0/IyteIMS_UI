@@ -48,7 +48,7 @@ const StudentSendApplicationLetter = () => {
     <>
       <NavigationMenu i={2}/>
       <div className={classes.container}>
-        <Header title="Internship Offers" userName="Student Name"/>
+        <Header titleFn={u => `Internship Offers`} userNameFn={u => `${u.name} ${u.surname}`} userRole={Role.student}/>
         <div className={classes.bodyContainer}>
           <div className={classes.header}>
             <ul className={classes.firstul}>

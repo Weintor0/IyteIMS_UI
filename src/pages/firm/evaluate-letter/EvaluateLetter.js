@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 
+import NavigationMenu from '../../../components/firm/NavigationMenu.js';
+import Header from '../../../components/Header.js';
 import Pagination from '../../../components/Pagination';
 import classes from './EvaluateLetter.module.css';
 
 import { Role } from "../../../util/Authorization";
 import { getRequest, patchRequest } from '../../../util/Request.js';
-import NavigationMenu from '../../../components/firm/NavigationMenu.js';
-import Header from '../../../components/Header.js';
 
 const EvaluateLetter = () => {
     const [loaded, setLoaded] = useState(null);
@@ -107,7 +107,7 @@ const EvaluateLetter = () => {
         <>
             <NavigationMenu i={3}/>
             <div className={classes.container}>
-                <Header title={"Internship Applications"}/>
+                <Header titleFn={u => `Internship Applications`} userNameFn={u => u} userRole={Role.firm}/>
                 <p className={classes.message}>See all application letter that have been sent your firm here.</p>
                 <div className={classes.body}>
                     <div className={classes.boxesContainer}>

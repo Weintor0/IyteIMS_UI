@@ -46,7 +46,7 @@ const FirmAnnouncements = () => {
     <>
       <NavigationMenu i={2}/>
       <div className={classes.container}>
-          <Header title={"Internship Offers"}/>
+          <Header titleFn={u => `Internship Offers`} userNameFn={u => u} userRole={Role.firm}/>
             <div className={classes.bodyContainer}>
                 <div className={classes.boxesContainer}>
                   <div className={classes.announcementTable}>

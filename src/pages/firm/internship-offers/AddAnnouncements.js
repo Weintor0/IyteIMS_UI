@@ -42,7 +42,7 @@ const AddAnnouncements = () => {
     <>
         <NavigationMenu i={2}/>
         <div className={classes.container}>
-            <Header title="My Internship Offers"/>
+            <Header titleFn={u => `My Internship Offers`} userNameFn={u => u} userRole={Role.firm}/>
             <div className={classes.bodyContainer}>
                 <div className={classes.addContainer}>
                     <input type="text" ref={titleRef} placeholder="Title"/>

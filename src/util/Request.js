@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { auth } from "./Authorization";
+import { auth, Role } from "./Authorization";
 
 function requestUrl(path) {
     return `http://localhost:9090${path}`

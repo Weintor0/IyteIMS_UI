@@ -5,6 +5,8 @@ import NavigationMenu from "../../components/secretary/NavigationMenu";
 import Header from "../../components/Header";
 import classes from "./SecretaryHomePage.module.css";
 
+import { Role } from "../../util/Authorization";
+
 const SecretarySSITransactionsPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [expandedIndex, setExpandedIndex] = useState(false);
@@ -41,7 +43,7 @@ const SecretarySSITransactionsPage = () => {
         <>
             <NavigationMenu i={2}/>
             <div className={classes.container}>
-                <Header title="SSI Transactions" userName="Department Secretary"/>
+                <Header titleFn={u => `SSI Transactions`} userNameFn={u => u} userRole={Role.secretary}/>
                 <p className={classes.welcomeMessage}>See all students with SGK requirement.</p>
                 <div className={classes.boxesContainer}>
                     {students.map((student, index) => (

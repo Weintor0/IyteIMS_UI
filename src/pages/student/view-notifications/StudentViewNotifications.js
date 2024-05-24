@@ -1,68 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import Header from '../../../components/Header';
 import NavigationMenu from '../../../components/student/NavigationMenu';
 import Pagination from '../../../components/Pagination';
 import classes from './StudentViewNotifications.module.css';
 
-const StudentNotificationsPage = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [searchQuery, setSearchQuery] = useState('');
-    
-    const notificationsPerPage = 5;
-    const notifications = [
-        'Announcement 1', 'Announcement 2', 'Announcement 3', 'Announcement 4', 'Announcement 5',
-        'Announcement 6', 'Announcement 7', 'Announcement 8', 'Announcement 9', 'Announcement 10',
-    ];
+import { Role } from "../../../util/Authorization";
+import { getRequest } from '../../../util/Request';
 
+const StudentNotificationsPage = () => {
+    const [loaded, setLoaded] = useState(false);
+    const [sliced, setSliced] = useState(false);
+    
+    const [notificationList, setNotificationList] = useState(null);
+    const [currentNotificationList, setCurrentNotificationList] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const notificationsPerPage = 5;
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
-    const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-    };
+    useEffect(() => {
+        const fetchData = async() => {
+        if (!loaded) {
+                const url = `/notifications/incoming`;
+                const res = await getRequest(url, Role.student);
 
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-    };
+                setNotificationList(res.data);
+                setLoaded(true);
+            }
+        }
+        
+        fetchData().catch((err) => {
+            alert("An unknown problem has occurred unexpectedly" + err);
+        });
+    });
+
+    useEffect(() => {
+        if (loaded) {
+            setCurrentNotificationList(notificationList.slice(indexOfFirstNotification, indexOfLastNotification));
+            setSliced(true);
+        }
+    }, [loaded]);
 
     return(
         <>
             <NavigationMenu i={1}/>
             <div className={classes.container}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.header}>Notifications</h2>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                className={classes.searchInput}
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </form>
-                    </div>
-                    <div className={classes.profileContainer}>
-                        <button className={classes.profileButton}></button>
-                        <span className={classes.profileName}>Name, S.</span>
-                    </div>
-                </div>
+                <Header titleFn={u => `Notifications`} userNameFn={u => `${u.name} ${u.surname}`} userRole={Role.student}/>
                 <p className={classes.message}>See all your notifications here.</p>
                 <div className={classes.boxesContainer}>
-                    {currentNotifications.map((notification, index) => (
+                    {sliced && currentNotificationList.map((notification, index) => (
                         <div key={index} className={classes.notificationBox}>
-                            {notification}
+                            {notification.content}
                         </div>
                     ))}
-                    <Pagination
+
+                    {sliced && <Pagination
                         currentPage={currentPage}
                         notificationsPerPage={notificationsPerPage}
-                        totalNotifications={notifications.length}
+                        totalNotifications={notificationList.length}
                         paginate={setCurrentPage}
-                    />
-
+                    />}
                 </div>
             </div>
 

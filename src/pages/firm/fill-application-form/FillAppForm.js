@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import classes from './FillAppForm.module.css';
+
 import Pagination from '../../../components/Pagination';
 import NavigationMenu from '../../../components/firm/NavigationMenu';
+import Header from '../../../components/Header.js';
+import classes from './FillAppForm.module.css';
+
+import { Role } from "../../../util/Authorization";
 
 const FillAppForm = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [expandedNotification, setExpandedNotification] = useState(null);
-    const [searchQuery, setSearchQuery] = useState('');
 
     const notifications = [
         'Student form 1', 'Student form 2', 'Student form 3', 'Student form 4', 'Student form 5',
@@ -17,15 +20,6 @@ const FillAppForm = () => {
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
     const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
-
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-    };
-
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        console.log('Searching for:', searchQuery);   /* search logic will be implemented */
-    };
 
     const handleUpdate = () => {
         alert('Blah');
@@ -47,24 +41,7 @@ const FillAppForm = () => {
         <>
             <NavigationMenu i={4}/>
             <div className={classes.container}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.header}>Application Forms</h2>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                className={classes.searchInput}
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </form>
-                    </div>
-                    <div className={classes.profileContainer}>
-                        <button className={classes.profileButton}></button>
-                        <span className={classes.profileName}>Name, S.</span>
-                    </div>
-                </div>
+            <Header titleFn={u => `Application Forms`} userNameFn={u => u} userRole={Role.firm}/>
                 <p className={classes.message}>Summer Practice Application Forms sent by students.</p>
                 <div className={classes.body}>
                     <div className={classes.boxesContainer}>
