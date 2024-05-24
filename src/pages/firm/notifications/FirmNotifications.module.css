@@ -9,73 +9,11 @@
     box-shadow: 5px 5px 4px #776ec2;
 }
 
-.sideBar {
-    flex-direction: column;
-    margin-right: 0;
-    align-items: center;
-}
-
-.headerContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 5px 5px 0 2px;
-}
-
-.headerLeftContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.header {
-    font-size: 40px;
-    font-size: 40px;
-    color: #333;
-    margin: 0 0 0 20px;
-}
-
 .message {
     font-size: 18px;
     color: #666;
     display: block;
     margin: 0 0 5px 24px;
-}
-
-.searchInput {
-    padding: 14px 16px;
-    border: 1px;
-    border-radius: 20px;
-    outline: none;
-    width: 300px;
-    font-size: 16px;
-    margin-left: 15%;
-    box-shadow: 4px 1px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-}
-
-.profileContainer {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.profileButton {
-    background-color: #61677D;
-    border: none;
-    cursor: pointer;
-    padding: 20px 20px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px; /*space between the button and the text */
-}
-
-.profileName {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
 }
 
 .boxesContainer {

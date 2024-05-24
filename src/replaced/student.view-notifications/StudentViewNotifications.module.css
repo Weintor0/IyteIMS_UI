@@ -1,0 +1,110 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 85%;
+    width: 95%;
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+    margin-left: 6rem;
+    margin-right: 2rem;
+  }
+.container h2 {
+    font-weight: 500;
+    margin-bottom: 0;
+ }
+  
+.container p {
+    margin-top: 0;
+}
+.headercontainer {
+  font-size: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px 25px;
+  margin-left: 1rem;
+  
+}
+
+
+.headercontainer p {
+  color: #776ec2;
+
+}
+
+
+.searchContainer button {
+  color: #61677D;
+  width: 2rem;
+  height: 2rem;
+  background-color: #61677D;
+  border: 1px;
+  border-radius: 10px;
+  
+}
+.searchContainer form input:focus {
+  outline: #776ec2;
+}
+
+.searchContainer form input::placeholder {
+
+  color: #776ec2;
+}
+.bodyContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+  padding: 30px 25px;
+  
+  
+}
+.listContainer ul{
+  height: 3rem;
+  width: 60rem;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  border: 2px solid #FDFDFD;
+  display: flex;
+  flex-direction: row;
+  background-color: #FDFDFD;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+
+}
+.listContainer ul p b {
+  font-size: 18px;
+  
+
+}
+.listContainer ul p  {
+  font-size: 18px;
+  color: #696E83;
+  font-weight: 300;
+  margin-left: 5px;
+}
+
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    
+    padding-bottom: 15px;
+}
+.buttons button {
+  font-size: 16px;
+  height: 3rem;
+  width:  20rem;
+  padding-right: 2.8rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  border-radius: 2rem;
+  border: 2px solid #FDFDFD;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+
+}

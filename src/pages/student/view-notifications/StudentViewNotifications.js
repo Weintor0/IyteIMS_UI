@@ -1,60 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 
-import classes from "./StudentViewNotifications.module.css";
+import NavigationMenu from '../../../components/student/NavigationMenu';
+import Pagination from '../../../components/Pagination';
+import classes from './StudentViewNotifications.module.css';
 
-const StudentViewNotifications = () => {
-  const [notifications, setNotifications] = useState([]);
+const StudentNotificationsPage = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
+    
+    const notificationsPerPage = 5;
+    const notifications = [
+        'Announcement 1', 'Announcement 2', 'Announcement 3', 'Announcement 4', 'Announcement 5',
+        'Announcement 6', 'Announcement 7', 'Announcement 8', 'Announcement 9', 'Announcement 10',
+    ];
 
-  useEffect(() => {
-    // Fetch notifications from your API
-    fetchNotifications();
-  }, []);
+    const indexOfLastNotification = currentPage * notificationsPerPage;
+    const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
+    const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
 
-  const fetchNotifications = () => {
-    // Replace 'https://your-api.com/notifications' with your actual API endpoint
-    fetch('https://your-api.com/notifications')
-      .then(response => response.json())
-      .then(data => {
-        // Set notifications in state
-        setNotifications(data);
-      })
-      .catch(error => {
-        console.error('Error fetching notifications:', error);
-      });
-  };
-   return (
-    <div className={classes.container}>
-      <div className={classes.headercontainer}>
-        <div>
-          <h2>Notifications</h2>
-          <p>See all your notifications here.</p>
-        </div>
-        <div className={classes.searchContainer}>
-            <button type="submit" className="search-button"></button>
-        </div>
-      </div>
-    <div className={classes.bodyContainer}>
-      <div className={classes.listContainer}>
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
 
-        <ul><p><b>Announcement 1, </b></p><p>Announcement...</p></ul>
-        
-        <ul><p><b>Company Announcement, </b></p> <p>Announcement...</p></ul>
-        <ul><p><b>SSITransactions, </b></p> <p>Announcement...</p></ul>
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
+    };
+
+    return(
+        <>
+            <NavigationMenu i={1}/>
+            <div className={classes.container}>
+                <div className={classes.headerContainer}>
+                    <div className={classes.headerLeftContainer}>
+                        <h2 className={classes.header}>Notifications</h2>
+                        <form onSubmit={handleSearchSubmit}>
+                            <input
+                                type="text"
+                                className={classes.searchInput}
+                                placeholder="Search..."
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                            />
+                        </form>
+                    </div>
+                    <div className={classes.profileContainer}>
+                        <button className={classes.profileButton}></button>
+                        <span className={classes.profileName}>Name, S.</span>
+                    </div>
+                </div>
+                <p className={classes.message}>See all your notifications here.</p>
+                <div className={classes.boxesContainer}>
+                    {currentNotifications.map((notification, index) => (
+                        <div key={index} className={classes.notificationBox}>
+                            {notification}
+                        </div>
+                    ))}
+                    <Pagination
+                        currentPage={currentPage}
+                        notificationsPerPage={notificationsPerPage}
+                        totalNotifications={notifications.length}
+                        paginate={setCurrentPage}
+                    />
+
+                </div>
+            </div>
 
 
-        
-      </div>
-
-      </div>
-    </div>
-  );
+        </>
+    );
 };
 
-export default StudentViewNotifications; 
-
-/* {notifications.map(notification => (
-  <div key={notification.id}> 
-              <ul><p><b>{notification.title}</b></p></ul>
-              <ul><p>{notification.message}</p></ul>
-            </div>
-          ))} */
+export default StudentNotificationsPage;

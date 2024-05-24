@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import classes from "./StudentSummerPracticeReports.module.css";
 
-import classes from "./SSITransactions.module.css";
 
-const SSITransactions = () => {
+const SummerPracticeReports = () => {
+
    return (
     <div className={classes.container}>
       <div className={classes.headercontainer}>
         <div>
-          <h2>SSI Transacions </h2>
-          <p>See all your applications here.</p>
+          <h2>Summer Practice Reports</h2>
+          <p>View your summer practice reports that you have sent so far.</p>
         </div>
         <div className={classes.searchContainer}>
           <form action="/search" method="get">
@@ -25,19 +26,17 @@ const SSITransactions = () => {
       </div>
     <div className={classes.bodyContainer}>
       <div className={classes.listContainer}>
-        <ul>
-            <h2>Application</h2>
-            <hr></hr>
-            <p>Transactions have not yet finished. Dean Office is currenty handling</p>
-        </ul>
- 
-        <ul><h2></h2>
-            <p>blank</p></ul>
+        <ul><p><b>Firm A</b></p><p>Date a.b.c</p><a href="Download">Download</a></ul>
+        <ul><p><b>Firm B</b></p> <p>Date x.y.z</p><a href="Download">Download</a></ul>
+        <ul>blank</ul>
       </div>
-     
+      <div className={classes.buttons}>
+        <button type="button">Upload Report</button>
+        <button type="button">Download Template</button>
+      </div>
       </div>
     </div>
   );
 };
 
-export default SSITransactions;
+export default SummerPracticeReports;

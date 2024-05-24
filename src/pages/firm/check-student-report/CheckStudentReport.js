@@ -1,40 +1,25 @@
 import React, { useState } from 'react';
 import classes from './CheckStudentReport.module.css';
-import { useNavigate } from 'react-router-dom';
-import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
-import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton.js';
+
 import Pagination from '../../../components/Pagination';
+import NavigationMenu from '../../../components/firm/NavigationMenu';
+import Header from "../../../components/Header";
 
 const CheckStudentReport = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const notificationsPerPage = 5;
     const [expandedNotification, setExpandedNotification] = useState(null);
-    const [searchQuery, setSearchQuery] = useState('');
     const [isFeedbackPopupVisible, setIsFeedbackPopupVisible] = useState(false);
     const [feedback, setFeedback] = useState('');
-    const navigate = useNavigate();
 
     const notifications = [
         'Announcement 1', 'Announcement 2', 'Announcement 3', 'Announcement 4', 'Announcement 5',
         'Announcement 6', 'Announcement 7', 'Announcement 8', 'Announcement 9', 'Announcement 10',
     ];
 
+    const notificationsPerPage = 5;
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
     const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
-
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-    };
-
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-    };
-
-    const navigateTo = (path) => {
-        navigate(path);
-    };
 
     const handleDownload = () => {
         alert('Blah');
@@ -65,35 +50,9 @@ const CheckStudentReport = () => {
 
     return (
         <>
-            <div className={classes.sideBar}>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/home')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/notifications')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/internship-offers')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/evaluate-letter')} condition={false} />
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/send-application-form')} condition={false}/>
-                <MenuSelectedTabButton/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/send-company-form')} condition={false}/>
-            </div>
-
+            <NavigationMenu i={5}/>
             <div className={classes.container}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.header}>Student Reports</h2>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                className={classes.searchInput}
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </form>
-                    </div>
-                    <div className={classes.profileContainer}>
-                        <button className={classes.profileButton}></button>
-                        <span className={classes.profileName}>Name, S.</span>
-                    </div>
-                </div>
+                <Header title={"Student Reports"} userName={"Firm"}/>
                 <p className={classes.message}>All student reports that have been sent.</p>
                 <div className={classes.body}>
                     <div className={classes.boxesContainer}>
@@ -116,6 +75,7 @@ const CheckStudentReport = () => {
                                 )}    
                             </div>
                         ))}
+
                         <Pagination
                             currentPage={currentPage}
                             notificationsPerPage={notificationsPerPage}
@@ -125,6 +85,7 @@ const CheckStudentReport = () => {
                     </div>
                 </div>
             </div>
+
             {isFeedbackPopupVisible && (
                 <div className={classes.feedbackPopupOverlay}>
                     <div className={classes.feedbackPopup}>

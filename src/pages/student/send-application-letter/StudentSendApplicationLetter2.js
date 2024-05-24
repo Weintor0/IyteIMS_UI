@@ -13,7 +13,9 @@ const StudentSendApplicationLetter2 = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [id, token] = auth();
-  const offerId = searchParams['offerId'];
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const offerId = urlParams.get('offerId');
 
   const handleOpen = () => {
     setShowModal(true);
@@ -64,7 +66,7 @@ const StudentSendApplicationLetter2 = () => {
       {showModal && <Modal 
         showModal={showModal} 
         handleClose={handleClose} 
-        url={`http://localhost:9090/internship/application-letter/send/${offerId}`}
+        url={`/internship/application-letter/send/${offerId}`}
         authorization={token}
         />}
     </div>

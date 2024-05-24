@@ -1,38 +1,21 @@
 // CONNECTED
 
 import React, {useState} from "react";
-import { useNavigate } from 'react-router-dom';
 
-import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
-import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton';
+import NavigationMenu from "../../../components/firm/NavigationMenu";
 import classes from "./FirmHomePage.module.css";
 
 const FirmHomePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
-
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-    };
-
+    const handleSearchChange = (event) => {setSearchQuery(event.target.value);};
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
     };
 
-    const navigateTo = (path) => {
-        navigate(path);
-    };
-
     return (
         <>
-            <div className={classes.sideBar}>
-                <MenuSelectedTabButton/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/notifications')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/internship-offers')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/application-forms')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/evaluate-letter')} condition={false}/>
-            </div>
+            <NavigationMenu i={0}/>
             <div className={classes.container}>
                 <div className={classes.headerContainer}>
                     <div className={classes.headerLeftContainer}>

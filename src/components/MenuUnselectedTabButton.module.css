@@ -5,5 +5,11 @@
     border-radius: 20px;
     margin-right: 44px;
     cursor: pointer;
+    vertical-align: "middle";
+    text-align: "center";
   }
   
+.icon {
+  margin-top: 10px;
+  margin-left: 10px;
+}

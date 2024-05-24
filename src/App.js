@@ -11,11 +11,11 @@ import EvaluateLetter from "./pages/firm/evaluate-letter/EvaluateLetter";
 import FillAppForm from "./pages/firm/fill-application-form/FillAppForm";
 import CheckStudentReport from "./pages/firm/check-student-report/CheckStudentReport";
 
-import SummerPracticeReports from "./pages/student/summer-practice-reports/SummerPracticeReports";
-import SSITransactions from "./pages/student/ssi-transactions/SSITransactions";
+import StudentSummerPracticeReports from "./pages/student/summer-practice-reports/StudentSummerPracticeReports";
+import StudentSSITransactions from "./pages/student/ssi-transactions/StudentSSITransactions";
 import StudentHomePage from "./pages/student/home/StudentHome";
 import StudentViewNotifications from "./pages/student/view-notifications/StudentViewNotifications";
-import StudentSendApplicationLetter from "./pages/student/send-application-letter/StudentSendApplicationLetter";
+import StudentInternshipOffers from "./pages/student/send-application-letter/StudentInternshipOffers";
 import StudentSendApplicationLetter2 from "./pages/student/send-application-letter/StudentSendApplicationLetter2";
 import StudentViewInternshipApplications from "./pages/student/view-internship-applications/StudentViewInternshipApplications";
 import StudentSendApplicationForm from "./pages/student/send-application-form/StudentSendApplicationForm";
@@ -50,16 +50,24 @@ function App() {
             <Route path="/firm/evaluate-letter" element={<EvaluateLetter />}></Route>
             <Route path="/firm/send-application-form" element={<FillAppForm />}></Route>
             <Route path="/firm/check-student-report" element={<CheckStudentReport />}></Route>
+            {/*
+              <Route path="/firm/send-company-form" element={<SendCompanyForm />}></Route>
+              <Route path="/firm/coordinator-announcements" element={<FirmCoordinatorAnnouncements />}></Route>
+            */}
 
             <Route path="/student/" element={<StudentHomePage />}></Route>
             <Route path="/student/home" element={<StudentHomePage />}></Route>
-            <Route path="/student/ssi-transactions" element={<SSITransactions />}></Route>
             <Route path="/student/view-notifications" element={<StudentViewNotifications />}></Route>
-            <Route path="/student/send-application-letter" element={<StudentSendApplicationLetter />}></Route>
+            <Route path="/student/internship-offers" element={<StudentInternshipOffers />}></Route>
             <Route path="/student/send-application-letter2" element={<StudentSendApplicationLetter2 />}></Route>
             <Route path="/student/internship-applications" element={<StudentViewInternshipApplications />}></Route>
             <Route path="/student/send-application-form" element={<StudentSendApplicationForm />}></Route>
-            <Route path="/student/summer-practice-reports" element={<SummerPracticeReports />}></Route>
+            <Route path="/student/ssi-transactions" element={<StudentSSITransactions />}></Route>
+            <Route path="/student/summer-practice-reports" element={<StudentSummerPracticeReports />}></Route>
+            {/*
+              <Route path="/student/survey" element={<StudentSurvey />}></Route>
+              <Route path="/student/coordinator-announcements" element={<StudentCoordinatorAnnouncements />}></Route>
+            */}
 
             <Route path="/coordinator/" element={<CoordinatorHomePage />}></Route>
             <Route path="/coordinator/home" element={<CoordinatorHomePage />}></Route>

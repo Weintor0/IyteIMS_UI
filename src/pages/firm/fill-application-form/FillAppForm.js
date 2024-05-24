@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import classes from './FillAppForm.module.css';
-import { useNavigate } from 'react-router-dom';
-import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
-import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton.js';
 import Pagination from '../../../components/Pagination';
+import NavigationMenu from '../../../components/firm/NavigationMenu';
 
 const FillAppForm = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const notificationsPerPage = 5;
     const [expandedNotification, setExpandedNotification] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
 
     const notifications = [
         'Student form 1', 'Student form 2', 'Student form 3', 'Student form 4', 'Student form 5',
         'Student form 6', 'Student form 7', 'Student form 8', 'Student form 9', 'Student form 10',
     ];
 
+    const notificationsPerPage = 5;
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
     const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
@@ -28,10 +25,6 @@ const FillAppForm = () => {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         console.log('Searching for:', searchQuery);   /* search logic will be implemented */
-    };
-
-    const navigateTo = (path) => {
-        navigate(path);
     };
 
     const handleUpdate = () => {
@@ -52,16 +45,7 @@ const FillAppForm = () => {
 
     return(
         <>
-            <div className={classes.sideBar}>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/home')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/notifications')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/internship-offers')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/evaluate-letter')} condition={false}/>
-                <MenuSelectedTabButton/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/check-student-report')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/send-company-form')} condition={false}/>
-            </div>
-
+            <NavigationMenu i={4}/>
             <div className={classes.container}>
                 <div className={classes.headerContainer}>
                     <div className={classes.headerLeftContainer}>

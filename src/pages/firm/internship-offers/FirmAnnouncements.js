@@ -3,7 +3,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import NavigationMenu from "../../../components/firm/NavigationMenu";
+import Header from "../../../components/Header";
 import classes from "./FirmAnnouncements.module.css";
+import { convertHtmlToReact } from '@hedgedoc/html-to-react';
 
 import { auth, Role } from "../../../util/Authorization";
 import { getRequest } from "../../../util/Request";
@@ -12,10 +15,15 @@ const FirmAnnouncements = () => {
   const [id] = auth(Role.firm);
   const [loaded, setLoaded] = useState(null);
   const [offerList, setOfferList] = useState(null);
+  const [expandedNotification, setExpandedNotification] = useState(null);
 
   const navigate = useNavigate();
   const handleAddClick = () => {
     navigate("/firm/publish-internship-offers");
+  };
+
+  const handleNotificationClick = (index) => {
+    setExpandedNotification(index === expandedNotification ? null : index);
   };
 
   useEffect(() => {
@@ -24,69 +32,55 @@ const FirmAnnouncements = () => {
         const url = `/internshipoffer/list?page=0&size=1000`;
         const res = await getRequest(url, Role.firm);
 
-        let myOffers = [];
-        res.data.content.forEach((offer) => {
-          if (offer['firmId'] == id) {
-            myOffers.push(offer);
-          }
-        });
-
-        setOfferList(myOffers);
+        setOfferList(res.data.content.filter((offer) => offer.firmId == id));
         setLoaded(true);
       }
     }
     
-    fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly" + err));
+    fetchData().catch((err) => {
+      alert("An unknown problem has occurred unexpectedly" + err);
+    });
   });
 
    return (
-    <div className={classes.container}>
-        <div className={classes.headercontainer}>
-            <div>
-            <h2>My Internship Offers </h2>
-            <p>See your recent internship offers.</p>
+    <>
+      <NavigationMenu i={2}/>
+      <div className={classes.container}>
+          <Header title={"Internship Offers"}/>
+            <div className={classes.bodyContainer}>
+                <div className={classes.boxesContainer}>
+                  <div className={classes.announcementTable}>
+                    {loaded ? 
+                      offerList.map((announcement, index) => {
+                        if (expandedNotification == index) {
+                          return (
+                            <div key={announcement.offerId} className={`${classes.announcementRow} ${classes.expanded}`} onClick={() => handleNotificationClick(index)}>
+                              <div className={classes.announcementColumn}>{announcement.title}</div>
+                              <div className={classes.announcementColumn}>{announcement.jobTitle}</div>
+                              <div className={classes.content}> { convertHtmlToReact(announcement.content) } </div>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div key={announcement.offerId} className={classes.announcementRow} onClick={() => handleNotificationClick(index)}>
+                              <div className={classes.announcementColumn}>{announcement.title}</div>
+                              <div className={classes.announcementColumn}>{announcement.jobTitle}</div>
+                            </div>
+                          );
+                        }
+                      }) : null}
+                  </div>
+                </div>
+
+                <div className={classes.addAnnouncementsButton}>
+                    <button onClick={handleAddClick} className={classes.addButton}>
+                        Add new internship opportunity
+                    </button>
+                  </div>
             </div>
-            <div className={classes.searchContainer}>
-            <form action="/search" method="get">
-                <input
-                type="text"
-                name="searchQuery"
-                id="searchQuery"
-                placeholder="Search..."
-                />
-            </form>
-                <button type="submit" className="search-button"></button>
-            </div>
-        </div>
-        <div className={classes.bodyContainer}>
-            <div className={classes.announcementTableContainer}>
-                {loaded ? <AnnouncementsTable announcements={offerList} /> : null}
-            </div>
-            <div className={classes.addAnnouncementsButton}>
-            <button onClick={handleAddClick} className={classes.addButton}>
-                Add new internship opportunity
-            </button>
-            </div>
-        </div>
-    </div>
+      </div>
+    </>
   );
-};
-
-
-const AnnouncementsTable = ({ announcements }) => {
-    return (
-      <table className={classes.announcementTable}>
-        <tbody>
-          {announcements.map(announcement => {return (
-            <tr key={announcement.offerId} className={classes.announcementRow}>
-              <td>{announcement.title}</td>
-              <td>{announcement.jobTitle}</td>
-              <td>{announcement.content}</td>
-            </tr>
-          )})}
-        </tbody>
-      </table>
-    );
 };
 
 export default FirmAnnouncements;

@@ -2,108 +2,79 @@
     display: flex;
     flex-direction: column;
     background-color: #F2F1FF;
-    height: 85%;
+    height: 90%;
     width: 80%;
-    padding: 50px;
+    padding: 30px;
     border-radius: 30px;
     box-shadow: 5px 5px 4px #776ec2;
-  }
-  .container h2 {
-    font-weight: 500;
-    margin-bottom: 0;
-  }
-  
-  .container p {
-    margin-top: 0;
-  }
-  
-  .headercontainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 25px;
-    font-size: 24px;
-  }
-  
-  .headercontainer p {
-    color: #776ec2;
-  }
-  
-  .searchContainer {
-    margin-top: 35px;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .searchContainer form input {
-    font-size: 16px;
-    width: 200px;
-    height: 30px;
-    border-radius: 15px;
-    border: 2px solid #FDFDFD;
-    margin-bottom: 10px;
-    margin-right: 30px;
-    padding-left: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
-  }
-  
-  .searchContainer button {
-    color: #61677D;
-    width: 30px;
-    height: 30px;
-    background-color: #61677D;
-    border: 1px;
-    border-radius: 10px;
-    margin-top: 5px;
-  }
-  
-  .searchContainer form input:focus {
-    outline: #776ec2;
-  }
-  
-  .searchContainer form input::placeholder {
-    color: #776ec2;
-  }
-  
-  .bodyContainer{
-    display: flex;
-    justify-content: space-between;
-  
-  }
-  
-  .addButton{
-    background-color: #fff;
-    border-radius: 10px;
-    border: 0px;
-    box-shadow: 2px 2px #776ec2;
-    font-size: 16px;
-    padding: 10px;
-    font-weight: bold;
-  }
-  
-  .announcementTableContainer{
-    max-height: 60vh; 
-    overflow-y: auto;
-  }
-  
-  .announcementTable{
-    width: 50vw;
-    font-size: 24px;
-    border-collapse: separate;
-    border-spacing: 0 20px;
-  }
-  
-  .announcementRow {
-    box-shadow: 4px 2px 4px #776ec2;
-    border-radius: 20px;
-  }
-  
-  .announcementRow td {
-    padding: 10px;
-  }
-  
-  
-  
-  
-  
+}
+
+.bodyContainer{
+  display: flex;
+  /*justify-content: space-between;*/
+}
+
+.boxesContainer {
+  display: flex;
+  height: 100%;
+  width: 70%;
+  gap: 20px;               /* Space between each box */
+  flex-direction: column;  /* Aligns items vertically */
+  cursor: pointer;
+  margin-top: 5%;
+  margin-left: 20px;
+  align-content: center;
+}
+
+.addAnnouncementsButton{
+  display: inline-block;
+  margin-top: 5%;
+}
+
+.addButton{
+  background-color: #fff;
+  border-radius: 10px;
+  border: 0px;
+  box-shadow: 2px 2px #776ec2;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.announcementTable{
+  width: 50vw;
+  font-size: 24px;
+  margin-right: 50px;
+}
+
+.announcementRow {
+  box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+  background-color: #ffffff;
+  display: flexbox;
+  cursor: pointer;
+  transition: box-shadow 0.3s, height 0.3s;
+  padding: 8px 15px 5px;
+}
+
+.expanded {
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.content {
+  font-size: 12px;
+  padding: 10px;
+}
+
+.announcementColumn {
+  padding: 10px;
+  display: inline-block;
+}
+
+.announcementRow:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+

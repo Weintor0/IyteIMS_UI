@@ -1,9 +1,12 @@
 // CONNECTED
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Header from "../../../components/Header";
+import NavigationMenu from "../../../components/firm/NavigationMenu";
 import classes from "./AddAnnouncements.module.css";
+import Editor from './Editor';
 
 import { Role } from "../../../util/Authorization";
 import { postRequest } from "../../../util/Request";
@@ -13,15 +16,14 @@ const AddAnnouncements = () => {
 
     const titleRef = React.useRef(null);
     const jobTitleRef = React.useRef(null);
-    const contentRef = React.useRef(null);
 
-    async function sendInternshipOffer() {
+    async function sendInternshipOffer(content) {
         try {
             const url = `/internshipoffer/createinternship`;
             const data = {
                 "jobTitle": titleRef.current.value,
                 "title": jobTitleRef.current.value,
-                "content": contentRef.current.value
+                "content": content
             };
 
             return postRequest(url, data, Role.firm);
@@ -30,42 +32,26 @@ const AddAnnouncements = () => {
         }
     }
 
-    const handleSave = () => {
-        sendInternshipOffer().then((result) => {
+    const handleSave = (content) => {
+        sendInternshipOffer(content).then(() => {
             navigate("/firm/home");
         });
     };
 
    return (
-    <div className={classes.container}>
-        <div className={classes.headercontainer}>
-            <div>
-            <h2>My Internship Announcements </h2>
-            <p>See your recent announcements.</p>
-            </div>
-            <div className={classes.searchContainer}>
-            <form action="/search" method="get">
-                <input
-                type="text"
-                name="searchQuery"
-                id="searchQuery"
-                placeholder="Search..."
-                />
-            </form>
-                <button type="submit" className="search-button"></button>
-            </div>
-        </div>
-        <div className={classes.bodyContainer}>
-            <div className={classes.addContainer}>
-                <input type="text" ref={titleRef} placeholder="Title"/>
-                <input type="text" ref={jobTitleRef} placeholder="Job Title"/>
-                <input type="text" ref={contentRef} placeholder="Content"/>
-                <div className={classes.saveContainer}>
-                    <button onClick={handleSave} className={classes.saveButton}>Save and Send</button>
+    <>
+        <NavigationMenu i={2}/>
+        <div className={classes.container}>
+            <Header title="My Internship Offers"/>
+            <div className={classes.bodyContainer}>
+                <div className={classes.addContainer}>
+                    <input type="text" ref={titleRef} placeholder="Title"/>
+                    <input type="text" ref={jobTitleRef} placeholder="Job Title"/>
+                    <Editor handleSave={(content) => handleSave(content)}/>
                 </div>
             </div>
         </div>
-    </div>
+    </>
   );
 };
 

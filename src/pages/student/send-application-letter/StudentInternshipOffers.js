@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import classes from "./StudentSendApplicationLetter.module.css";
+import classes from "./StudentInternshipOffers.module.css";
 
 import { Role } from "../../../util/Authorization";
 import { getRequest } from "../../../util/Request";
 
-const StudentSendApplicationLetter = () => {
+const StudentInternshipOffers = () => {
   const [loaded, setLoaded] = useState(null);
   const [offerList, setOfferList] = useState(null);
 
@@ -53,4 +53,4 @@ const StudentSendApplicationLetter = () => {
   );
 };
 
-export default StudentSendApplicationLetter;
+export default StudentInternshipOffers;

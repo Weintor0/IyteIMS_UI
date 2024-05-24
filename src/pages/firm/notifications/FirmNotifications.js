@@ -1,95 +1,64 @@
 // CONNECTED
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import MenuSelectedTabButton from '../../../components/MenuSelectedTabButton';
-import MenuUnselectedTabButton from '../../../components/MenuUnselectedTabButton';
 import Pagination from '../../../components/Pagination';
+import NavigationMenu from '../../../components/firm/NavigationMenu';
+import Header from '../../../components/Header';
 import classes from './FirmNotifications.module.css';
 
 import { Role } from "../../../util/Authorization";
 import { getRequest } from '../../../util/Request';
 
 const FirmNotifications = () => {
+    const [loaded, setLoaded] = useState(false);
+    const [sliced, setSliced] = useState(false);
+
+    const [notificationList, setNotificationList] = useState(null);
+    const [currentNotificationList, setCurrentNotificationList] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+
     const notificationsPerPage = 5;
-
-    const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
-
     const indexOfLastNotification = currentPage * notificationsPerPage;
     const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
-
-    const [loaded, setLoaded] = useState(null);
-    const [notificationList, setNotificationList] = useState([]);
-    const [currentNotificationList, setCurrentNotificationList] = useState(null);
 
     useEffect(() => {
         const fetchData = async() => {
         if (!loaded) {
-                const url = `/internship/get-all`;
+                const url = `/notifications/incoming`;
                 const res = await getRequest(url, Role.firm);
 
                 setNotificationList(res.data);
-                setCurrentNotificationList(notificationList.slice(indexOfFirstNotification, indexOfLastNotification));
                 setLoaded(true);
             }
         }
         
-        fetchData().catch((err) => alert("An unknown problem has occurred unexpectedly"));
+        fetchData().catch((err) => {
+            alert("An unknown problem has occurred unexpectedly" + err);
+        });
     });
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
-    };
-
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        console.log('Searching for:', searchQuery);   /* search logic will be implemented*/
-    };
-
-    const navigateTo = (path) => {
-        navigate(path);
-    };
+    useEffect(() => {
+        if (loaded) {
+            setCurrentNotificationList(notificationList.slice(indexOfFirstNotification, indexOfLastNotification));
+            setSliced(true);
+        }
+    }, [loaded]);
 
     return(
         <>
-            <div className={classes.sideBar}>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/Home')} condition={false}/>
-                <MenuSelectedTabButton/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/internship-offers')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/application-forms')} condition={false}/>
-                <MenuUnselectedTabButton click={() => navigateTo('/firm/evaluate-letter')} condition={false}/>
-            </div>
-
+            <NavigationMenu i={1}/>
             <div className={classes.container}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.headerLeftContainer}>
-                        <h2 className={classes.header}>Notifications</h2>
-                        <form onSubmit={handleSearchSubmit}>
-                            <input
-                                type="text"
-                                className={classes.searchInput}
-                                placeholder="Search..."
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                        </form>
-                    </div>
-                    <div className={classes.profileContainer}>
-                        <button className={classes.profileButton}></button>
-                        <span className={classes.profileName}>Name, S.</span>
-                    </div>
-                </div>
+                <Header title="Notifications" userName="Firm"/>
                 <p className={classes.message}>See all your notifications here.</p>
                 <div className={classes.boxesContainer}>
-                    {loaded ? currentNotificationList.map((notification, index) => (
+                    {sliced ? currentNotificationList.map((notification, index) => (
                         <div key={index} className={classes.notificationBox}>
-                            {notification}
+                            {notification.content}
                         </div>
                     )) : null}
-                    {loaded ? <Pagination
+                    
+                    {sliced ? <Pagination
                         currentPage={currentPage}
                         notificationsPerPage={notificationsPerPage}
                         totalNotifications={notificationList.length}
@@ -97,8 +66,6 @@ const FirmNotifications = () => {
                     /> : null}
                 </div>
             </div>
-
-
         </>
     );
 };
