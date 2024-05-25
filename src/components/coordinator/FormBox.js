@@ -3,41 +3,23 @@ import classes from "./ErrorMessageBox.module.css";
 import FeedbackModal from "./FeedbackModal";
 
 
-const FormBox = ({ Name, Data , readStatus, Approved}) => {
+const FormBox = ({ studentName, studentNumber, studentEmail, 
+                   firmName, firmEmail, offerTitle ,jobTitle, approved,
+                   handleApprove, handleReject, handleDownload}) => {
 
-    const [approved, setApproved] = useState("Approved")
     const [largeBoxVisible, setLargeBoxVisible] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
 
-    const [formName, setFormName] = useState("Form 1")
-    const [studentName, setStudentName] = useState("Name 1")
-    const [firmName, setFirmName] = useState("firm1")
-    const [date, setDate] = useState("12.12.12")
-    const [fileUrl, setFileUrl] = useState("")
+    const openModal = () => { setModalVisible(true); };
+    const closeModal = () => { setModalVisible(false); };
 
-
-    const clickDownload = () => {
-        //handle click
-    }
-
-    const openModal = () => {
-        setModalVisible(true);
-    };
-    const closeModal = () => {
+    const handleSendFeedback = (feedback) => {
+        handleReject(feedback);
         setModalVisible(false);
-    };
-    const handleSendFeedback = (option) => {
-        console.log(`Continued with ${option}`);
-        // gerekli send işlemi
-        setModalVisible(false);
-    }
-    const handleApprove = (inputText) => {
-        // approve logic
-        console.log("Approved")
     }
 
     return (
-        <div style={{marginBottom:8}}>
+        <div style={{marginBottom:8, marginTop:"5%"}}>
             <FeedbackModal style={{overlay: {
                     position: 'fixed',
                     top: 0,
@@ -49,7 +31,7 @@ const FormBox = ({ Name, Data , readStatus, Approved}) => {
 
             {largeBoxVisible === true ?
                 <div style={{
-                    height: 300,
+                    height: "fit-content",
                     width: "80%",
                     backgroundColor: "#ffffff",
                     padding: 5,
@@ -61,17 +43,16 @@ const FormBox = ({ Name, Data , readStatus, Approved}) => {
                     justifyContent: "space-between"
                 }} onClick={()=>setLargeBoxVisible(false)} >
                     <div>
-                        <p style={{ marginLeft: 20, fontSize: 20, fontWeight: "bold" }}>{formName}</p>
-                        <p style={{ marginTop: 0, marginLeft: 20, fontSize: 15 }}>Student: {studentName}</p>
-                        <p style={{ marginTop: 0, marginLeft: 20, fontSize: 15 }}>Firm: {firmName}</p>
-                        <p style={{ marginTop: 0, marginLeft: 20, fontSize: 15 }}>Date: {date}</p>
-                        <a href={fileUrl} style={{
+                        {<p style={{ marginLeft: 20, fontSize: 20, fontWeight: "bold" }}>Application Form</p>}
+                        <p style={{ marginTop: 0, marginLeft: 20, fontSize: 13 }}>Student: {studentName}, {studentNumber}, {studentEmail}</p>
+                        <p style={{ marginTop: 0, marginLeft: 20, fontSize: 13 }}>Firm: {firmName}, {firmEmail}</p>
+                        <p style={{ marginTop: 0, marginLeft: 20, fontSize: 13 }}>Offer: {offerTitle}, {jobTitle}</p>
+                        <a style={{
                             display: 'inline-block', textDecoration:"underline",marginLeft: 20, marginTop: 10,
                             padding: '10px 20px', borderRadius: '5px', fontSize: '15px'
-                        }} download>
+                        }} href="javascript:void(0);" onClick={handleDownload} download>
                             Download
                         </a>
-
                     </div>
                     <div style={{
                         marginBottom: 10,
@@ -106,12 +87,12 @@ const FormBox = ({ Name, Data , readStatus, Approved}) => {
                 </div>
 
                 :
-                <div className={classes.errorContainer} style={{height:30, width:"65%"}} onClick={() => setLargeBoxVisible(true)} >
+
+                <div className={classes.errorContainer} style={{height:30, width:"80%"}} onClick={() => setLargeBoxVisible(true)} >
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                        <p className={classes.errorTitle}>{Name}</p>
+                        <p className={classes.errorTitle}>{`${studentName} - ${firmName}`}</p>
                         <p style={{fontSize:15, margin:0,marginRight:"7%"}}>{approved}</p>
                     </div>
-
                 </div>
             }
         </div>
