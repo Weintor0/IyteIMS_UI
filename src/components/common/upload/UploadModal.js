@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './UploadModal.css';
 
-import { upload } from '../util/Request';
-import { Role } from '../util/Authorization';
+import { upload } from '../../../util/Request';
+import { Role } from '../../../util/Authorization';
 
-const Modal = ({ showModal, handleClose, url, title }) => {
+const Modal = ({ showModal, handleClose, url, title, handleSuccess, handleFailure }) => {
   const [dragging, setDragging] = useState(false);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -47,12 +47,11 @@ const Modal = ({ showModal, handleClose, url, title }) => {
     try {
       const response = await upload(url, files, Role.student);
       console.log('File uploaded successfully:', response.data);
-      alert('File uploaded successfully');
       handleClose();
+      handleSuccess && handleSuccess();
     }
     catch (error) {
-      console.error('Error uploading file:', error);
-      alert('Error uploading file');
+      handleFailure && handleFailure(error);
     } 
     finally {
       setUploading(false);

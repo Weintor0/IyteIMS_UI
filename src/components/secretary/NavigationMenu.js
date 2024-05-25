@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./NavigationMenu.css";
 import { useNavigate } from 'react-router-dom';
 
-import MenuTabButton from '../MenuTabButton';
+import MenuTabButton from '../common/sidebar/MenuTabButton';
 
 import HomeIcon from "../../icons/homepage.png";
 import NotificationsIcon from "../../icons/messages.png";

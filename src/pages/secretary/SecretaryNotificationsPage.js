@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import NavigationMenu from "../../components/secretary/NavigationMenu";
-import Header from "../../components/Header";
-import Pagination from '../../components/Pagination';
+import Header from "../../components/common/header/Header";
+import Pagination from '../../components/common/pagination/Pagination';
 import classes from './SecretaryNotificationsPage.module.css';
 
 import { Role } from "../../util/Authorization";

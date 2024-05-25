@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import NavigationMenu from "../../../components/firm/NavigationMenu";
-import Header from "../../../components/Header";
+import Header from "../../../components/common/header/Header";
 import classes from "./FirmAnnouncements.module.css";
 import { convertHtmlToReact } from '@hedgedoc/html-to-react';
 

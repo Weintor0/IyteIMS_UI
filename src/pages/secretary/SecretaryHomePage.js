@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 
 import NavigationMenu from "../../components/secretary/NavigationMenu";
-import Header from "../../components/Header";
+import Header from "../../components/common/header/Header";
 import classes from "./SecretaryHomePage.module.css";
 
 import { Role } from "../../util/Authorization";

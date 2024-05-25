@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import classes from "./Register.module.css";
-import SelectedTabButton from "../components/SelectedTabButton";
+import SelectedTabButton from "../../components/auth/SelectedTabButton";
 
 import RegisterStudent from "./RegisterStudent";
-import UnselectedTabButton from "../components/UnselectedTabButton";
+import UnselectedTabButton from "../../components/auth/UnselectedTabButton";
 import RegisterFirm from "./RegisterFirm";
 
 const Register = () => {

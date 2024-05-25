@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 90%;
+    width: 80%;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+}
+.welcomeMessage {
+    font-size: 18px;
+    color: #666;
+    display: block;
+    margin: 0 0 5px 24px;
+}

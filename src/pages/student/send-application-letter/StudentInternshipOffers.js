@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import Header from "../../../components/Header";
+import Header from "../../../components/common/header/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import classes from "./StudentInternshipOffers.module.css";
 
@@ -36,8 +36,8 @@ const StudentInternshipOffers = () => {
         <div className={classes.bodyContainer}>
           {loaded ? 
             <div className={classes.listContainer}>
-              {offerList.map((offer) => (
-                <ul>
+              {offerList.map((offer, index) => (
+                <ul key={index}>
                   <Link className={classes.link} to={{pathname: "/student/send-application-letter", search: `?offerId=${offer.offerId}`}}>
                     <button></button>
                     <p>{offer.title}</p>

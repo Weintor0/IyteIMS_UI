@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from '../../../components/Header';
+import Header from '../../../components/common/header/Header';
 import NavigationMenu from '../../../components/student/NavigationMenu';
-import Pagination from '../../../components/Pagination';
+import Pagination from '../../../components/common/pagination/Pagination';
 import classes from './StudentViewNotifications.module.css';
 
 import { Role } from "../../../util/Authorization";

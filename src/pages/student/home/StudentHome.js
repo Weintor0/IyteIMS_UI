@@ -3,7 +3,7 @@
 import { React } from "react";
 
 import NavigationMenu from "../../../components/student/NavigationMenu";
-import Header from "../../../components/Header";
+import Header from "../../../components/common/header/Header";
 import classes from "./StudentHome.module.css";
 
 import { Role } from "../../../util/Authorization";

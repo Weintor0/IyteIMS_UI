@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Header.module.css';
 
-import { getUserName } from "../util/Profile";
+import { getUserName } from "../../../util/Profile";
 
 const Header = ({titleFn, userNameFn, userRole}) => {
     const [userName, setUserName] = useState(null);

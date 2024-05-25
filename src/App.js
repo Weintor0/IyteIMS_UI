@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
 import FirmHomePage from "./pages/firm/home-page/FirmHomePage";
 import FirmNotifications from "./pages/firm/notifications/FirmNotifications";
@@ -10,6 +10,7 @@ import AddAnnouncements from "./pages/firm/internship-offers/AddAnnouncements";
 import EvaluateLetter from "./pages/firm/evaluate-letter/EvaluateLetter";
 import FillAppForm from "./pages/firm/fill-application-form/FillAppForm";
 import CheckStudentReport from "./pages/firm/check-student-report/CheckStudentReport";
+import UploadFirmReport from "./pages/firm/upload-firm-report/UploadFirmReport";
 
 import StudentSummerPracticeReports from "./pages/student/summer-practice-reports/StudentSummerPracticeReports";
 import StudentSSITransactions from "./pages/student/ssi-transactions/StudentSSITransactions";
@@ -20,13 +21,14 @@ import StudentSendApplicationLetter from "./pages/student/send-application-lette
 import StudentViewInternshipApplications from "./pages/student/view-internship-applications/StudentViewInternshipApplications";
 import StudentSendApplicationForm from "./pages/student/send-application-form/StudentSendApplicationForm";
 
-import CoordinatorHomePage from "./pages/coordinator/CoordinatorHomePage";
-import CoordinatorInternshipOfferPage from "./pages/coordinator/CoordinatorInternshipOfferPage";
-import CoordinatorAnnouncementPage from "./pages/coordinator/CoordinatorAnnouncementPage";
-import CoordinatorSurveyResultsPage from "./pages/coordinator/CoordinatorSurveyResultsPage";
-import CoordinatorReviewFormsPage from "./pages/coordinator/CoordinatorReviewFormsPage";
-import CoordinatorSSITransactionsPage from "./pages/coordinator/CoordinatorSSITransactionsPage";
-import CoordinatorProfile from "./pages/coordinator/CoordinatorProfile";
+import CoordinatorHomePage from "./pages/coordinator/home/CoordinatorHomePage";
+import CoordinatorNotificationPage from "./pages/coordinator/view-notifications/CoordinatorNotificationPage";
+import CoordinatorInternshipOfferPage from "./pages/coordinator/internship-offers/CoordinatorInternshipOfferPage";
+import CoordinatorAnnouncementPage from "./pages/coordinator//coordinator-announcements/CoordinatorAnnouncementPage";
+import AddAnnouncementBox from "./pages/coordinator/coordinator-announcements/AddAnnouncementBox";
+import CoordinatorSurveyResultsPage from "./pages/coordinator/survey-results/CoordinatorSurveyResultsPage";
+import CoordinatorReviewFormsPage from "./pages/coordinator/application-forms/CoordinatorReviewFormsPage";
+import CoordinatorSSITransactionsPage from "./pages/coordinator/ssi-transactions/CoordinatorSSITransactionsPage";
 
 import SecretaryHomePage from "./pages/secretary/SecretaryHomePage";
 import SecretarySSITransactionsPage from "./pages/secretary/SecretarySSITransactionsPage";
@@ -50,8 +52,8 @@ function App() {
             <Route path="/firm/evaluate-letter" element={<EvaluateLetter />}></Route>
             <Route path="/firm/send-application-form" element={<FillAppForm />}></Route>
             <Route path="/firm/check-student-report" element={<CheckStudentReport />}></Route>
+            <Route path="/firm/send-company-form" element={<UploadFirmReport />}></Route>
             {/*
-              <Route path="/firm/send-company-form" element={<SendCompanyForm />}></Route>
               <Route path="/firm/coordinator-announcements" element={<FirmCoordinatorAnnouncements />}></Route>
             */}
 
@@ -71,12 +73,13 @@ function App() {
 
             <Route path="/coordinator/" element={<CoordinatorHomePage />}></Route>
             <Route path="/coordinator/home" element={<CoordinatorHomePage />}></Route>
+            <Route path="/coordinator/view-notifications" element={<CoordinatorNotificationPage/>}></Route>
             <Route path="/coordinator/announcements" element={<CoordinatorAnnouncementPage/>}></Route>
+            <Route path="/coordinator/publish-announcement" element={<AddAnnouncementBox />}></Route>
             <Route path="/coordinator/surveyresult" element={<CoordinatorSurveyResultsPage/>}></Route>
-            <Route path="/coordinator/reviewforms" element={<CoordinatorReviewFormsPage/>}></Route>
+            <Route path="/coordinator/review-forms" element={<CoordinatorReviewFormsPage/>}></Route>
             <Route path="/coordinator/ssi-transactions" element={<CoordinatorSSITransactionsPage/>}></Route>
             <Route path="/coordinator/internship-offers" element={<CoordinatorInternshipOfferPage/>}></Route>
-            <Route path="/coordinator/profile" element={<CoordinatorProfile/>}></Route>
 
             <Route path="/secretary/" element={<SecretaryHomePage />}></Route>
             <Route path="/secretary/home" element={<SecretaryHomePage />}></Route>

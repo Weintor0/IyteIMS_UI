@@ -1,0 +1,201 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 90%;
+    width: 80%;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+  }
+  
+  .sideBar {
+    flex-direction: column;
+    margin-right: 0;
+    align-items: center;
+  }
+  
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 5px 0 2px;
+  }
+  
+  .headerLeftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header {
+    font-size: 40px;
+    font-size: 40px;
+    color: #333;
+    margin: 0 0 0 20px;
+  }
+  
+  .message {
+    font-size: 18px;
+    color: #666;
+    display: block;
+    margin: 0 0 5px 24px;
+  }
+  
+  .searchInput {
+    padding: 14px 16px;
+    border: 1px;
+    border-radius: 20px;
+    outline: none;
+    width: 300px;
+    font-size: 16px;
+    margin-left: 15%;
+    box-shadow: 4px 1px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .profileContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .profileButton {
+    background-color: #61677D;
+    border: none;
+    cursor: pointer;
+    padding: 20px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px; /*space between the button and the text */
+  }
+  
+  .profileName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .boxesContainer {
+    display: flex;
+    height: 100%;
+    width: 70%;
+    gap: 20px;               /* Space between each box */
+    flex-direction: column;  /* Aligns items vertically */
+    cursor: pointer;
+    margin-top: 5%;
+    margin-left: 20px;
+    align-content: center;
+  }
+  
+  .notificationBox {
+    background-color: #ffffff;
+    width: 100%;
+    height: auto;
+    min-height: 10%;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    padding: 8px 15px 5px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+  
+  .notificationBox:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .addButton{
+    background-color: #fff;
+    border-radius: 10px;
+    border: 0px;
+    box-shadow: 2px 2px #776ec2;
+    font-size: 16px;
+    padding: 10px;
+    font-weight: bold;
+    margin-left: 4vw;
+    margin-top: 6vh;
+  }
+  
+  .body{
+    display:flex;
+    height: 100%;
+  }
+  
+  .popupOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .popup {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      width: 300px;
+      text-align: center;
+  }
+  
+  .popup h3 {
+      margin-bottom: 20px;
+  }
+  
+  .popup select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+  }
+  
+  .popupButtons {
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  .cancelButton {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  
+  .cancelButton:hover {
+      background-color: darkred;
+  }
+  
+  .continueButton {
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  
+  .continueButton:disabled {
+      background-color: grey;
+      cursor: not-allowed;
+  }
+  
+  .continueButton:hover:not(:disabled) {
+      background-color: darkgreen;
+  }
+  
+  .uploadContainer {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+  }
+  

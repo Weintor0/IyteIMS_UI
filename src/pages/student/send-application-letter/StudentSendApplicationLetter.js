@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
 import { Link } from "react-router-dom";
 
-import Header from "../../../components/Header";
+import Header from "../../../components/common/header/Header";
 import NavigationMenu from "../../../components/student/NavigationMenu";
 import Vector from "./images/Vector.png"
 import PlusSign from "./images/+.png"
-import Modal from "../../../components/UploadModal"
+import Modal from "../../../components/common/upload/UploadModal"
 import classes from "./StudentSendApplicationLetter.module.css"
 import QuillEditor from "react-quill";
 import "react-quill/dist/quill.snow.css";

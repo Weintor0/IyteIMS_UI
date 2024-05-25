@@ -1,0 +1,210 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F1FF;
+    height: 90%;
+    width: 80%;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 4px #776ec2;
+}
+
+.rightContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adjust gap between boxes */
+    padding: 0;
+    width: 50%;
+    height: 100%;
+}
+
+.infoBox2 {
+    background-color: #ffffff;
+    height: 50%;
+    width: 97%;
+    min-height: 10%;
+    border-radius: 15px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    padding: 8px 5px 5px;
+}
+.infoBox3 {
+    background-color: #61677d;
+    height: 50%;
+    width: 97%;
+    min-height: 10%;
+    border-radius: 15px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    padding: 8px 5px 5px;
+}
+.sideBar {
+    flex-direction: column;
+    margin-right: 0;
+    align-items: center;
+}
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 5px 0 2px;
+}
+
+.headerLeftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.greeting {
+    font-size: 40px;
+    font-size: 40px;
+    color: #333;
+    margin: 0 0 0 20px;
+}
+
+.welcomeMessage {
+    font-size: 18px;
+    color: #666;
+    display: block;
+    margin: 0 0 5px 24px;
+}
+
+.searchInput {
+    padding: 14px 16px;
+    border: 1px;
+    border-radius: 20px;
+    outline: none;
+    width: 300px;
+    font-size: 16px;
+    margin-left: 15%;
+    box-shadow: 4px 1px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.profileContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.profileButton {
+    background-color: #61677D;
+    border: none;
+    cursor: pointer;
+    padding: 20px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px; /*space between the button and the text */
+}
+
+.profileName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.boxesContainer {
+    display: flex;
+    height: 100%;
+    width: 70%;
+    gap: 20px;               /* Space between each box */
+    flex-direction: column;  /* Aligns items vertically */
+    cursor: pointer;
+    margin-top: 5%;
+    margin-left: 20px;
+}
+
+.boxesContainer h3 {
+    margin: 2px;
+    display: block;
+    font-weight: bold;
+    width: fit-content;
+    overflow: hidden;
+}
+
+.boxesContainer p {
+    display: block;
+    margin: 2px;
+    width: fit-content;
+    overflow: hidden;
+}
+
+.announcementBox {
+    background-color: #ffffff;
+    height: auto;
+    width: 30%;
+    min-height: 25%;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    padding: 8px 5px 5px;
+}
+
+.applicationBox {
+    background-color: #ffffff;
+    width: auto;
+    height: auto;
+    min-width: 30%;
+    min-height: 20%;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    padding: 8px 5px 5px;
+    white-space: nowrap;
+}
+
+.subBoxContainer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.infoBox {
+    background-color: #ffffff;
+    height: 20%;
+    width: 50%;
+    min-height: 10%;
+    border-radius: 15px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    padding: 8px 5px 5px;
+}
+
+.blankBox {
+    background-color: #ffffff;
+    width: 50%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 3px 5px 8px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.blankBox:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.announcementBox:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.applicationBox:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.infoBox:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

@@ -4,7 +4,7 @@ import React from "react";
 import classes from "./Login.module.css";
 import { useNavigate } from 'react-router-dom';
 
-import { initAuth, Role } from '../util/Authorization';
+import { initAuth, Role } from '../../util/Authorization';
 import axios from 'axios';
 
 const Login = () => {

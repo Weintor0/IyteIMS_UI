@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./NavigationMenu.css";
 import { useNavigate } from 'react-router-dom';
 
-import MenuTabButton from '../MenuTabButton';
+import MenuTabButton from '../common/sidebar/MenuTabButton';
 
 import HomeIcon from "../../icons/homepage.png";
 import NotificationsIcon from "../../icons/messages.png";
@@ -28,9 +28,9 @@ const NavigationMenu = ({i}) => {
             <MenuTabButton selected={i === 3} click={() => navigateTo('/student/internship-applications')} condition={false} icon={ApplicationsIcon}/>
             <MenuTabButton selected={i === 4} click={() => navigateTo('/student/send-application-form')} condition={false} icon={FormsIcon}/>
             <MenuTabButton selected={i === 5} click={() => navigateTo('/student/ssi-transactions')} condition={false} icon={TransactionsIcon}/>
-            <MenuTabButton selected={i === 6} click={() => navigateTo('/student/summer-practice-reports')} condition={false} icon={ReportsIcon}/>
-            <MenuTabButton selected={i === 7} click={() => navigateTo('/student/survey')} condition={false} icon={SurveyIcon}/>
-            <MenuTabButton selected={i === 8} click={() => navigateTo('/student/coordinator-announcements')} condition={false} icon={CoordinatorIcon}/>
+            <MenuTabButton selected={i === 6} click={() => navigateTo('')} condition={false} icon={ReportsIcon}/>{/*/student/summer-practice-reports*/}
+            <MenuTabButton selected={i === 7} click={() => navigateTo('')} condition={false} icon={SurveyIcon}/>{/*/student/survey*/}
+            <MenuTabButton selected={i === 8} click={() => navigateTo('')} condition={false} icon={CoordinatorIcon}/>{/*/student/coordinator-announcements*/}
         </div>
     )
 };

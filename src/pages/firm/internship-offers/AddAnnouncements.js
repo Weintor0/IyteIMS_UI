@@ -3,7 +3,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import Header from "../../../components/Header";
+import Header from "../../../components/common/header/Header";
 import NavigationMenu from "../../../components/firm/NavigationMenu";
 import classes from "./AddAnnouncements.module.css";
 import Editor from './Editor';

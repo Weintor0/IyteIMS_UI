@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 
-import Pagination from '../../../components/Pagination';
+import Pagination from '../../../components/common/pagination/Pagination';
 import NavigationMenu from '../../../components/firm/NavigationMenu';
-import Header from '../../../components/Header';
+import Header from '../../../components/common/header/Header';
 import classes from './FirmNotifications.module.css';
 
 import { Role } from "../../../util/Authorization";

@@ -131,7 +131,7 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-top: 10px;
-    width: 100%;
+    width: 92%;
   }
   
   .rightButtons {
@@ -176,9 +176,10 @@
     height: 100%;
     margin-top: 10px;
     width: 20%;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
+    white-space: normal;
   }
   
   .uploadBox {
@@ -190,7 +191,6 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     width: 100%;
-    margin-right: 50%;
   }
   
   .body {

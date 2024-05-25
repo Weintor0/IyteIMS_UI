@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import classes from './CheckStudentReport.module.css';
 
-import Pagination from '../../../components/Pagination';
+import Pagination from '../../../components/common/pagination/Pagination';
 import NavigationMenu from '../../../components/firm/NavigationMenu';
-import Header from "../../../components/Header";
+import Header from "../../../components/common/header/Header";
 
 import { Role } from "../../../util/Authorization";
 

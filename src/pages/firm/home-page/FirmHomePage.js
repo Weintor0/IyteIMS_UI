@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import Header from "../../../components/Header";
+import Header from "../../../components/common/header/Header";
 import NavigationMenu from "../../../components/firm/NavigationMenu";
 import classes from "./FirmHomePage.module.css";
 

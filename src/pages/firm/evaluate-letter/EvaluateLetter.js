@@ -3,17 +3,15 @@
 import React, { useState, useEffect } from 'react';
 
 import NavigationMenu from '../../../components/firm/NavigationMenu.js';
-import Header from '../../../components/Header.js';
-import Pagination from '../../../components/Pagination';
+import Header from '../../../components/common/header/Header.js';
+import Pagination from '../../../components/common/pagination/Pagination';
 import classes from './EvaluateLetter.module.css';
 
 import { Role } from "../../../util/Authorization";
-import { getRequest, patchRequest } from '../../../util/Request.js';
+import { getRequest, patchRequest, download } from '../../../util/Request.js';
 
 const EvaluateLetter = () => {
-    const [loaded, setLoaded] = useState(null);
-    const [sliced, setSliced] = useState(null);
-    const [letterList, setLetterList] = useState([]);
+    const [letterList, setLetterList] = useState(null);
     const [currentLetterList, setCurrentLetterList] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [expandedNotification, setExpandedNotification] = useState(null);
@@ -24,11 +22,12 @@ const EvaluateLetter = () => {
 
     useEffect(() => {
         const fetchData = async() => {
-        if (!loaded) {
-                const res = await getRequest("/internship/get-all", Role.firm);
-
-                setLetterList(res.data);
-                setLoaded(true);
+        if (!letterList) {
+                const internshipList = (await getRequest("/internship/get-all", Role.firm)).data;
+                const studentList = await Promise.all(internshipList.map(
+                    async (internship) => (await getRequest(`/student/get/${internship.studentId}`, Role.firm)).data));
+                const letterList = internshipList.map((internship,i) => {return {internship, student: studentList[i]}});
+                setLetterList(letterList);
             }
         }
         
@@ -36,9 +35,11 @@ const EvaluateLetter = () => {
     });
 
     useEffect(() => {
-        setCurrentLetterList(letterList.slice(indexOfFirstNotification, indexOfLastNotification));
-        setSliced(true);
-    }, [loaded]);
+        if (letterList) {
+            setCurrentLetterList(letterList.slice(
+                indexOfFirstNotification, indexOfLastNotification));
+        }
+    }, [letterList]);
     
     const handleApproved = (internshipId) => {
         const url = `/internship/application-letter/evaluate/${internshipId}`;
@@ -51,8 +52,16 @@ const EvaluateLetter = () => {
             .then(() => { 
                 alert("Application letter accepted."); 
             })
-            .catch((error) => { 
-                alert("An unknown problem has occurred unexpectedly: " + error); 
+            .catch((err) => {
+                for (const error of err.response.data.errors) {
+                    console.log(error);
+
+                    if (error.constraint == 'Forbidden') {
+                        alert(error.message);
+                    } else {
+                        alert("Internal system error: " + error); 
+                    }
+                }
             });
     };
 
@@ -67,38 +76,27 @@ const EvaluateLetter = () => {
             .then(() => { 
                 alert("Application letter rejected."); 
             })
-            .catch((error) => { 
-                alert("An unknown problem has occurred unexpectedly: " + error); 
+            .catch((err) => { 
+                for (const error of err.response.data.errors) {
+                    console.log(error);
+
+                    if (error.constraint == 'Forbidden') {
+                        alert(error.message);
+                    } else {
+                        alert("Internal system error: " + error); 
+                    }
+                }
             });
     };
 
     const handleDownload = (internshipId) => {
         const url = `/internship/application-letter/download/${internshipId}`;
-
-        getRequest(url, Role.firm).then(
-            (file) => {
-                const element = document.createElement("a");
-                const blob = new Blob(file, { type: "application/octet-stream" });
-                element.href = URL.createObjectURL(blob);
-                element.download = "file";
-                document.body.appendChild(element);
-                element.click();
-            }
-        );
+        download(url, Role.firm);
     };
 
-    const handleWaiting = () => {
-        alert('Blah');
-    };
-
-    const handleApprovedSort = () => {
-        alert('Blah');
-    };
-
-    const handleRejectedSort = () => {
-        alert('Blah');
-    };
-
+    const handleWaiting = () => { alert('Blah'); };
+    const handleApprovedSort = () => { alert('Blah'); };
+    const handleRejectedSort = () => { alert('Blah'); };
     const handleNotificationClick = (index) => {
         setExpandedNotification(index === expandedNotification ? null : index);
     };
@@ -111,14 +109,13 @@ const EvaluateLetter = () => {
                 <p className={classes.message}>See all application letter that have been sent your firm here.</p>
                 <div className={classes.body}>
                     <div className={classes.boxesContainer}>
-                        {sliced ? currentLetterList.map((letter, index) => {
-                            console.log(letter);
+                        {currentLetterList && currentLetterList.map((letter, index) => {
                             if (expandedNotification !== index) {
                                 // Unexpanded Entry
                                 return (
                                     <div key={index} className={classes.notificationBox} onClick={() => handleNotificationClick(index)}>
                                         <div style={{display: 'iblock'}} className={classes.notificationMessage}>
-                                            {letter.internshipId}
+                                            <ApplicationTitle letter={letter}/>
                                         </div>
                                     </div>
                                 );
@@ -127,22 +124,22 @@ const EvaluateLetter = () => {
                                 return (
                                     <div key={index} className={`${classes.notificationBox} ${classes.expanded}`} onClick={() => handleNotificationClick(index)}>
                                         <div style={{display: 'iblock'}} className={`${classes.notificationMessage} ${classes.expanded}`}>
-                                            {letter.internshipId}
+                                            <ApplicationTitle letter={letter}/>
                                         </div>
-
+                                        <ApplicationContents letter={letter}/>
                                         <div className={classes.actions}>
-                                            <button className={classes.downloadButton} onClick={() => handleDownload(letter.internshipId)}>Download application letter</button>
+                                            <button className={classes.downloadButton} onClick={() => handleDownload(letter.internship.internshipId)}>Download application letter</button>
                                             <div className={classes.rightButtons}>
-                                                <button className={classes.approveButton} onClick={() => handleApproved(letter.internshipId)}>Approve</button>
-                                                <button className={classes.rejectButton} onClick={() => handleRejected(letter.internshipId)}>Reject</button>
+                                                <button className={classes.approveButton} onClick={() => handleApproved(letter.internship.internshipId)}>Approve</button>
+                                                <button className={classes.rejectButton} onClick={() => handleRejected(letter.internship.internshipId)}>Reject</button>
                                             </div>
                                         </div>
                                     </div>
                                 );
                             }
-                        }) : null}
+                        })}
 
-                        {sliced ? <Pagination currentPage={currentPage} notificationsPerPage={notificationsPerPage} totalNotifications={letterList.length} paginate={setCurrentPage}/> : null}
+                        {currentLetterList ? <Pagination currentPage={currentPage} notificationsPerPage={notificationsPerPage} totalNotifications={letterList.length} paginate={setCurrentPage}/> : null}
                     </div>
                 
                     <div className={classes.sortContainer}>
@@ -158,5 +155,23 @@ const EvaluateLetter = () => {
         </>
     );
 };
+
+const ApplicationTitle = ({letter}) => {
+    return (
+        <div>
+            {letter.student.name} {letter.student.surname}
+        </div>
+    );
+}
+
+const ApplicationContents = ({letter}) => {
+    return (
+        <div className={classes.content}>
+            <p>Student Number: {letter.student.studentNumber}</p>
+            <p>Birth Date: {letter.student.birthDate}</p>
+            <p>Email: {letter.student.user.email}</p>
+        </div>
+    );
+}
 
 export default EvaluateLetter;

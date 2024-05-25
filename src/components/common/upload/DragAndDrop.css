@@ -1,0 +1,28 @@
+.drag-drop-area {
+    border: 2px solid #ccc;
+    padding: 50px;
+    text-align: center;
+    margin: 20px 0;
+    transition: border-color 0.3s;
+  
+  }
+  .drag-drop-area.highlight {
+    border-color: #00f;
+  }
+
+.file-list {
+    margin-top: 20px;
+  }
+  
+  .file-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .file-list li {
+    background-color: #f1f1f1;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  

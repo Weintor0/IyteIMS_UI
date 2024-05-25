@@ -156,3 +156,10 @@
 .notificationMessage.expanded {
   border-bottom: 3px solid #DEDCFD; /* Add bottom border with the specified color when expanded */
 }
+
+.content {
+  display: inline-block;
+  width: 100%;
+  font-size: 12px;
+  font-weight: lighter;
+}

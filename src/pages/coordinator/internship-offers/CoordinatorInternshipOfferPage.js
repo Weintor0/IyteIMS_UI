@@ -1,12 +1,14 @@
 // CONNECTED
 
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 
-import ProfileButton from "../../components/coordinator/ProfileButton";
-import OfferBox from "../../components/coordinator/OfferBox";
+import OfferBox from "../../../components/coordinator/OfferBox";
+import NavigationMenu from "../../../components/coordinator/NavigationMenu";
+import classes from "./CoordinatorInternshipOfferPage.module.css";
+import Header from "../../../components/common/header/Header";
 
-import { Role } from "../../util/Authorization";
-import { getRequest, putRequest } from '../../util/Request';
+import { Role } from "../../../util/Authorization";
+import { getRequest, putRequest } from '../../../util/Request';
 
 const CoordinatorInternshipOfferPage = () => {
     const [offerList, setOfferList] = React.useState(null);
@@ -55,26 +57,23 @@ const CoordinatorInternshipOfferPage = () => {
     }
 
     return (
-        <div style={{display:"flex",width:"100%",height:"100%",flexDirection:"column",margin:"5%"}}>
-            <div style={{flexDirection:"row", display:"flex", padding:0}}>
-                <div style={{flex:1, padding:20}}>
-                    <h2 style={{fontSize:35}}>Internship Offers</h2>
-                    <p>See all recent offers.</p>
-                </div>
-                <div style={{flex:1,margin:"2%"}}>
-                    <ProfileButton navigateTo={"/coordinator/profile"} Name={"Coordinator"}/>
-                </div>
-            </div>
+        <>
+            <NavigationMenu i={3}/>
+            <div className={classes.container}>
+            <Header titleFn={u => "Internship Offers"} userNameFn={u => u} userRole={Role.coordinator}/>
+                <p className={classes.welcomeMessage}>See all recent offers.</p>
 
-            {loaded ? offerList.map((offer, index) => {
-                    return <OfferBox
-                        offer={offer}
-                        currentApproval={false}
-                        whenReject={(offer) => whenReject(offer)}
-                        whenApprove={(offer) => whenApprove(offer)}/>
-                }) : <div style={{padding:20}}><p>There is no offer !</p>
-            </div>}
-        </div>
+                {loaded ? offerList.map((offer, index) => {
+                        return <OfferBox
+                            offer={offer}
+                            currentApproval={false}
+                            whenReject={(offer) => whenReject(offer)}
+                            whenApprove={(offer) => whenApprove(offer)}/>
+                    }) : <div style={{padding:20}}>
+                            <p>There is no offer !</p>
+                        </div>}
+            </div>
+        </>
     )
 }
 

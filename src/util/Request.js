@@ -44,3 +44,33 @@ export async function upload(url, files, role) {
         }}
     );
 }
+
+export async function download(url, role) {
+    const [, token] = auth(role);
+
+    fetch(requestUrl(url), {
+        method: 'GET',
+        headers: new Headers({
+            "Authorization": "Bearer " + token,
+            "responseType": 'blob'
+    })})
+
+    .then(res => (async() => {
+        let filename = undefined;
+        for (const entry of res.headers.entries()) {
+            if (entry[0] === 'content-disposition') {
+                filename = entry[1].split('filename=')[1]
+            }
+        }
+
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();    
+        a.remove();
+    })());
+}
