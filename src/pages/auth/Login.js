@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { initAuth, Role } from '../../util/Authorization';
 import axios from 'axios';
+import { requestUrl } from "../../util/Request";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Login = () => {
     setPasswordBlankError(false);
 
     try {
-      let res = await axios.post("http://localhost:9090/auth/login", {
+      let res = await axios.post(requestUrl('/auth/login'), {
           "email": emailRef.current.value,
           "password": passwordRef.current.value
       });

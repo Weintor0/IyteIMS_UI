@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { auth, Role } from "./Authorization";
 
-function requestUrl(path) {
+export function requestUrl(path) {
+    //return `http://192.168.1.196:9090${path}`
     return `http://localhost:9090${path}`
 }
 

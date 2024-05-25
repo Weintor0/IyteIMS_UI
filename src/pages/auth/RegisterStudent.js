@@ -4,6 +4,7 @@ import React from "react";
 import classes from "./RegisterStudent.module.css";
 
 import axios from "axios";
+import { requestUrl } from "../../util/Request";
 
 const RegisterStudent = () => {
   const nameRef = React.useRef(null);
@@ -45,7 +46,7 @@ const RegisterStudent = () => {
           "Registration failed. You must agree to the terms of Privacy Policy."
         );
       } else {
-        await axios.post("http://localhost:9090/auth/register/student", {
+        await axios.post(requestUrl("/auth/register/student"), {
           studentNumber: studentNumberRef.current.value,
           birthDate: birthDateRef.current.value,
           name: nameRef.current.value,

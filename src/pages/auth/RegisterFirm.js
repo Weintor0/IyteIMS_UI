@@ -4,6 +4,7 @@ import React from "react";
 import classes from "./RegisterFirm.module.css";
 
 import axios from "axios";
+import { requestUrl } from "../../util/Request";
 
 const RegisterFirm = () => {
   const firmNameRef = React.useRef(null);
@@ -56,7 +57,7 @@ const RegisterFirm = () => {
           "Registration failed. You must agree to the terms of Privacy Policy."
         );
       } else {
-        await axios.post("http://localhost:9090/auth/register/firm", {
+        await axios.post(requestUrl("/auth/register/firm"), {
           registerDate: registrationDateRef.current.value,
           firmName: firmNameRef.current.value,
           typeOfBusiness: typeOfBusinessRef.current.value,
