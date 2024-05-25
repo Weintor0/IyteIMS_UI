@@ -135,7 +135,7 @@ const FillAppForm = () => {
                             </div>
                         ))}
                         
-                        {forms && forms.length && <Pagination
+                        {slicedForms && slicedForms.length && <Pagination
                             currentPage={currentPage}
                             notificationsPerPage={notificationsPerPage}
                             totalNotifications={forms.length}

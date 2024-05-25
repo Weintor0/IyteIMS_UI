@@ -3,50 +3,34 @@ import classes from "./ErrorMessageBox.module.css";
 import Modal from "./Modal";
 
 
-const StudentBox = ({ Name, Text, readStatus, data, Approved, offerOrNot }) => {
-
-    const [isOffer, setIsOffer] = useState(offerOrNot)
-    const [name, setName] = useState(Name)
-    const [text, setText] = useState(Text)
-    const [read, setRead] = useState(readStatus)
-    const [approved, setApproved] = useState(Approved)
-
-    const [dataOffer, setDataOffer] = useState(data)
-
-
+const StudentBox = ({ title, text, handleWithout, handleWith }) => {
     const [largeBoxVisible, setLargeBoxVisible] = useState(false)
     const [contWithSgkModalVisible, setContWithSgkModalVisible] = useState(false)
     const [contWithoutSgkModalVisible, setContWithoutSgkModalVisible] = useState(false)
 
     const openWithSgkModal = () => {
-        if (isOffer) {
-            // Approve and redirect logic
-        }else{
-            setContWithSgkModalVisible(true);
-        }
-
+        setContWithSgkModalVisible(true);
     };
+
     const closeWithSgkModal = () => {
         setContWithSgkModalVisible(false);
     };
+
     const handleContinueWithSgk = (option) => {
-        console.log(`Continued with ${option}`);
+        handleWith();
         setContWithSgkModalVisible(false);
     };
 
     const openWithoutSgkModal = () => {
-        if(isOffer){
-            setLargeBoxVisible(false);
-        }else{
-            setContWithoutSgkModalVisible(true);
-        }
-
+        setContWithoutSgkModalVisible(true);
     };
+
     const closeWithoutSgkModal = () => {
         setContWithoutSgkModalVisible(false);
     };
+
     const handleContinueWithoutSgk = (option) => {
-        console.log(`Continued with ${option}`);
+        handleWithout();
         setContWithoutSgkModalVisible(false);
     };
 
@@ -60,6 +44,7 @@ const StudentBox = ({ Name, Text, readStatus, data, Approved, offerOrNot }) => {
                     bottom: 0,
                     backgroundColor: 'rgba(171, 171, 171, 0.8)'
                 },}} isOpen={contWithSgkModalVisible} onClose={closeWithSgkModal} onContinue={handleContinueWithSgk} text="You are about to continue with SGK." header="Do you want to continue?"/>
+            
             <Modal style={{overlay: {
                     position: 'fixed',
                     top: 0,
@@ -83,7 +68,7 @@ const StudentBox = ({ Name, Text, readStatus, data, Approved, offerOrNot }) => {
                 justifyContent: "space-between"
             }} onClick={()=>setLargeBoxVisible(false)} >
                 <div>
-                    <p style={{ marginLeft: 20, fontSize: 25, fontWeight: "bold" }}>{name}</p>
+                    <p style={{ marginLeft: 20, fontSize: 25, fontWeight: "bold" }}>{title}</p>
                     <p style={{ marginTop: 0, marginLeft: 20, fontSize: 20 }}>{text}</p>
                 </div>
                 <div style={{
@@ -102,7 +87,7 @@ const StudentBox = ({ Name, Text, readStatus, data, Approved, offerOrNot }) => {
                         justifyContent: "center",
                         alignItems: "center"
                     }} onClick={openWithoutSgkModal}>
-                        {isOffer ? <p style={{color:"white", fontWeight:"bold"}}>Cancel</p> : <p style={{color:"white", fontWeight:"bold"}}>Continue without SGK</p> }
+                        <p style={{color:"white", fontWeight:"bold"}}>Continue without SGK</p>
                     </div>
                     <div style={{
                         backgroundColor: "green",
@@ -113,20 +98,18 @@ const StudentBox = ({ Name, Text, readStatus, data, Approved, offerOrNot }) => {
                         justifyContent: "center",
                         alignItems: "center"
                     }} onClick={openWithSgkModal}>
-                        {isOffer ? <p style={{color:"white", fontWeight:"bold"}}>Approve and Redirect</p> : <p style={{color:"white", fontWeight:"bold"}}>Continue without SGK</p> }
+                        <p style={{color:"white", fontWeight:"bold"}}>Continue without SGK</p>
                     </div>
                 </div>
             </div>
 
             :
-            <div className={classes.errorContainer} style={{height:30, width:"65%"}} onClick={() => setLargeBoxVisible(true)} >
+
+            <div className={classes.errorContainer} style={{height:30, width:"80%"}} onClick={() => setLargeBoxVisible(true)} >
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    <p style={{margin:0}} className={classes.errorTitle}>{Name}</p>
-                    <p style={{margin:0}}>{read}</p>
-                    <p style={{margin:0,marginRight:20}}>{approved}</p>
-
+                    <p style={{margin:0}} className={classes.errorTitle}>{title}</p>
+                    <p style={{margin:0,marginRight:20}}></p>
                 </div>
-
             </div>
         }
         </div>

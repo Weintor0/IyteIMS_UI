@@ -19,7 +19,7 @@ const FormBox = ({ studentName, studentNumber, studentEmail,
     }
 
     return (
-        <div style={{marginBottom:8, marginTop:"5%"}}>
+        <div style={{marginBottom:8}}>
             <FeedbackModal style={{overlay: {
                     position: 'fixed',
                     top: 0,

@@ -112,32 +112,33 @@ const CoordinatorReviewFormsPage = () => {
             <div className={classes.container}>
                 <Header titleFn={u => "Review Application Forms"} userNameFn={u => u} userRole={Role.coordinator}/>
                 <p className={classes.welcomeMessage}>See all recent forms.</p>
+                <div style={{marginTop: "5%"}}>
+                    {!forms || forms.length == 0 ?
+                        <div style={{padding:20}}>
+                            <p>
+                                No firm has filled an application form.
+                            </p>
+                        </div>
 
-                {!forms || forms.length == 0 ?
-                    <div style={{padding:20}}>
-                        <p>
-                            No firm has filled an application form.
-                        </p>
-                    </div>
-
-                    : 
-                    
-                    forms.map((form, index) => {
-                        return <FormBox
-                            key={index}
-                            internshipId={form.internship.internshipId}
-                            studentName={`${form.student.name} ${form.student.surname}`}
-                            studentNumber={form.student.studentNumber}
-                            studentEmail={form.student.user.email}
-                            firmName={form.firm.firmName}
-                            firmEmail={form.firm.user.email}
-                            offerTitle={form.offer.title}
-                            jobTitle={form.offer.jobTitle}
-                            approved={approved}
-                            handleApprove={() => handleApprove(form.internship.internshipId)}
-                            handleReject={(feedback) => handleReject(form.internship.internshipId, feedback)}
-                            handleDownload={() => handleDownload(form.internship.internshipId)}/>
-                    })}
+                        : 
+                        
+                        forms.map((form, index) => {
+                            return <FormBox
+                                key={index}
+                                internshipId={form.internship.internshipId}
+                                studentName={`${form.student.name} ${form.student.surname}`}
+                                studentNumber={form.student.studentNumber}
+                                studentEmail={form.student.user.email}
+                                firmName={form.firm.firmName}
+                                firmEmail={form.firm.user.email}
+                                offerTitle={form.offer.title}
+                                jobTitle={form.offer.jobTitle}
+                                approved={approved}
+                                handleApprove={() => handleApprove(form.internship.internshipId)}
+                                handleReject={(feedback) => handleReject(form.internship.internshipId, feedback)}
+                                handleDownload={() => handleDownload(form.internship.internshipId)}/>
+                        })}
+                </div>
             </div>
         </>
     );
